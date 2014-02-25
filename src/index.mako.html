@@ -189,7 +189,42 @@
 
     <div id="pulldown" class="{{(globals.catalogShown && globals.selectionShown) ? 'selection-and-catalog-shown' : ''}}">
       <div id="pulldown-content" class="panel-group content ${"in" if device == "desktop" else "collapse"}">
+% if device == 'mobile':
         <div class="panel">
+          <a id="settingsHeading" class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#pulldown-content" href="#settings">
+            <i class="visible-collapsed icon-caret-right spacer"></i>
+            <i class="hidden-collapsed icon-caret-down"></i>
+            <i class="icon-gear"></i>
+            <span translate>settings</span>
+          </a>
+          <div id="settings" class="collapse">
+            <div class="panel-body">
+              <p>
+                <a ng-href="{{deviceSwitcherHref}}" translate>desktop_redirect</a>
+              </p>
+              <div class="options">
+                <label ng-controller="GaTranslationController">
+                  <span translate>lang_chooser_label</span>
+                  <div id="lang-chooser" ga-translation-selector ga-translation-selector-options="options"></div>
+                </label>
+                <label>
+                  <span translate>bg_chooser_label</span>
+                  <div id="bg-chooser" ga-background-layer-selector ga-background-layer-selector-map="map"></div>
+                </label>
+              </div>
+              <hr>
+              <p>
+                <a href="#feedback" data-toggle="modal" translate>problem_announcement</a>
+                <br>
+                <a target="_blank" ng-href="{{topicId + '_service_link_href' | translate}}" ng-cloak translate="{{topicId + '_service_link_label'}}"></a>
+                <br>
+                <a target="_blank" ng-href="http://www.geo.admin.ch/internet/geoportal/{{langId}}/home/geoadmin/contact.html#copyright" translate>copyright_label</a>
+              </p>
+            </div>
+          </div>
+        </div> <!-- .panel -->
+% endif
+       <div class="panel">
           <a id="shareHeading" class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#pulldown-content" href="#share">
             <i class="visible-collapsed icon-caret-right spacer"></i>
             <i class="hidden-collapsed icon-caret-down"></i>
@@ -297,52 +332,17 @@
         </div> <!-- .panel -->
 
         <div class="panel">
-          <a id="selectionHeading" class="panel-heading accordion-toggle light ${"collapsed" if device!= "desktop" else ""}" data-toggle="collapse" href="#selection">
+          <a id="selectionHeading" class="panel-heading accordion-toggle light" data-toggle="collapse" href="#selection">
             <i class="visible-collapsed icon-caret-right"></i>
             <i class="hidden-collapsed icon-caret-down"></i>
             <span translate>layer_selection</span>
           </a>
-          <div id="selection"  ga-collapsible-observe="globals.selectionShown" class="${"in" if device == "desktop" else ""}">
+          <div id="selection"  ga-collapsible-observe="globals.selectionShown" class="in">
             <div class="panel-body panel-body-wide" ga-layermanager ga-layermanager-map="map">
             </div>
           </div>
         </div> <!-- .panel -->
 
-% if device == 'mobile':
-        <div class="panel">
-          <a class="panel-heading accordion-toggle collapsed" data-toggle="collapse" data-parent="#pulldown-content" href="#settings">
-            <i class="visible-collapsed icon-caret-right spacer"></i>
-            <i class="hidden-collapsed icon-caret-down"></i>
-            <i class="icon-gear"></i>
-            <span translate>settings</span>
-          </a>
-          <div id="settings" class="collapse">
-            <div class="panel-body">
-              <p>
-                <a ng-href="{{deviceSwitcherHref}}" translate>desktop_redirect</a>
-              </p>
-              <div class="options">
-                <label ng-controller="GaTranslationController">
-                  <span translate>lang_chooser_label</span>
-                  <div ga-translation-selector ga-translation-selector-options="options"></div>
-                </label>
-                <label>
-                  <span translate>bg_chooser_label</span>
-                  <div ga-background-layer-selector ga-background-layer-selector-map="map"></div>
-                </label>
-              </div>
-              <hr>
-              <p>
-                <a href="#feedback" data-toggle="modal" translate>problem_announcement</a>
-                <br>
-                <a target="_blank" ng-href="{{topicId + '_service_link_href' | translate}}" ng-cloak translate="{{topicId + '_service_link_label'}}"></a>
-                <br>
-                <a target="_blank" ng-href="http://www.geo.admin.ch/internet/geoportal/{{langId}}/home/geoadmin/contact.html#copyright" translate>copyright_label</a>
-              </p>
-            </div>
-          </div>
-        </div> <!-- .panel -->
-% endif
       </div> <!-- #pulldown-content -->
 
 % if device == 'desktop':

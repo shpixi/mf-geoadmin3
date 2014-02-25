@@ -139,47 +139,45 @@ module.controller('GaMainController',
      
       // Try to manage the menu correctly when height is too small,
       // only on desktop.
-      if (!gaBrowserSniffer.mobile) {
+      $($window).on('resize', function() {
+        if(isWindowTooSmall()) {
+          $rootScope.$broadcast('catalogCollapse', 'hide');
+        }
+      });
       
-        $($window).on('resize', function() {
-          if(isWindowTooSmall()) {
-            $rootScope.$broadcast('catalogCollapse', 'hide');
-          }
-        });
-        
-        // Hide a panel clicking on its heading    
-        var hidePanel = function(id) {
-          if (!$('#' + id ).hasClass('collapse')) {
-            $('#' + id + 'Heading').click();
-          }
+      // Hide a panel clicking on its heading    
+      var hidePanel = function(id) {
+        if (!$('#' + id ).hasClass('collapse')) {
+          $('#' + id + 'Heading').click();
         }
-
-        var hideAccordionPanels = function() {
-          hidePanel('share')
-          hidePanel('print')
-          hidePanel('tools')
-        }
-
-        $('#catalog').on('shown.bs.collapse', function() {
-          // Close accordion
-          hideAccordionPanels(); 
-          
-          if (isWindowTooSmall()) { 
-            // Close selection
-            hidePanel('selection');
-          }
-        });
-
-        $('#selection').on('shown.bs.collapse', function() {
-          // Close accordion
-          hideAccordionPanels(); 
-          
-          if (isWindowTooSmall()) { 
-            // Close catalog
-            hidePanel('catalog');
-          }
-        });
       }
+
+      var hideAccordionPanels = function() {
+        hidePanel('share');
+        hidePanel('print');
+        hidePanel('tools');
+        hidePanel('settings');
+      }
+
+      $('#catalog').on('shown.bs.collapse', function() {
+        // Close accordion
+        hideAccordionPanels(); 
+        
+        if (isWindowTooSmall()) { 
+          // Close selection
+          hidePanel('selection');
+        }
+      });
+
+      $('#selection').on('shown.bs.collapse', function() {
+        // Close accordion
+        hideAccordionPanels(); 
+        
+        if (isWindowTooSmall()) { 
+          // Close catalog
+          hidePanel('catalog');
+        }
+      }); 
      
       // When a menu of accordion (tools, share, print) is shown, the others
       // panels (catalog and selection) are collapsed but their headings

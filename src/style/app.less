@@ -370,6 +370,10 @@ a .ga-icon-separator {
     }
     @media (max-width: @screen-phone) {
       background-color: rgba(255,255,255,0.9);
+      
+      @media (max-height: 480px) {
+        max-height: 210px;
+      }
     }
     .panel-body {
       padding: 0;
@@ -701,6 +705,9 @@ ul.panel-body-wide {
   }
   label {
     display: table-row;
+  }
+  p {
+    margin: 0;
   }
   span, select {
     display: table-cell;
