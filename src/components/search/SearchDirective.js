@@ -420,15 +420,28 @@
                 currentTopic = topic.id;
               });
 
+              var triggerLayerSearch = function() {
+                var datasetLayers = $(taElt).data('ttView').datasets[1];
+                datasetLayers.getSuggestions(scope.query,
+                                             function(suggestions) {
+                  viewDropDown.renderSuggestions(datasetLayers, suggestions,
+                                                 false);
+                });
+              };
+
+              var triggerLocationSearch = function() {
+                var datasetLocations = $(taElt).data('ttView').datasets[0];
+                datasetLocations.getSuggestions(scope.query,
+                                             function(suggestions) {
+                  viewDropDown.renderSuggestions(datasetLocations,
+                                                 suggestions,
+                                                 false);
+                });
+              };
+
               scope.$on('$translateChangeEnd', function() {
                 if (angular.isDefined(currentTopic) && scope.query !== '') {
-                  // Only layers dataset needs to be updated
-                  var datasetLayers = $(taElt).data('ttView').datasets[1];
-                  datasetLayers.getSuggestions(scope.query,
-                                               function(suggestions) {
-                    viewDropDown.renderSuggestions(datasetLayers, suggestions,
-                                                   false);
-                  });
+                  triggerLayerSearch();
                 }
               });
 
@@ -436,14 +449,7 @@
                 if (newYear !== year) {
                   year = newYear;
                   if (scope.query !== '') {
-                    //Update locations search (containing feature search)
-                    var datasetLocations = $(taElt).data('ttView').datasets[0];
-                    datasetLocations.getSuggestions(scope.query,
-                                                 function(suggestions) {
-                      viewDropDown.renderSuggestions(datasetLocations,
-                                                     suggestions,
-                                                     false);
-                    });
+                    triggerLocationSearch();
                   }
                 }
               });
@@ -461,6 +467,18 @@
               if (!gaBrowserSniffer.mobile) {
                 $timeout(function() {
                   taElt.focus();
+                });
+              }
+
+              //if search parameter specified, start it with a search parameter
+              var searchParam = gaPermalink.getParams()['search'];
+              if (angular.isDefined(searchParam) &&
+                  searchParam.length > 0) {
+                var unregister = scope.$on('gaLayersChange', function() {
+                  scope.query = searchParam;
+                  triggerLocationSearch();
+                  triggerLayerSearch();
+                  unregister();
                 });
               }
             }
