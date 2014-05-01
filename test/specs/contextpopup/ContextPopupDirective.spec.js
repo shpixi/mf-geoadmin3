@@ -12,6 +12,11 @@ describe('ga_contextpopup_directive', function() {
           menu: 'contextmenu'
         }
       });
+      $provide.value('gaPermalink', {
+        getHref: function(p) {
+          return 'http://dummy.com';
+        }
+      });
     });
     originalEvt = {originalEvent:{}}; 
     element = angular.element(
@@ -19,6 +24,7 @@ describe('ga_contextpopup_directive', function() {
         '<div ga-context-popup ga-context-popup-map="map" ga-context-popup-options="options"></div>' +
         '<div id="map"></div>' +
       '</div>');
+    element.appendTo(document.body);
 
     inject(function($rootScope, $compile) {
       map = new ol.Map({});
@@ -26,7 +32,8 @@ describe('ga_contextpopup_directive', function() {
       $rootScope.options = {
         lv03tolv95Url: "//api.example.com/reframe/lv03tolv95",
         heightUrl: "//api.geo.admin.ch/height",
-        qrcodeUrl: "//api.geo.admin.ch/qrcodegenerator"
+        qrcodeWidth: 128,
+        qrcodeHeight: 128
       };
       map.on = function(eventType, handler) {
         handlers[eventType] = handler;
@@ -44,6 +51,9 @@ describe('ga_contextpopup_directive', function() {
 
     var tds = $(tables[0]).find('td');
     expect(tds.length).to.be(11);
+
+    var qrcodeEl = element.find('#qrcode');
+    expect(qrcodeEl.length).to.be(1)
   });
 
   describe('ga_contextpopup_directive handling of popupcontext', function() {
@@ -130,7 +140,7 @@ describe('ga_contextpopup_directive', function() {
 
       it('touchend prevents handler from being called', function() {
 
-        // Make sure there aren't any timouts left (this might
+        // Make sure there aren't any timeouts left (this might
         // compenstate for a bug in angular.mock or angular in general)
         $timeout.flush();
         handlers.pointerdown(mapEvt);
@@ -143,7 +153,7 @@ describe('ga_contextpopup_directive', function() {
 
       it('touchmove prevents handler from being called', function() {
 
-        // Make sure there aren't any timouts left (this might
+        // Make sure there aren't any timeouts left (this might
         // compenstate for a bug in angular.mock or angular in general)
         $timeout.flush();
         handlers.pointerdown(mapEvt);

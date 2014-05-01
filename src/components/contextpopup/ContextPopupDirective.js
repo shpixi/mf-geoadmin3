@@ -1,16 +1,19 @@
 (function() {
   goog.provide('ga_contextpopup_directive');
+
   goog.require('ga_permalink');
+  goog.require('ga_qrcode_service');
   goog.require('ga_urlutils_service');
 
   var module = angular.module('ga_contextpopup_directive', [
     'ga_permalink',
+    'ga_qrcode_service',
     'ga_urlutils_service'
   ]);
 
   module.directive('gaContextPopup',
       function($http, $q, $timeout, gaPermalink,
-              gaUrlUtils, gaBrowserSniffer) {
+              gaUrlUtils, gaBrowserSniffer, gaQRCode) {
           return {
             restrict: 'A',
             replace: true,
@@ -20,10 +23,10 @@
               options: '=gaContextPopupOptions'
             },
             link: function(scope, element, attrs) {
-              var heightUrl = gaUrlUtils.append(scope.options.heightUrl,
+              var options = scope.options;
+              var heightUrl = gaUrlUtils.append(options.heightUrl,
                   'callback=JSON_CALLBACK');
-              var qrcodeUrl = scope.options.qrcodeUrl;
-              var lv03tolv95Url = gaUrlUtils.append(scope.options.lv03tolv95Url,
+              var lv03tolv95Url = gaUrlUtils.append(options.lv03tolv95Url,
                   'cb=JSON_CALLBACK');
 
               // The popup content is updated (a) on contextmenu events,
@@ -198,14 +201,16 @@
                 var contextPermalink = gaPermalink.getHref(p);
                 scope.contextPermalink = contextPermalink;
 
+                if (scope.showQR) {
+                  gaQRCode.create('qrcode', {
+                    url: contextPermalink,
+                    width: options.qrcodeWidth,
+                    height: options.qrcodeHeight
+                  });
+                }
+
                 scope.crosshairPermalink = gaPermalink.getHref(
                     angular.extend({crosshair: 'bowl'}, p));
-
-                if (!gaBrowserSniffer.mobile) {
-                  scope.qrcodeUrl = qrcodeUrl +
-                    '?url=' +
-                    escape(contextPermalink);
-                }
               }
             }
           };

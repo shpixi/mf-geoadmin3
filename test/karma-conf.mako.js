@@ -21,6 +21,7 @@ files = [
   'lib/angular-translate-loader-static-files-0.1.5.js',
   'lib/bootstrap-3.0.0.js',
   'lib/typeahead-0.9.3.js',
+  'lib/qrcode.js',
   'lib/proj4js-compressed.js',
   'lib/EPSG21781.js',
   'lib/EPSG2056.js',
