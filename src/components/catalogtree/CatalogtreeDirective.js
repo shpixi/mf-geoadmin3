@@ -207,36 +207,43 @@
             });
 
             var scrollElt = element;
-            var targetElts; 
+            var targetElts;
             var targetActive;
             var plus = 16;
-            element.scroll(function(evt) { 
+            element.scroll(function(evt) {
               if (!targetElts) {
-                targetElts = element.find(' > ul > li > div > div.ga-catalogitem-node');
+                targetElts = element.
+                    find(' > ul > li > div > div.ga-catalogitem-node');
               }
               // Hide scrollspy when the scroll begins
-              $(targetActive).removeClass('scrollspy-active');
-              updateScrollspyDebounced(); 
+              if (targetActive) {
+                var scrollTop = scrollElt.scrollTop();
+                targetActive.children[0].children[1].style.top = scrollTop +
+                    'px';
+              }
+              updateScrollspyDebounced();
             });
 
             var updateScrollspy = function() {
-              var scrollTop    = scrollElt.scrollTop();
+              var scrollTop = scrollElt.scrollTop();
               var scrollHeight = scrollElt[0].scrollHeight;
-             
+
+              $(targetActive).removeClass('scrollspy-active');
               for (var i = 0, ii = targetElts.length; i < ii; i++) {
                 var $spyEl = $(targetElts[i].children[1]);
                 if ($spyEl && $spyEl.length == 1 && scrollTop > plus) {
                   var offset = $spyEl.position().top + scrollElt.scrollTop();
-                  if (scrollTop + plus > offset && scrollTop + plus < offset + $spyEl.height()) {
+                  if (scrollTop + plus > offset &&
+                      scrollTop + plus < offset + $spyEl.height()) {
                     targetActive = targetElts[i];
                     $(targetActive).addClass('scrollspy-active');
-                    targetActive.children[0].children[1].style.transition = 'top ease 0.5s';
-                    targetActive.children[0].children[1].style.top = scrollTop  + 'px';
+                    targetActive.children[0].children[1].style.top = scrollTop +
+                        'px';
                     break;
                   }
                 }
               }
-            }
+            };
             var updateScrollspyDebounced = gaDebounce.debounce(updateScrollspy,
                 200, false);
           }
@@ -276,7 +283,7 @@
             });
           }
         }
-        
+
 
       }
   );
