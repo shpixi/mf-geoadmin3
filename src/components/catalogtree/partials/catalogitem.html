@@ -13,10 +13,11 @@
     <i class="icon-info-sign" ng-click="getLegend($event, item.layerBodId)"></i>
   </div>
 
-  <div ng-switch-default="" class="ga-catalogitem-node">
+  <div ng-switch-default="" id="{{item.label}}" class="ga-catalogitem-node">
+    
     <a href="#" ng-click="toggle($event)" class="ga-catalogitem-entry ga-truncate-text" title="{{item.label}}">
       <i ng-class="{'icon-minus': item.selectedOpen, 'icon-plus': !item.selectedOpen}"></i>
-      {{item.label}}
+      <label>{{item.label}}</label>
     </a>
     <ul ng-if="item.selectedOpen">
       <li ng-repeat="child in item.children">
