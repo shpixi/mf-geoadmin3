@@ -540,6 +540,7 @@
 % else:
     <script src="lib/jquery-2.0.3.js"></script>
     <script src="lib/angular-1.2.9.js"></script>
+    <script src="lib/angular-touch-1.2.9.js"></script>
     <script src="lib/angular-translate-1.1.1.js"></script>
     <script src="lib/angular-translate-loader-static-files-0.1.5.js"></script>
     <script src="lib/d3-3.3.1.js"></script>
@@ -550,7 +551,6 @@
     <script src="lib/EPSG21781.js"></script>
     <script src="lib/EPSG2056.js"></script>
     <script src="lib/EPSG32632.js"></script>
-    <script src="lib/fastclick.js"></script>
 
     <!-- Use Closure to load the application scripts -->
     <script>
@@ -568,13 +568,6 @@
     </script>
 
 %endif
-% if device == 'mobile':
-    <script>
-      window.addEventListener('load', function() {
-        FastClick.attach(document.body);
-      }, false);
-    </script>
-% endif
 
     <script>
       (function() {
