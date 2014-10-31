@@ -11,8 +11,8 @@
   ]);
 
   module.directive('gaDraw',
-    function($timeout, $translate, $window, $rootScope,
-        gaDefinePropertiesForLayer, gaLayerFilters, gaExportKml) {
+    function($timeout, $translate, $window, $rootScope, gaBrowserSniffer,
+        gaDefinePropertiesForLayer, gaDebounce, gaLayerFilters, gaExportKml) {
       return {
         restrict: 'A',
         templateUrl: function(element, attrs) {
@@ -26,6 +26,7 @@
         link: function(scope, element, attrs, controller) {
           var draw, deregister, lastActiveTool;
           var map = scope.map;
+          var viewport = $(map.getViewport());
           var source = new ol.source.Vector();
           var layer = new ol.layer.Vector({
             source: source,
@@ -85,7 +86,7 @@
             // Remove interactions
             deactivateDrawInteraction();
             deactivateSelectInteraction();
-            modify.setActive(false);
+            deactivateModifyInteraction();
           };
 
           // Deactivate other tools
@@ -120,7 +121,7 @@
           var activateDrawInteraction = function(type) {
             deactivateDrawInteraction();
             deactivateSelectInteraction();
-            modify.setActive(false);
+            deactivateModifyInteraction();
 
             draw = new ol.interaction.Draw({
               type: type,
@@ -153,8 +154,7 @@
           var activateSelectInteraction = function() {
             deactivateDrawInteraction();
             deactivateSelectInteraction();
-            modify.setActive(false);
-
+            deactivateModifyInteraction();
             if (scope.isActive) {
               select.setActive(true);
             }
@@ -173,8 +173,17 @@
 
             if (scope.isActive) {
               modify.setActive(true);
+              if (!gaBrowserSniffer.mobile) {
+                viewport.on('mousemove', updateCursorStyleDebounced);
+              }
             }
           };
+
+          var deactivateModifyInteraction = function() {
+            modify.setActive(false);
+            viewport.unbind('mousemove', updateCursorStyleDebounced);
+          };
+
 
           // Update selected feature with a new style
           var updateSelectedFeatures = function() {
@@ -339,6 +348,24 @@
 
 
           // Utils
+          // Find the first feature from a vector layer
+          var findDrawnFeature = function(pixel, vectorLayer) {
+              var featureFound;
+              map.forEachFeatureAtPixel(pixel, function(feature, olLayer) {
+                featureFound = feature;
+              }, this, function(olLayer) {
+                return (layer == olLayer);
+              });
+              return featureFound;
+            };
+
+          // Change cursor style on mouse move, only on desktop
+          var updateCursorStyle = function(evt) {
+            var feature = findDrawnFeature(map.getEventPixel(evt));
+            map.getTarget().style.cursor = (feature) ? 'pointer' : '';
+          };
+          var updateCursorStyleDebounced = gaDebounce.debounce(
+              updateCursorStyle, 10, false, false);
 
           // Focus on the first input.
           var setFocus = function() {
