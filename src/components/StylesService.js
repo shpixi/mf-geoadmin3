@@ -5,6 +5,9 @@
 
   module.provider('gaStyleFactory', function() {
     var DEFAULT_FONT = 'normal 16px Helvetica';
+    // Defines static styles
+    var white = [255, 255, 255];
+    var black = [0, 0, 0];
 
     var selectStroke = new ol.style.Stroke({
       color: [255, 128, 0, 1],
@@ -111,6 +114,19 @@
       stroke: new ol.style.Stroke({color: transparent})
     });
 
+    var sketchVertexStyle = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 7,
+        fill: new ol.style.Fill({
+          color: white.concat([1])
+        }),
+        stroke: new ol.style.Stroke({
+          color: black.concat([1])
+        })
+      }),
+      zIndex: 60
+    });
+
     var styles = {
       'select': selectStyle,
       'highlight': hlStyle,
@@ -118,7 +134,9 @@
       'geolocation': geolocationStyle,
       'offline': offlineStyle,
       'kml': kmlStyle,
-      'transparentCircle': transparentCircle
+      'transparentCircle': transparentCircle,
+      'sketchVertexStyle': sketchVertexStyle
+
     };
 
     this.$get = function() {

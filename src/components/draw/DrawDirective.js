@@ -3,16 +3,19 @@
 
   goog.require('ga_export_kml_service');
   goog.require('ga_map_service');
+  goog.require('ga_styles_service');
 
   var module = angular.module('ga_draw_directive', [
     'ga_export_kml_service',
     'ga_map_service',
+    'ga_styles_service',
     'pascalprecht.translate'
   ]);
 
   module.directive('gaDraw',
     function($timeout, $translate, $window, $rootScope, gaBrowserSniffer,
-        gaDefinePropertiesForLayer, gaDebounce, gaLayerFilters, gaExportKml) {
+        gaDefinePropertiesForLayer, gaDebounce, gaLayerFilters, gaExportKml,
+        gaStyleFactory) {
       return {
         restrict: 'A',
         templateUrl: 'components/draw/partials/draw.html',
@@ -59,7 +62,7 @@
           // Add modify interaction
           var modify = new ol.interaction.Modify({
             features: select.getFeatures(),
-            style: scope.options.selectStyleFunction
+            style: gaStyleFactory.getStyle('sketchVertexStyle')
           });
           modify.setActive(false);
           map.addInteraction(modify);

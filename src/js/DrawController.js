@@ -309,18 +309,7 @@
             fill: fill,
             stroke: stroke
           }); 
-          var vertexStyle = new ol.style.Style({
-            image: new ol.style.Circle({
-              radius: 7,
-              fill: new ol.style.Fill({
-                color: white.concat([1])
-              }),
-              stroke: new ol.style.Stroke({
-                color: black.concat([1])
-              })
-            }), 
-            zIndex: gaStyleFactory.ZSKETCH 
-          });
+          var vertexStyle = gaStyleFactory.getStyle('sketchVertexStyle');
            
           return function(feature, resolution) {
             if (!feature.getStyleFunction() ||

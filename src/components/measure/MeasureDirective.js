@@ -4,11 +4,14 @@
   goog.require('ga_debounce_service');
   goog.require('ga_export_kml_service');
   goog.require('ga_map_service');
+  goog.require('ga_styles_service');
+
 
   var module = angular.module('ga_measure_directive', [
     'ga_debounce_service',
     'ga_export_kml_service',
-    'ga_map_service'
+    'ga_map_service',
+    'ga_styles_service'
   ]);
 
   module.filter('measure', function() {
@@ -51,12 +54,10 @@
 
   module.directive('gaMeasure',
     function($document, $rootScope, gaDebounce, gaDefinePropertiesForLayer,
-        gaLayerFilters, gaExportKml) {
+        gaLayerFilters, gaExportKml, gaStyleFactory) {
       return {
         restrict: 'A',
-        templateUrl: function(element, attrs) {
-          return 'components/measure/partials/measure.html';
-        },
+        templateUrl: 'components/measure/partials/measure.html',
         scope: {
           map: '=gaMeasureMap',
           options: '=gaMeasureOptions',
@@ -80,7 +81,7 @@
           var featuresOverlay = new ol.FeatureOverlay({
             style: styleFunction
           });
-          
+
           // Add draw interaction
           var draw = new ol.interaction.Draw({
             type: 'Polygon',
@@ -92,7 +93,14 @@
 
           // Add modify interaction
           var modify;
-         
+          var activateModifyInteraction = function() {
+            modify = new ol.interaction.Modify({
+              features: new ol.Collection(layer.getSource().getFeatures()),
+              style: gaStyleFactory.getStyle('sketchVertexStyle')
+            });
+            scope.map.addInteraction(modify);
+          };
+
           // Activate the component: add listeners, last features drawn and draw
           // interaction.
           var activate = function() {
@@ -100,7 +108,9 @@
             draw.setActive(true);
             scope.map.addLayer(layer);
             featuresOverlay.setMap(scope.map);
-
+            if (modify) {
+              modify.setActive(true);
+            }
             // Add events
             deregister = [
               // Move measure layer  on each changes in the list of layers
@@ -110,6 +120,7 @@
 
               draw.on('drawstart', function(evt) {
                 scope.map.removeInteraction(modify);
+                modify = undefined;
                 var nbPoint = 1;
                 var isSnapOnLastPoint = false;
 
@@ -172,16 +183,16 @@
                       sketchFeatDistance.getGeometry()
                           .setCoordinates(lineCoords);
 
-                      updateMeasures();
-
                       if (!isSnapOnFirstPoint) {
                         if (lineCoords.length == 2) {
                           sketchFeatAzimuth.getGeometry()
-                              .setRadius(scope.distance);
+                              .setRadius(sketchFeatDistance.getGeometry().getLength());
                         } else if (!isSnapOnLastPoint) {
                           sketchFeatAzimuth.getGeometry().setRadius(0);
                         }
                       }
+
+                      updateMeasuresDebounced();
                     }
                   }
                 );
@@ -201,9 +212,6 @@
                 // Update the layer
                 updateLayer(isFinishOnFirstPoint);
 
-                // Update measures
-                updateMeasures();
-
                 // Clear the additional overlay
                 featuresOverlay.getFeatures().clear();
 
@@ -215,16 +223,11 @@
                   updateProfileDebounced();
                 }
 
-                // Active modify interaction
-                modify = new ol.interaction.Modify({
-                  features: new ol.Collection(layer.getSource().getFeatures()),
-                  style: scope.options.selectStyleFunction
-                });
-                scope.map.addInteraction(modify);
+                // Activate modify interaction
+                activateModifyInteraction();
               })
             ];
           };
-
 
           // Deactivate the component: remove listeners, features and draw
           // interaction.
@@ -232,7 +235,9 @@
             featuresOverlay.getFeatures().clear();
             featuresOverlay.setMap(null);
             draw.setActive(false);
-            scope.map.removeInteraction(modify);
+            if (modify) {
+              modify.setActive(false);
+            }
             scope.map.removeLayer(layer);
 
             // Remove events
@@ -272,6 +277,8 @@
               scope.surface = sketchFeatArea.getGeometry().getArea();
             });
           };
+          var updateMeasuresDebounced = gaDebounce.debounce(updateMeasures, 100,
+              false);
 
           // Calulate the azimuth from 2 points
           var calculateAzimuth = function(pt1, pt2) {
