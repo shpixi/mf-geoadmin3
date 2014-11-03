@@ -69,7 +69,7 @@
 
           var layer = new ol.layer.Vector({
             source: new ol.source.Vector(),
-            style: scope.options.styleFunction
+            style: styleFunction
           });
           gaDefinePropertiesForLayer(layer);
           layer.displayInLayerManager = false;
@@ -78,21 +78,27 @@
 
           // Creates the additional overlay to display azimuth circle
           var featuresOverlay = new ol.FeatureOverlay({
-            style: scope.options.styleFunction
+            style: styleFunction
           });
-
-          var drawArea = new ol.interaction.Draw({
+          
+          // Add draw interaction
+          var draw = new ol.interaction.Draw({
             type: 'Polygon',
             minPointsPerRing: 2,
             style: scope.options.drawStyleFunction
           });
+          draw.setActive(false);
+          scope.map.addInteraction(draw);
 
+          // Add modify interaction
+          var modify;
+         
           // Activate the component: add listeners, last features drawn and draw
           // interaction.
           var activate = function() {
             var isFinishOnFirstPoint;
+            draw.setActive(true);
             scope.map.addLayer(layer);
-            scope.map.addInteraction(drawArea);
             featuresOverlay.setMap(scope.map);
 
             // Add events
@@ -102,7 +108,8 @@
               scope.$watchCollection('layers | filter:layerFilter',
                   moveLayerOnTop),
 
-              drawArea.on('drawstart', function(evt) {
+              draw.on('drawstart', function(evt) {
+                scope.map.removeInteraction(modify);
                 var nbPoint = 1;
                 var isSnapOnLastPoint = false;
 
@@ -180,8 +187,7 @@
                 );
               }),
 
-              drawArea.on('drawend', function(evt) {
-
+              draw.on('drawend', function(evt) {
                 if (!isFinishOnFirstPoint) {
                   // The sketchFeatureArea is automatically closed by the draw
                   // interaction even if the user has finished drawing on the
@@ -209,6 +215,12 @@
                   updateProfileDebounced();
                 }
 
+                // Active modify interaction
+                modify = new ol.interaction.Modify({
+                  features: new ol.Collection(layer.getSource().getFeatures()),
+                  style: scope.options.selectStyleFunction
+                });
+                scope.map.addInteraction(modify);
               })
             ];
           };
@@ -219,7 +231,8 @@
           var deactivate = function() {
             featuresOverlay.getFeatures().clear();
             featuresOverlay.setMap(null);
-            scope.map.removeInteraction(drawArea);
+            draw.setActive(false);
+            scope.map.removeInteraction(modify);
             scope.map.removeLayer(layer);
 
             // Remove events
