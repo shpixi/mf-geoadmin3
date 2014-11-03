@@ -15,9 +15,7 @@
         gaDefinePropertiesForLayer, gaDebounce, gaLayerFilters, gaExportKml) {
       return {
         restrict: 'A',
-        templateUrl: function(element, attrs) {
-          return 'components/draw/partials/draw.html';
-        },
+        templateUrl: 'components/draw/partials/draw.html',
         scope: {
           map: '=gaDrawMap',
           options: '=gaDrawOptions',
@@ -164,6 +162,7 @@
             scope.useTextStyle = false;
             scope.useIconStyle = false;
             scope.useColorStyle = false;
+            select.getFeatures().clear();
             select.setActive(false);
           };
 
