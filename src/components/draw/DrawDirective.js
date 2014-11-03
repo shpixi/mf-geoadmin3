@@ -159,9 +159,7 @@
           };
 
           var deactivateSelectInteraction = function() {
-            scope.useTextStyle = false;
-            scope.useIconStyle = false;
-            scope.useColorStyle = false;
+            // Clearing the features updates scope.useXXX properties
             select.getFeatures().clear();
             select.setActive(false);
           };
@@ -219,7 +217,7 @@
               }
               useColorStyle = true;
             }
-            scope.$apply(function() {
+            scope.$evalAsync(function() {
               scope.useTextStyle = useTextStyle;
               scope.useIconStyle = useIconStyle;
               scope.useColorStyle = useColorStyle;
