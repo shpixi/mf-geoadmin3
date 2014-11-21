@@ -148,6 +148,7 @@
 
           // Get the abstract to display in the text area
           $scope.getAbstract = function() {
+            console.log('digest');
             var l = $scope.options.layerSelected ||
                 $scope.options.layerHovered || {};
             return ((l.isInvalid) ? $translate.instant(l.Abstract) :

@@ -25,15 +25,15 @@
     };
     
     // Load attributes of the selected layer in the select box 
-    scope.loadAttributes = function(query) {
+    $scope.loadAttributes = function(query) {
       if (!query.layer.attributes) {
-        $http.get(scope.options.layerAttributesUrl + query.layer.bodId)
+        $http.get($scope.options.layerAttributesUrl + query.layer.bodId)
           .success(function(data) {
             var attr = []
             for (var i = 0, ii = data.length; i < ii; i++) {
               attr.push({
                 label: data[i],
-                operators: scope.options.operatorsByType['string']
+                operators: $scope.options.operatorsByType['string']
               });
             } 
             query.layer.attributes = attr;
@@ -47,20 +47,20 @@
     };
     
     // Add a query
-    scope.add = function(idx) {
-      var query = scope.queries[idx];
+    $scope.add = function(idx) {
+      var query = $scope.queries[idx];
       var clone = {
         layer: query.layer,
         attribute: query.attribute,
         operator: query.operator,
         value: query.value
       };
-      scope.queries.splice(idx, 0, clone);
+      $scope.queries.splice(idx, 0, clone);
     };
     
     // Remove a query
-    scope.remove = function(idx) {
-      scope.queries.splice(idx, 1);
+    $scope.remove = function(idx) {
+      $scope.queries.splice(idx, 1);
     };
 
   });
@@ -80,7 +80,11 @@
         scope.$watchCollection('layers | filter:layerFilter', function(layers) {
           scope.searchableLayers = layers;
         });
-        
+
+        scope.searchByBbox = function() {
+        };
+        scope.searchByAttributes = function() {
+        };
         scope.search = function() {
           /*var layersToQuery = getLayersToQuery(),
               req, searchExtent;
