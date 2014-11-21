@@ -43,7 +43,6 @@
       } else {
         applyAttrValues(query);
       }
-
     };
     
     // Add a query
@@ -66,6 +65,7 @@
   });
 
   module.directive('gaQuery', function($http, gaLayerFilters) {
+    
     return {
       restrict: 'A',
       templateUrl: 'components/query/partials/query.html',
@@ -86,27 +86,19 @@
         scope.searchByAttributes = function() {
         };
         scope.search = function() {
-          /*var layersToQuery = getLayersToQuery(),
+          var layersBodId = scope.queries[0].layer,
               req, searchExtent;
-          gaPreviewFeatures.clearHighlight();
-          if (layersToQuery.ids.length &&
-              scope.dragBox.getGeometry()) {
-            searchExtent = ol.extent.boundingExtent(
-                scope.dragBox.getGeometry().getCoordinates()[0]);
+          if (layersBodIds) {
             req = getUrlAndParameters(layersToQuery, searchExtent);
-
-            scope.loading = true;
-
-            // Look for all features in current bounding box
+          
             $http.get(req.url, {
-              timeout: canceler.promise,
               params: req.params
             }).success(function(res) {
               scope.$emit('gaUpdateFeatureTree', res);
             }).error(function(reason) {
               scope.$emit('gaUpdateFeatureTree', {});
             });
-          }*/
+          }
         };
       }
     };
