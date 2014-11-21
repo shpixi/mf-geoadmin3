@@ -1043,6 +1043,15 @@
                  layer.visible;
         },
         /**
+         * Keep selectByRectangle enabled layer
+         */
+        selectByRectangle: function(layer) {
+          return layer.displayInLayerManager &&
+                 layer.visible &&
+                 layer.bodId &&
+                 gaLayers.getLayerProperty(layer.bodId, 'selectbyrectangle');
+        },
+        /**
          * Keep only background layers
          */
         background: function(layer) {

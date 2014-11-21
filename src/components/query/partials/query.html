@@ -1,0 +1,54 @@
+<form>
+  <label>
+    <input type="radio" name="query" value="0"
+           ng-model="queryType">
+    <span translate>query_bbox</span>
+  </label>
+  <div ng-if="queryType == 0" translate>inform_draw_rectangl_ctrl</div>
+  <br/>
+  <label>
+    <input type="radio" name="query" value="1"
+           ng-model="queryType">
+    <span translate>query_attributes</span>
+  </label>
+  <div ng-if="queryType == 1">
+    <div class="ga-inputs"
+         ng-repeat="query in queries">
+      <select ng-model="query.layer"
+              ng-options="l.label for l in searchableLayers" 
+              ng-change="loadAttributes(query)">
+      </select>
+      <select ng-disabled="!query.layer" 
+              ng-model="query.attribute" 
+              ng-options="a.label for a in query.layer.attributes">
+      </select>
+      <select ng-disabled="!query.attribute"
+              ng-model="query.operator"
+              ng-options="o for o in query.attribute.operators">
+      </select>
+      <input type="text" 
+             ng-disabled="!query.attribute"
+             ng-model="query.value">
+      </input>
+      <div>
+        <button class="btn btn-default" 
+                ng-if="queries.length < 3"
+                ng-click="add($index)">
+          +
+        </button>
+        <button class="btn btn-default"
+                ng-if="!$first || queries.length > 1"
+                ng-click="remove($index)">
+          -
+        </button>
+      </div>
+    </div>
+    <label ng-if="queriesSaved">
+      <span translate>query_saved 
+      <select ng-model="querySaved" ng-options="query in queriesSaved"></select>
+    </label>
+    <button class="btn btn-default" ng-disabled="true">query_save</button>
+    <button class="btn btn-default">query_search</button>
+  </div> 
+</form>
+<hr/>

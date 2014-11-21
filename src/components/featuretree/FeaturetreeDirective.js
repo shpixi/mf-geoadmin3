@@ -211,7 +211,7 @@
                 });
               }
               scope.tree = tree;
-              $rootScope.$broadcast('gaUpdateFeatureTree', tree);
+              scope.$emit('gaUpdateFeatureTree', tree);
             };
 
             var getUrlAndParameters = function(layersToQuery, extent) {

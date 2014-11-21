@@ -529,10 +529,15 @@ itemscope itemtype="http://schema.org/WebApplication"
            ga-popup-options="{title:'object_information', showPrint:true, print: print, help:'68'}"
            ga-draggable=".ga-popup-title"
            id="featuretree-popup">
+        <div ga-query
+             ga-query-map="map"
+             ga-query-options="options">
+        </div>
         <div ga-featuretree 
              ga-featuretree-map="map"
              ga-featuretree-options="options" 
-             ga-featuretree-active="globals.isFeatureTreeActive"></div>
+             ga-featuretree-active="globals.isFeatureTreeActive">
+        </div>
         <div ng-show='printInProgress' class='ga-popup-print-in-progress'>
 	        {{printProgressPercentage}}%
         </div>

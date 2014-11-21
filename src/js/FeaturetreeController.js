@@ -6,11 +6,17 @@
   );
 
   module.controller('GaFeaturetreeController',
-        function($scope, $timeout, gaGlobalOptions, gaPrintService, $http) {
+      function($scope, $timeout, gaGlobalOptions, gaPrintService, $http) {
 
         $scope.options = {
           searchUrlTemplate: gaGlobalOptions.apiUrl + '/rest/services/{Topic}/SearchServer',
-          htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/{Topic}/MapServer/{Layer}/{Feature}/htmlPopup'
+          htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/{Topic}/MapServer/{Layer}/{Feature}/htmlPopup',
+          layerAttributesUrl: gaGlobalOptions.apiUrl + '/rest/services/api/MapServer/',
+          operatorsByType: {
+            'number': ['==', '!=', '>','<','<=','>='],
+            'string': ['==', '!=', 'LIKE', 'NOT LIKE'],
+            'list': ['==', '!=']
+          }
         };
 
         $scope.printInProgress = false;
@@ -80,13 +86,14 @@
           return counter;
         };
 
-        $scope.$on('gaUpdateFeatureTree', function(event, tree) {
+        $scope.$on('gaUpdateFeatureTree', function(evt, tree) {
           featureTree = tree;
 
           // Open popup when it's reduced
           if ($scope.globals.isFeatureTreeActive  && $('#featuretree-popup').hasClass('ga-popup-reduced')) {
             $scope.globals.isFeatureTreeActive = false;
           }
+          evt.stopPropagation();
         });
 
       }
