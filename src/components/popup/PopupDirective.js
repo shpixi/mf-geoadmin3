@@ -48,7 +48,6 @@
                'ga-help="{{options.help}}"></button>' +
           '</h4>' +
           '<div class="popover-content ga-popup-content" ' +
-               'ng-click="bringUpFront($event)" ' +
                'ng-transclude>' +
           '</div>',
 
@@ -77,6 +76,13 @@
               gaBrowserSniffer.mobile) {
             scope.options.showReduce = true;
           }
+          // Bring thre popup to front on click on it.
+          element.find('.popover-content').click(function(evt) {
+            evt.stopPropagation();
+            if (!scope.isReduced && scope.toggle) {
+              bringUpFront(element);
+            }
+          });
 
           // Set default x and y values on non mobile device if not defined
           if (!gaBrowserSniffer.mobile && !scope.options.x &&
@@ -122,13 +128,6 @@
               bringUpFront(element);
             }
             scope.isReduced = false;
-          };
-
-          scope.bringUpFront = function(evt) {
-            evt.stopPropagation();
-            if (!scope.isReduced && scope.toggle) {
-              bringUpFront(element);
-            }
           };
 
           // Watch the shown property
