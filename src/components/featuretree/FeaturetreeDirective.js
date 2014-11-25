@@ -133,83 +133,86 @@
               return $.map(extent, parseFloat);
             };
 
-            var updateTree = function(res, searchExtent) {
+            var updateTree = function() {
+              gaPreviewFeatures.clearHighlight();
+              var res = scope.options.results;
               var tree = {}, i, li, j, lj, layerId, newNode, oldNode,
-                  feature, oldFeature, result, bbox, ext;
-              if (res.results &&
-                  res.results.length > 0) {
+                  feature, oldFeature, result, bbox, ext, searchExtent;
 
-                for (i = 0, li = res.results.length; i < li; i++) {
-                  result = res.results[i];
-
-                  // The feature search using sphinxsearch uses quadindex
-                  // to filter results based on their bounding boxes. This is
-                  // in order to make the search extremely fast even for a large
-                  // number of features. The downside is that we will have false
-                  // positives in the results (features which are outside of
-                  // the searched box). Here, we filter out those false
-                  // positives based on the bounding box of the feature. Note
-                  // that we could refine this by using the exact geometry in
-                  // the future
-                  if (result.attrs.geom_st_box2d) {
-                    bbox = parseBoxString(result.attrs.geom_st_box2d);
-                    if (!ol.extent.intersects(searchExtent, bbox)) {
-                      continue;
-                    }
-                  }
-
-                  layerId = result.attrs.layer;
-                  newNode = tree[layerId];
-                  oldNode = scope.tree[layerId];
-                  feature = undefined;
-
-                  if (!angular.isDefined(newNode)) {
-                    newNode = {
-                      label: '',
-                      features: [],
-                      open: oldNode ? oldNode.open : true
-                    };
-                    tree[layerId] = newNode;
-                  }
-
-                  //look if feature exists already. We do this
-                  //to avoid loading the same feature again and
-                  //to preserve state (selected)
-                  if (oldNode) {
-                    for (j = 0, lj = oldNode.features.length; j < lj; j++) {
-                      oldFeature = oldNode.features[j];
-                      if (oldFeature.id === result.attrs.id) {
-                        feature = oldFeature;
-                        break;
-                      }
-                    }
-                  }
-                  if (!angular.isDefined(feature)) {
-                    feature = {
-                      info: '',
-                      geometry: null,
-                      id: result.attrs.featureId || result.attrs.id,
-                      layer: layerId,
-                      label: getTranslatedLabel(result.attrs)
-                    };
-                  }
-                  newNode.features.push(feature);
-                }
-                //assure that label contains number of items
-                angular.forEach(tree, function(value, key) {
-                  var l = gaLayers.getLayer(key).label +
-                          ' (' + value.features.length + ' ' +
-                          getItemText(value.features.length) + ')';
-                  value.label = l;
-
-                  function getItemText(number) {
-                    if (number <= 1) {
-                      return $translate.instant('item');
-                    }
-                    return $translate.instant('items');
-                  }
-                });
+              if (scope.dragBox.getGeometry()) {
+                searchExtent = scope.dragBox.getGeometry().getExtent();
               }
+
+              for (i = 0, li = res.length; i < li; i++) {
+                result = res[i];
+
+                // The feature search using sphinxsearch uses quadindex
+                // to filter results based on their bounding boxes. This is
+                // in order to make the search extremely fast even for a large
+                // number of features. The downside is that we will have false
+                // positives in the results (features which are outside of
+                // the searched box). Here, we filter out those false
+                // positives based on the bounding box of the feature. Note
+                // that we could refine this by using the exact geometry in
+                // the future
+                if (result.attrs && result.attrs.geom_st_box2d && searchExtent) {
+                  bbox = parseBoxString(result.attrs.geom_st_box2d);
+                  if (!ol.extent.intersects(searchExtent, bbox)) {
+                    continue;
+                  }
+                }
+
+                layerId = result.layerBodId || result.attrs.layer;
+                newNode = tree[layerId];
+                oldNode = scope.tree[layerId];
+                feature = undefined;
+
+                if (!angular.isDefined(newNode)) {
+                  newNode = {
+                    label: '',
+                    features: [],
+                    open: oldNode ? oldNode.open : true
+                  };
+                  tree[layerId] = newNode;
+                }
+
+                //look if feature exists already. We do this
+                //to avoid loading the same feature again and
+                //to preserve state (selected)
+                if (oldNode) {
+                  for (j = 0, lj = oldNode.features.length; j < lj; j++) {
+                    oldFeature = oldNode.features[j];
+                    if (oldFeature.id === (result.id || result.attrs.id)) {
+                      feature = oldFeature;
+                      break;
+                    }
+                  }
+                }
+                if (!angular.isDefined(feature)) {
+                  feature = {
+                    info: '',
+                    geometry: null,
+                    id: result.id || result.attrs.id,
+                    layer: layerId,
+                    label: getTranslatedLabel((result.attrs || result))
+                  };
+                }
+                newNode.features.push(feature);
+              }
+              //assure that label contains number of items
+              angular.forEach(tree, function(value, key) {
+                var l = gaLayers.getLayer(key).label +
+                        ' (' + value.features.length + ' ' +
+                        getItemText(value.features.length) + ')';
+                value.label = l;
+
+                function getItemText(number) {
+                  if (number <= 1) {
+                    return $translate.instant('item');
+                  }
+                  return $translate.instant('items');
+                }
+              });
               scope.tree = tree;
               scope.$emit('gaUpdateFeatureTree', tree);
             };
@@ -234,7 +237,6 @@
             var requestFeatures = function() {
               var layersToQuery = getLayersToQuery(),
                   req, searchExtent;
-              gaPreviewFeatures.clearHighlight();
               if (layersToQuery.ids.length &&
                   scope.dragBox.getGeometry()) {
                 searchExtent = ol.extent.boundingExtent(
@@ -248,7 +250,7 @@
                   timeout: canceler.promise,
                   params: req.params
                 }).success(function(res) {
-                  updateTree(res, searchExtent);
+                  scope.options.results = res.results || []; 
                   scope.loading = false;
                 }).error(function(reason) {
                   scope.tree = {};
@@ -440,6 +442,10 @@
               }
             });
 
+            scope.$watch('options.results', function(results) {
+              updateTree();
+            });
+           
             scope.$on('gaTopicChange', function(event, topic) {
               currentTopic = topic.id;
             });

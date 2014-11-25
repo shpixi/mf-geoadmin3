@@ -1,54 +1,56 @@
-<form>
-  <label>
-    <input type="radio" name="query" value="0"
-           ng-model="queryType">
-    <span translate>query_bbox</span>
-  </label>
-  <div ng-if="queryType == 0" translate>inform_draw_rectangl_ctrl</div>
-  <br/>
-  <label>
-    <input type="radio" name="query" value="1"
-           ng-model="queryType">
-    <span translate>query_attributes</span>
-  </label>
-  <div ng-if="queryType == 1">
-    <div class="ga-inputs"
-         ng-repeat="query in queries">
-      <select ng-model="query.layer"
-              ng-options="l.label for l in searchableLayers" 
-              ng-change="loadAttributes(query)">
-      </select>
-      <select ng-disabled="!query.layer" 
-              ng-model="query.attribute" 
-              ng-options="a.label for a in query.layer.attributes">
-      </select>
-      <select ng-disabled="!query.attribute"
-              ng-model="query.operator"
-              ng-options="o for o in query.attribute.operators">
-      </select>
-      <input type="text" 
-             ng-disabled="!query.attribute"
-             ng-model="query.value">
-      </input>
-      <div>
-        <button class="btn btn-default" 
-                ng-if="queries.length < 3"
-                ng-click="add($index)">
-          +
-        </button>
-        <button class="btn btn-default"
-                ng-if="!$first || queries.length > 1"
-                ng-click="remove($index)">
-          -
-        </button>
+<div class="tabbable">
+
+  <ul class="nav nav-tabs" ng-init="queryType = 0">
+    <li ng-class="{active: (queryType == 0)}">
+      <a ng-click="queryType = 0">query_bbox</a>
+    </li>
+    <li ng-class="{active: (queryType == 1)}">
+      <a ng-click="queryType = 1">query_attributes</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div ng-if="queryType == 0" translate>inform_draw_rectangl_ctrl</div>
+    <div ng-if="queryType == 1">
+      <div class="ga-inputs"
+           ng-repeat="query in queries">
+        <select ng-model="query.layer"
+                ng-options="l.label for l in searchableLayers" 
+                ng-change="loadAttributes(query)">
+          <option value="" translate>choose_layer</option>
+        </select>
+        <select ng-disabled="!query.layer" 
+                ng-model="query.attribute" 
+                ng-options="a.label for a in query.layer.attributes"
+                ng-change="applyOpValues(query)">
+        </select>
+        <select ng-disabled="!query.attribute"
+                ng-model="query.operator"
+                ng-options="o for o in query.attribute.operators">
+        </select>
+        <input type="text" 
+               ng-disabled="!query.attribute"
+               ng-model="query.value">
+        </input>
+        <div>
+          <button class="btn btn-default" 
+                  ng-if="queries.length < 3"
+                  ng-click="add($event, $index)">
+            +
+          </button>
+          <button class="btn btn-default"
+                  ng-if="!$first || queries.length > 1"
+                  ng-click="remove($event, $index)">
+            -
+          </button>
+        </div>
       </div>
+      <label ng-if="queriesSaved">
+        <span translate>query_saved 
+        <select ng-model="querySaved" ng-options="query in queriesSaved"></select>
+      </label>
+      <button class="btn btn-default" ng-disabled="true">query_save</button>
+      <button class="btn btn-default" ng-click="search($event)">query_search</button>
     </div>
-    <label ng-if="queriesSaved">
-      <span translate>query_saved 
-      <select ng-model="querySaved" ng-options="query in queriesSaved"></select>
-    </label>
-    <button class="btn btn-default" ng-disabled="true">query_save</button>
-    <button class="btn btn-default">query_search</button>
   </div> 
-</form>
+</div>
 <hr/>

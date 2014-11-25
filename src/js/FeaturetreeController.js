@@ -9,14 +9,16 @@
       function($scope, $timeout, gaGlobalOptions, gaPrintService, $http) {
 
         $scope.options = {
-          searchUrlTemplate: gaGlobalOptions.apiUrl + '/rest/services/{Topic}/SearchServer',
-          htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/{Topic}/MapServer/{Layer}/{Feature}/htmlPopup',
-          layerAttributesUrl: gaGlobalOptions.apiUrl + '/rest/services/api/MapServer/',
-          operatorsByType: {
-            'number': ['==', '!=', '>','<','<=','>='],
-            'string': ['==', '!=', 'LIKE', 'NOT LIKE'],
-            'list': ['==', '!=']
-          }
+          searchUrlTemplate: gaGlobalOptions.apiUrl + '/rest/services/all/SearchServer',
+          htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/all/MapServer/{Layer}/{Feature}/htmlPopup',
+          layerUrl: gaGlobalOptions.apiUrl + '/rest/services/api/MapServer/',
+          operatorsByType: { // SQL Alchemy types
+            'integer': ['=', '!=', '>','<','<=','>='],
+            'numeric': ['=', '!=', '>','<','<=','>='],
+            'text': ['like', 'ilike', 'not like', 'not ilike'],
+            'list': ['=', '!=']
+          },
+          results: []
         };
 
         $scope.printInProgress = false;
