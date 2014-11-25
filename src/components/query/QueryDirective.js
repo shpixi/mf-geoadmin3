@@ -15,20 +15,20 @@
       attribute: null,
       operator: null
     }];
-    
+
     // Display the first attribute as selected
     var noAttr = {label: 'query_no_attr'};
     var applyAttrValues = function(query) {
       query.attribute = query.layer.attributes[0] || noAttr;
       $scope.applyOpValues(query);
     };
-    
+
     // Display the first operator as selected
     $scope.applyOpValues = function(query) {
       if (query.attribute.operators) {
         query.operator = query.attribute.operators[0];
       }
-    }
+    };
 
     // Load attributes of the selected layer in the select box
     $scope.loadAttributes = function(query) {
@@ -37,11 +37,12 @@
           .success(function(data) {
             var attr = [];
             for (var i = 0, ii = data.fields.length; i < ii; i++) {
-              var field = data.fields[i]; 
+              var field = data.fields[i];
               attr.push({
                 label: field.name,
                 type: field.type.toLowerCase(),
-                operators: $scope.options.operatorsByType[field.type.toLowerCase()]
+                operators: $scope.options.operatorsByType[
+                    field.type.toLowerCase()]
               });
             }
             query.layer.attributes = attr;
@@ -90,7 +91,7 @@
           };
           test.push(paramsByLayer[query.layer.bodId]);
         }
-        var params = paramsByLayer[query.layer.bodId].params; 
+        var params = paramsByLayer[query.layer.bodId].params;
 
         // Bbox condition
         if (extent && !params.geometry) {
@@ -135,7 +136,7 @@
         attributes: attributes.join(','),
         operators: operators.join(','),
         values: values.join(',')
-        
+
       });*/
     };
 
@@ -170,7 +171,8 @@
                   '/query', {
                 params: paramsByLayer.params
               }).success(function(res) {
-                scope.options.results = scope.options.results.concat(res.results);
+                scope.options.results =
+                    scope.options.results.concat(res.results);
               }).error(function(reason) {
                 scope.options.results = {};
               });

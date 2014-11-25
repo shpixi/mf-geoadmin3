@@ -155,7 +155,8 @@
                 // positives based on the bounding box of the feature. Note
                 // that we could refine this by using the exact geometry in
                 // the future
-                if (result.attrs && result.attrs.geom_st_box2d && searchExtent) {
+                if (result.attrs && result.attrs.geom_st_box2d &&
+                    searchExtent) {
                   bbox = parseBoxString(result.attrs.geom_st_box2d);
                   if (!ol.extent.intersects(searchExtent, bbox)) {
                     continue;
@@ -250,7 +251,7 @@
                   timeout: canceler.promise,
                   params: req.params
                 }).success(function(res) {
-                  scope.options.results = res.results || []; 
+                  scope.options.results = res.results || [];
                   scope.loading = false;
                 }).error(function(reason) {
                   scope.tree = {};
@@ -445,7 +446,7 @@
             scope.$watch('options.results', function(results) {
               updateTree();
             });
-           
+
             scope.$on('gaTopicChange', function(event, topic) {
               currentTopic = topic.id;
             });
