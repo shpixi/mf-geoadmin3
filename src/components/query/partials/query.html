@@ -16,7 +16,7 @@
         <select ng-model="query.layer"
                 ng-options="l.label for l in searchableLayers" 
                 ng-change="loadAttributes(query)">
-          <option value="" translate>choose_layer</option>
+          <option value="" selected disabled translate>choose_layer</option>
         </select>
         <select ng-disabled="!query.layer" 
                 ng-model="query.attribute" 
@@ -27,19 +27,19 @@
                 ng-model="query.operator"
                 ng-options="o for o in query.attribute.operators">
         </select>
-        <input type="text" 
+        <input type="{{query.attribute.inputType}}" 
                ng-disabled="!query.attribute"
                ng-model="query.value">
         </input>
         <div>
           <button class="btn btn-default" 
                   ng-if="queries.length < 3"
-                  ng-click="add($event, $index)">
+                  ng-click="add($index)">
             +
           </button>
           <button class="btn btn-default"
                   ng-if="!$first || queries.length > 1"
-                  ng-click="remove($event, $index)">
+                  ng-click="remove($index)">
             -
           </button>
         </div>
@@ -49,7 +49,7 @@
         <select ng-model="querySaved" ng-options="query in queriesSaved"></select>
       </label>
       <button class="btn btn-default" ng-disabled="true">query_save</button>
-      <button class="btn btn-default" ng-click="search($event)">query_search</button>
+      <button class="btn btn-default" ng-click="searchByAttributes()">query_search</button>
     </div>
   </div> 
 </div>

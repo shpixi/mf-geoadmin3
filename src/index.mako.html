@@ -529,7 +529,8 @@ itemscope itemtype="http://schema.org/WebApplication"
            ga-popup-options="{title:'object_information', showPrint:true, print: print, help:'68'}"
            ga-draggable=".ga-popup-title"
            id="featuretree-popup">
-        <div ga-query
+        <div ng-if="globals.isFeatureTreeActive"
+             ga-query
              ga-query-map="map"
              ga-query-options="options">
         </div>

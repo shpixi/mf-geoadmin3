@@ -43,7 +43,6 @@
           },
           link: function(scope, element, attrs) {
             var currentYear;
-            var currentTopic;
             var timeoutPromise = null;
             var canceler = null;
             var map = scope.map;
@@ -65,7 +64,7 @@
               },
               style: dragBoxStyle
             });
-            map.addInteraction(scope.dragBox);
+            //map.addInteraction(scope.dragBox);
 
             scope.layerFilter = function(l) {
               return gaLayerFilters.selected(l) &&
@@ -228,7 +227,6 @@
                     timeEnabled: layersToQuery.timeenabled.join(','),
                     timeStamps: layersToQuery.timestamps.join(',')
                   };
-              url = url.replace('{Topic}', currentTopic);
               return {
                 url: url,
                 params: params
@@ -279,7 +277,6 @@
               var featureUrl;
               if (!feature.geometry) {
                 featureUrl = scope.options.htmlUrlTemplate
-                             .replace('{Topic}', currentTopic)
                              .replace('{Layer}', feature.layer)
                              .replace('{Feature}', feature.id)
                              .replace('/htmlPopup', '');
@@ -447,10 +444,6 @@
               updateTree();
             });
 
-            scope.$on('gaTopicChange', function(event, topic) {
-              currentTopic = topic.id;
-            });
-
             scope.$on('gaTimeSelectorChange', function(event, newYear) {
               if (newYear !== currentYear) {
                 currentYear = newYear;
@@ -460,6 +453,7 @@
 
             // Events on dragbox
             scope.dragBox.on('boxstart', function(evt) {
+              window.console.debug('boxstart2');
               deactivate();
             });
 

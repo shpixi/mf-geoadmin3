@@ -9,26 +9,14 @@
       function($scope, $timeout, gaGlobalOptions, gaPrintService, $http) {
 
         $scope.options = {
-          searchUrlTemplate: gaGlobalOptions.apiUrl + '/rest/services/all/SearchServer',
-          htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/all/MapServer/{Layer}/{Feature}/htmlPopup',
-          layerUrl: gaGlobalOptions.apiUrl + '/rest/services/api/MapServer/',
-          operatorsByType: { // SQL Alchemy types
-            'integer': ['=', '!=', '>','<','<=','>='],
-            'numeric': ['=', '!=', '>','<','<=','>='],
-            'text': ['like', 'ilike', 'not like', 'not ilike'],
-            'list': ['=', '!=']
-          },
-          results: []
+        searchUrlTemplate: gaGlobalOptions.apiUrl + '/rest/services/all/SearchServer',
+        htmlUrlTemplate: gaGlobalOptions.cachedApiUrl + '/rest/services/all/MapServer/{Layer}/{Feature}/htmlPopup',
+          results: [] // List of features
         };
-
+               
         $scope.printInProgress = false;
         $scope.printProgressPercentage = 0;
-        var currentTopic = '';
         var featureTree;
-
-        $scope.$on('gaTopicChange', function(event, topic) {
-          currentTopic = topic.id;
-        });
 
         $scope.print = function() {
           var printElementsTotal = countFeatures(featureTree);
@@ -52,7 +40,6 @@
             printLayers[layerName] = '';
             for (var arrayId in layer.features) {
               var htmlUrl = $scope.options.htmlUrlTemplate
-                .replace('{Topic}', currentTopic)
                 .replace('{Layer}', layerName)
                 .replace('{Feature}', layer.features[arrayId].id);
               $http.get(htmlUrl)
@@ -60,7 +47,7 @@
                   printElementLoaded(data, layerName);
                 })
                 .error(function(data, status, headers, config) {
-                  printElementLoaded("<div>There was a problem loading this feature. topic: "+currentTopic+", layer: "+layerName+", feature: "+layer.features[arrayId].id+", status: "+status+"<div>", "failure");
+                  printElementLoaded("<div>There was a problem loading this feature. Layer: "+layerName+", feature: "+layer.features[arrayId].id+", status: "+status+"<div>", "failure");
                 });
             }
           }
