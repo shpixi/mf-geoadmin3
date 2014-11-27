@@ -20,7 +20,7 @@
           <label class="ga-truncate-text">
             {{feature.label}}
           </label>
-          <i ng-click="recenterToFeature($event, feature)" class="icon-zoom-in"></i>
+          <i ng-if="feature.geometry" ng-click="recenterToFeature($event, feature)" class="icon-zoom-in"></i>
         </li>
       </ul>
     </li>

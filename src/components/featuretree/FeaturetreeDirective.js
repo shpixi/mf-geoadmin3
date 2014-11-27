@@ -2,11 +2,9 @@
   goog.provide('ga_featuretree_directive');
 
   goog.require('ga_map_service');
-  goog.require('ga_styles_service');
 
   var module = angular.module('ga_featuretree_directive', [
     'ga_map_service',
-    'ga_styles_service',
     'pascalprecht.translate'
   ]);
 
@@ -18,10 +16,8 @@
    **/
 
   module.directive('gaFeaturetree',
-      function($rootScope, $compile, $timeout, $http, $q, $translate, $sce,
-          gaLayers, gaDefinePropertiesForLayer, gaStyleFactory, 
-          gaMapClick, gaPreviewFeatures, gaLayerFilters,
-          gaBrowserSniffer) {
+      function($rootScope, $timeout, $http, $q, $translate, gaLayers,
+          gaPreviewFeatures) {
 
         var parser = new ol.format.GeoJSON();
         var getTranslatedLabel = function(obj) {
@@ -32,7 +28,6 @@
             return obj.label;
           }
         };
-
         var getItemText = function(number) {
           return $translate.instant((number <= 1) ? 'item' : 'items');
         }
@@ -51,6 +46,7 @@
             var canceler = null;
             var map = scope.map;
 
+            scope.tree = {};
             scope.noResults = function() {
               // We can't use undefined or null for scope.tree
               // because it would break the ng-repeat in the partial.
@@ -147,7 +143,6 @@
               }
             };
 
-            scope.tree = {};
 
             scope.highlightFeature = function(feature) {
               loadGeometry(feature, function() {
@@ -226,7 +221,7 @@
                   feature.selected = false;
                   $timeout(function() {
                     evt.target.previousElementSibling.focus();
-                  }, 0);
+                  }, 0, false);
                   evt.preventDefault();
                 }
               //downKey
@@ -236,7 +231,7 @@
                   feature.selected = false;
                   $timeout(function() {
                     evt.target.nextElementSibling.focus();
-                  }, 0);
+                  }, 0, false);
                   evt.preventDefault();
                 }
               }

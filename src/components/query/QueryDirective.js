@@ -134,7 +134,8 @@
             paramsByLayer.bodId,
             paramsByLayer.params
           ).then(function(layerFeatures) {
-            $scope.options.results = features.concat(layerFeatures);
+            features = features.concat(layerFeatures);
+            $scope.options.results = features;
           },function(reason) {
             $scope.options.results = [];
           });
