@@ -82,6 +82,7 @@
           if ($scope.globals.isFeatureTreeActive  && $('#featuretree-popup').hasClass('ga-popup-reduced')) {
             $scope.globals.isFeatureTreeActive = false;
           }
+
           evt.stopPropagation();
         });
 

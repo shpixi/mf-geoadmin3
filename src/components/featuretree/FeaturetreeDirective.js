@@ -23,6 +23,7 @@
           gaMapClick, gaPreviewFeatures, gaLayerFilters,
           gaBrowserSniffer) {
 
+        var parser = new ol.format.GeoJSON();
         var getTranslatedLabel = function(obj) {
           var possibleKey = 'label_' + $translate.use();
           if (angular.isDefined(obj[possibleKey])) {
@@ -31,13 +32,10 @@
             return obj.label;
           }
         };
-
-        var parseBoxString = function(stringBox2D) {
-          var extent = stringBox2D.replace('BOX(', '')
-            .replace(')', '').replace(',', ' ')
-            .split(' ');
-          return $.map(extent, parseFloat);
-        };
+        
+        var getItemText = function(number) {
+          return $translate.instant((number <= 1) ? 'item' : 'item');
+        }
 
         return {
           restrict: 'A',
@@ -52,14 +50,6 @@
             var timeoutPromise = null;
             var canceler = null;
             var map = scope.map;
-            var parser = new ol.format.GeoJSON();
-            var dragBoxStyle = gaStyleFactory.getStyle('selectrectangle');
-            var selectionRecFeature = new ol.Feature();
-            var selectionRecOverlay = new ol.FeatureOverlay({
-              map: map,
-              style: dragBoxStyle
-            });
-
 
             scope.noResults = function() {
               // We can't use undefined or null for scope.tree
@@ -77,32 +67,10 @@
               gaPreviewFeatures.clearHighlight();
               var res = features;
               var tree = {}, i, li, j, lj, layerId, newNode, oldNode,
-                  feature, oldFeature, result, bbox, ext, searchExtent;
-
-              if (selectionRectFeature.getGeometry()) {
-                searchExtent = selectionRectFeature.getGeometry().getExtent();
-              }
+                  feature, oldFeature, result, ext;
 
               for (i = 0, li = res.length; i < li; i++) {
                 result = res[i];
-
-                // The feature search using sphinxsearch uses quadindex
-                // to filter results based on their bounding boxes. This is
-                // in order to make the search extremely fast even for a large
-                // number of features. The downside is that we will have false
-                // positives in the results (features which are outside of
-                // the searched box). Here, we filter out those false
-                // positives based on the bounding box of the feature. Note
-                // that we could refine this by using the exact geometry in
-                // the future
-                if (result.attrs && result.attrs.geom_st_box2d &&
-                    searchExtent) {
-                  bbox = parseBoxString(result.attrs.geom_st_box2d);
-                  if (!ol.extent.intersects(searchExtent, bbox)) {
-                    continue;
-                  }
-                }
-
                 layerId = result.layerBodId || result.attrs.layer;
                 newNode = tree[layerId];
                 oldNode = scope.tree[layerId];
@@ -129,15 +97,16 @@
                     }
                   }
                 }
+                
                 if (!angular.isDefined(feature)) {
                   feature = {
                     info: '',
                     geometry: null,
                     id: result.id || result.attrs.id,
                     layer: layerId,
-                    label: getTranslatedLabel((result.attrs || result))
                   };
                 }
+                feature.label =  getTranslatedLabel((result.attrs || result));
                 newNode.features.push(feature);
               }
               //assure that label contains number of items
@@ -146,13 +115,6 @@
                         ' (' + value.features.length + ' ' +
                         getItemText(value.features.length) + ')';
                 value.label = l;
-
-                function getItemText(number) {
-                  if (number <= 1) {
-                    return $translate.instant('item');
-                  }
-                  return $translate.instant('items');
-                }
               });
               scope.tree = tree;
               scope.$emit('gaUpdateFeatureTree', tree);
@@ -285,29 +247,21 @@
               gaPreviewFeatures.zoom(map, parser.readFeature(feature.geometry));
             };
 
-            var showSelectionRectangle = function() {
-              if (!selectionRecOverlay.getFeatures().getLength() &&
-                  selectionRecFeature.getGeometry()) {
-                selectionRecOverlay.addFeature(selectionRecFeature);
-              }
-            };
-
-            var hideSelectionRectangle = function() {
-              if (selectionRecOverlay.getFeatures().getLength()) {
-                selectionRecOverlay.removeFeature(selectionRecFeature);
-              }
-            };
-
-            // We consider this component is activated when a box is drawn
-            var activate = function() {
-              showSelectionRectangle();
-            };
-
             var deactivate = function() {
-               // Clean the displa in any case
+               // Clean the display in any case
                $rootScope.$broadcast('gaTriggerTooltipInit');
                scope.clearHighlight();
-               hideSelectionRectangle();
+            };
+
+            var cancel = function() {
+              if (timeoutPromise !== null) {
+                $timeout.cancel(timeoutPromise);
+              }
+              if (canceler !== null) {
+                canceler.resolve();
+              }
+              scope.loading = false;
+              canceler = $q.defer();
             };
 
 
@@ -315,29 +269,24 @@
             scope.$watch('isActive', function(newVal, oldVal) {
               cancel();
               if (newVal != oldVal) {
-                if (newVal) {
-                  activate();
-                } else {
+                if (!newVal) {
                   deactivate();
                 }
               }
             });
-
+           
             scope.$watch('options.results', function(features) {
-              updateTree(features);
+              scope.features = features;
+              updateTree(scope.features);
             });
-            scope.$watch('options.resultsExtent', function(geometry) {
-              selectionRecFeature.setGeometry(geometry);
-              if (!geometry) {
-                deactivate();
-              } else {
-                scope.isActive = true;
-                activate();
-              }
+             
+            // When language change 
+            scope.$on('gaLayersChange', function() {
+              updateTree(scope.features);
             });
+
           }
         };
-
       }
   );
 })();

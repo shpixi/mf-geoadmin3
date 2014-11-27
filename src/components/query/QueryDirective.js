@@ -29,7 +29,7 @@
         hasRegistered = false;
       });
     });
-    
+
     // Display the first attribute as selected
     var noAttr = {label: 'query_no_attr'};
     var applyAttrValues = function(query) {
@@ -69,7 +69,7 @@
     $scope.remove = function(idx) {
       $scope.queries.splice(idx, 1);
     };
-    
+
     // Get parameters for an ESRI query request.
     var getParamsByLayer = function(queries, extent) {
       // In this case queries contains all the query on one layer */
@@ -102,42 +102,29 @@
       });
       return list;
     };
-    
-    // Get parameters for a featureidentify request
-    var getParams = function(layers, extent) {
-      var ids = [], timeenabled = [], timestamps = [];
-      layers.forEach(function(l) {
-        var ts = '';
-        if (l.time && l.time.substr(0, 4) != '9999') {
-          ts = l.time.substr(0, 4);
-        }
-        ids.push(l.bodId);
-        timeenabled.push(l.timeEnabled);
-        timestamps.push(ts);
-      });
-      return {
-        bbox: extent.toString();
-        features: ids.join(','),
-        timeEnabled: timeenabled.join(','),
-        timeStamps: timestamps.join(',')
-      };
-    };
 
     // Launch a search only with a bbox
     $scope.searchByBbox = function() {
-      gaQuery.getLayerFeaturesByBbox(
-        $scope,
-        getParams($scope.searchableLayers, $scope.extent)
-      ).then(function(layerFeatures) {
-        $scope.options.results = layerFeatures;
-      });
+      if (!$scope.extent || $scope.searchableLayers.length == 0) {
+        $scope.options.results = [];
+        return;
+      }
+      gaQuery.getLayersFeaturesByBbox($scope, $scope.searchableLayers, $scope.extent)
+        .then(function(layerFeatures) {
+          $scope.options.results = layerFeatures;
+        });
     };
 
     // Launch a complex search
     $scope.searchByAttributes = function() {
       var features = [];
+      var params = getParamsByLayer($scope.queries, $scope.extent);
+      if (params.length == 0) {
+        $scope.options.results = [];
+        return;
+      }
       angular.forEach(
-        getParamsByLayer($scope.queries, $scope.extent),
+        params,
         function(paramsByLayer) {
           gaQuery.getLayerFeatures(
             $scope,
@@ -148,44 +135,44 @@
           });
         }
       );
+    }; 
+    
+    // Launch a search according to the active tab 
+    $scope.search = function() {
+      if ($scope.queryType == 0) {
+        $scope.searchByBbox();
+      } else {
+        $scope.searchByAttributes();
+      }
     };
   });
 
-  module.directive('gaQuery', function($http, gaLayerFilters, gaStyleFactory) {
+  module.directive('gaQuery', function($http, gaBrowserSniffer, gaLayerFilters, gaStyleFactory) {
     var parser = new ol.format.GeoJSON();
-    var dragBox =
+    var dragBox, boxOverlay;
+    var dragBoxStyle = gaStyleFactory.getStyle('selectrectangle');
+    var boxFeature = new ol.Feature();
+   
+
     return {
       restrict: 'A',
       templateUrl: 'components/query/partials/query.html',
       controller: 'GaQueryDirectiveController',
       scope: {
         map: '=gaQueryMap',
-        options: '=gaQueryOptions'
+        options: '=gaQueryOptions',
+        isActive: '=gaQueryActive'
       },
       link: function(scope, element, attrs, controller) {
-
-        // Watch the searchbale layers list
-        scope.layers = scope.map.getLayers().getArray();
-        scope.layerFilter = gaLayerFilters.selectByRectangle;
-        scope.$watchCollection('layers | filter:layerFilter', function(layers) {
-          scope.searchableLayers = layers;
-          triggerChange();
-        });
-
-        // Update the tree based on map changes. We use a timeout in
-        // order to not trigger angular digest cycles and too many
-        // updates. We don't use the permalink here because we want
-        // to separate these concerns.
-        var triggerChange = function() {
-          /*if (scope.isActive) {
-            scope.tree = {};
-            cancel();
-            timeoutPromise = $timeout(function() {
-              requestFeatures();
-              timeoutPromise = null;
-            }, 0);
-          }*/
-        };
+             
+        // Init the map stuff 
+        if (!boxOverlay) {
+          boxOverlay = new ol.FeatureOverlay({
+            map: scope.map,
+            style: dragBoxStyle
+          });
+          boxOverlay.addFeature(boxFeature);
+        }
         if (!dragBox) {
           dragBox = new ol.interaction.DragBox({
             condition: function(evt) {
@@ -195,58 +182,66 @@
               return evt.originalEvent.ctrlKey ||
                   (gaBrowserSniffer.mac && evt.originalEvent.metaKey);
             },
-            style: gaStyleFactory.getStyle('selectrectangle');
+            style: dragBoxStyle
           });
           scope.map.addInteraction(dragBox);
+          dragBox.on('boxstart', function(evt) {
+            boxFeature.setGeometry(null);  
+          });
+          dragBox.on('boxend', function(evt) {
+            scope.isActive = true;
+            scope.queryType = 0;
+            scope.extent = evt.target.getGeometry().getExtent();
+            boxFeature.setGeometry(evt.target.getGeometry());  
+            scope.searchByBbox();
+          });
         }
-        dragBox.on('boxend', function(evt) {
-          scope.extent = evt.target.getGeometry();
+      
+        // Activate/Deactivate 
+        var showBox = function() {
+          boxOverlay.setMap(scope.map);
+        };
+        var hideBox = function() {
+          boxOverlay.setMap(null);
+        };
+
+        var activate = function() {
+          if (scope.queryType == 0) {
+            showBox();
+          }
+        };
+
+        var deactivate = function() {
+          hideBox();
+        };
+     
+        // Watcher/listener
+        scope.layers = scope.map.getLayers().getArray();
+        scope.layerFilter = gaLayerFilters.selectByRectangle;
+        scope.$watchCollection('layers | filter:layerFilter', function(layers) {
+          scope.searchableLayers = layers;
+          scope.search();
         });
-        
+   
+        scope.$watch('isActive', function(newVal, oldVal) {
+          if (newVal != oldVal) {
+            if (newVal) {
+              activate();
+            } else {
+              deactivate();
+            }
+          }
+        });
+
         var currentYear;
         scope.$on('gaTimeSelectorChange', function(event, newYear) {
           if (newYear !== currentYear) {
             currentYear = newYear;
-            triggerChange();
+            if (queryType == 0) {
+              scope.search();
+            }
           }
         });
-
-
-            var cancel = function() {
-              if (timeoutPromise !== null) {
-                $timeout.cancel(timeoutPromise);
-              }
-              if (canceler !== null) {
-                canceler.resolve();
-              }
-              scope.loading = false;
-              canceler = $q.defer();
-            };
-
-            var requestFeatures = function() {
-              var layersToQuery = getLayersToQuery(),
-                  req, searchExtent;
-              if (layersToQuery.ids.length &&
-                  scope.dragBox.getGeometry()) {
-                searchExtent = ol.extent.boundingExtent(
-                    scope.dragBox.getGeometry().getCoordinates()[0]);
-                req = getUrlAndParameters(layersToQuery, searchExtent);
-
-                scope.loading = true;
-
-                // Look for all features in current bounding box
-                $http.get(req.url, {
-                  timeout: canceler.promise,
-                  params: req.params
-                }).success(function(res) {
-                  scope.options.results = res.results || [];
-                  scope.loading = false;
-                }).error(function(reason) {
-                  scope.tree = {};
-                  scope.loading = false;
-                });
-              }
-            };
 
       }
     };
