@@ -109,16 +109,19 @@
         $scope.options.results = [];
         return;
       }
-      gaQuery.getLayersFeaturesByBbox($scope, $scope.searchableLayers, $scope.extent)
+      gaQuery.getLayersFeaturesByBbox($scope, $scope.searchableLayers,
+          $scope.extent)
         .then(function(layerFeatures) {
           $scope.options.results = layerFeatures;
+        },function(reason) {
+          $scope.options.results = [];
         });
     };
 
     // Launch a complex search
     $scope.searchByAttributes = function() {
       var features = [];
-      var params = getParamsByLayer($scope.queries, $scope.extent);
+      var params = getParamsByLayer($scope.queries);
       if (params.length == 0) {
         $scope.options.results = [];
         return;
@@ -132,12 +135,14 @@
             paramsByLayer.params
           ).then(function(layerFeatures) {
             $scope.options.results = features.concat(layerFeatures);
+          },function(reason) {
+            $scope.options.results = [];
           });
         }
       );
-    }; 
-    
-    // Launch a search according to the active tab 
+    };
+
+    // Launch a search according to the active tab
     $scope.search = function() {
       if ($scope.queryType == 0) {
         $scope.searchByBbox();
@@ -147,12 +152,13 @@
     };
   });
 
-  module.directive('gaQuery', function($http, gaBrowserSniffer, gaLayerFilters, gaStyleFactory) {
+  module.directive('gaQuery', function($http, gaBrowserSniffer, gaLayerFilters,
+      gaStyleFactory) {
     var parser = new ol.format.GeoJSON();
     var dragBox, boxOverlay;
     var dragBoxStyle = gaStyleFactory.getStyle('selectrectangle');
     var boxFeature = new ol.Feature();
-   
+
 
     return {
       restrict: 'A',
@@ -164,8 +170,8 @@
         isActive: '=gaQueryActive'
       },
       link: function(scope, element, attrs, controller) {
-             
-        // Init the map stuff 
+
+        // Init the map stuff
         if (!boxOverlay) {
           boxOverlay = new ol.FeatureOverlay({
             map: scope.map,
@@ -186,18 +192,18 @@
           });
           scope.map.addInteraction(dragBox);
           dragBox.on('boxstart', function(evt) {
-            boxFeature.setGeometry(null);  
+            boxFeature.setGeometry(null);
           });
           dragBox.on('boxend', function(evt) {
             scope.isActive = true;
             scope.queryType = 0;
             scope.extent = evt.target.getGeometry().getExtent();
-            boxFeature.setGeometry(evt.target.getGeometry());  
+            boxFeature.setGeometry(evt.target.getGeometry());
             scope.searchByBbox();
           });
         }
-      
-        // Activate/Deactivate 
+
+        // Activate/Deactivate
         var showBox = function() {
           boxOverlay.setMap(scope.map);
         };
@@ -214,7 +220,7 @@
         var deactivate = function() {
           hideBox();
         };
-     
+
         // Watcher/listener
         scope.layers = scope.map.getLayers().getArray();
         scope.layerFilter = gaLayerFilters.selectByRectangle;
@@ -222,7 +228,7 @@
           scope.searchableLayers = layers;
           scope.search();
         });
-   
+
         scope.$watch('isActive', function(newVal, oldVal) {
           if (newVal != oldVal) {
             if (newVal) {
@@ -233,11 +239,22 @@
           }
         });
 
+        scope.$watch('queryType', function(newVal, oldVal) {
+          if (newVal != oldVal) {
+            if (newVal == 0) {
+              showBox();
+            } else {
+              hideBox();
+            }
+            scope.search();
+          }
+        });
+
         var currentYear;
         scope.$on('gaTimeSelectorChange', function(event, newYear) {
           if (newYear !== currentYear) {
             currentYear = newYear;
-            if (queryType == 0) {
+            if (scope.queryType == 0) {
               scope.search();
             }
           }

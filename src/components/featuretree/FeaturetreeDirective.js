@@ -32,9 +32,9 @@
             return obj.label;
           }
         };
-        
+
         var getItemText = function(number) {
-          return $translate.instant((number <= 1) ? 'item' : 'item');
+          return $translate.instant((number <= 1) ? 'item' : 'items');
         }
 
         return {
@@ -97,16 +97,16 @@
                     }
                   }
                 }
-                
+
                 if (!angular.isDefined(feature)) {
                   feature = {
                     info: '',
                     geometry: null,
                     id: result.id || result.attrs.id,
-                    layer: layerId,
+                    layer: layerId
                   };
                 }
-                feature.label =  getTranslatedLabel((result.attrs || result));
+                feature.label = getTranslatedLabel((result.attrs || result));
                 newNode.features.push(feature);
               }
               //assure that label contains number of items
@@ -274,13 +274,13 @@
                 }
               }
             });
-           
+
             scope.$watch('options.results', function(features) {
               scope.features = features;
               updateTree(scope.features);
             });
-             
-            // When language change 
+
+            // When language change
             scope.$on('gaLayersChange', function() {
               updateTree(scope.features);
             });

@@ -1,11 +1,12 @@
-(function() {  
+(function() {
   goog.provide('ga_query_service');
 
   var module = angular.module('ga_query_service', []);
 
   module.provider('gaQuery', function() {
     this.$get = function($http, $log, $q, gaDebounce, gaGlobalOptions) {
-      var searchUrl = gaGlobalOptions.apiUrl + '/rest/services/all/SearchServer';
+      var searchUrl = gaGlobalOptions.apiUrl +
+          '/rest/services/all/SearchServer';
       var layerUrl = gaGlobalOptions.apiUrl + '/rest/services/api/MapServer/';
 
       var attrInfos = { // SQL Alchemy types
@@ -15,7 +16,7 @@
         },
         STRING: {
           inputType: 'text',
-          operators: ['like', 'ilike', 'not like', 'not ilike']
+          operators: ['ilike', 'like', 'not ilike', 'not like']
         },
         BOOLEAN: {
           inputType: 'checkbox',
@@ -43,7 +44,7 @@
       // Others string types
       attrInfos.TEXT = attrInfos.UNICODE = attrInfos.UNICODETEXT =
       attrInfos.ENUM = attrInfos.STRING;
-      
+
       // Parse bbox string
       var parseBoxString = function(stringBox2D) {
         var extent = stringBox2D.replace('BOX(', '')
@@ -73,13 +74,13 @@
         };
       };
 
-
       function Query() {
 
          // Use ESRI layer service
          this.getLayerAttributes = function(scope, bodId, params) {
            var deferred = $q.defer();
-           $http.get(layerUrl + bodId, params, {
+           $http.get(layerUrl + bodId, {
+             params: params,
              cache: true
            }).success(function(data) {
              var attr = [];
@@ -88,7 +89,14 @@
                attr.push({
                  label: field.name,
                  type: field.type,
-                 operators: attrInfos[field.type].operators
+                 inputType: attrInfos[field.type].inputType,
+                 operators: attrInfos[field.type].operators,
+                 transformToLiteral: function(value) {
+                   if (value && this.inputType == 'text') {
+                     return '\'' + value + '\'';
+                   }
+                   return value;
+                 }
                });
              }
              deferred.resolve(attr);
@@ -99,14 +107,14 @@
            });
            return deferred.promise;
          };
-         
-         // Use ESRI query service 
+
+         // Use ESRI query service
          this.getLayerFeatures = function(scope, bodId, params) {
            var deferred = $q.defer();
-           $http.get(layerUrl + bodId + '/query', params, {
+           $http.get(layerUrl + bodId + '/query', {
+             params: params,
              cache: true
            }).success(function(data) {
-             y
              deferred.resolve(data.results);
            }).error(function(data, status, headers, config) {
              $log.error('Request failed');
@@ -114,14 +122,15 @@
              deferred.reject(status);
            });
            return deferred.promise;
-         }
-         
+         };
+
          // Use featureidentify service
-         var canceler; 
-         var bboxDebounced = gaDebounce.debounce(function(scope, layers, extent) {
+         var canceler;
+         var bboxDebounced = gaDebounce.debounce(function(scope, layers,
+             extent) {
            if (canceler) {
              canceler.resolve();
-           }       
+           }
            var deferred = $q.defer();
            canceler = $q.defer();
            $http.get(searchUrl, {
@@ -129,9 +138,9 @@
              timeout: canceler.promise,
              cache: true
            }).success(function(data) {
-            
+
             for (var i = 0; i < data.results.length; i++) {
-               var result = data.results[i];  
+               var result = data.results[i];
                // The feature search using sphinxsearch uses quadindex
                // to filter results based on their bounding boxes. This is
                // in order to make the search extremely fast even for a large
@@ -145,7 +154,7 @@
                  var bbox = parseBoxString(result.attrs.geom_st_box2d);
                  if (!ol.extent.intersects(extent, bbox)) {
                    data.results.splice(i, 1);
-                   i--
+                   i--;
                  }
                }
              }
@@ -157,10 +166,10 @@
            });
            return deferred.promise;
          }, 200, false, false);
-         this.getLayersFeaturesByBbox = bboxDebounced; 
+         this.getLayersFeaturesByBbox = bboxDebounced;
       };
       return new Query();
-    }
+    };
 
   });
 })();
