@@ -29,6 +29,7 @@
         hasRegistered = false;
       });
     });
+    
     // Display the first attribute as selected
     var noAttr = {label: 'query_no_attr'};
     var applyAttrValues = function(query) {
@@ -46,7 +47,7 @@
     // Load attributes of the selected layer in the select box
     $scope.loadAttributes = function(query) {
       gaQuery.getLayerAttributes($scope, query.layer.bodId)
-        .then(function(attributes){
+        .then(function(attributes) {
           query.layer.attributes = attributes;
           applyAttrValues(query);
         });
@@ -69,7 +70,7 @@
       $scope.queries.splice(idx, 1);
     };
     
-    // Go through the queries and transform it to a requestable object 
+    // Get parameters for an ESRI query request.
     var getParamsByLayer = function(queries, extent) {
       // In this case queries contains all the query on one layer */
       var list = [];
@@ -101,18 +102,48 @@
       });
       return list;
     };
- 
-    // Lauch a search
+    
+    // Get parameters for a featureidentify request
+    var getParams = function(layers, extent) {
+      var ids = [], timeenabled = [], timestamps = [];
+      layers.forEach(function(l) {
+        var ts = '';
+        if (l.time && l.time.substr(0, 4) != '9999') {
+          ts = l.time.substr(0, 4);
+        }
+        ids.push(l.bodId);
+        timeenabled.push(l.timeEnabled);
+        timestamps.push(ts);
+      });
+      return {
+        bbox: extent.toString();
+        features: ids.join(','),
+        timeEnabled: timeenabled.join(','),
+        timeStamps: timestamps.join(',')
+      };
+    };
+
+    // Launch a search only with a bbox
+    $scope.searchByBbox = function() {
+      gaQuery.getLayerFeaturesByBbox(
+        $scope,
+        getParams($scope.searchableLayers, $scope.extent)
+      ).then(function(layerFeatures) {
+        $scope.options.results = layerFeatures;
+      });
+    };
+
+    // Launch a complex search
     $scope.searchByAttributes = function() {
       var features = [];
       angular.forEach(
-        getParamsByLayer($scope.queries),
+        getParamsByLayer($scope.queries, $scope.extent),
         function(paramsByLayer) {
           gaQuery.getLayerFeatures(
             $scope,
             paramsByLayer.bodId,
             paramsByLayer.params
-          ).then(function(layerFeatures){
+          ).then(function(layerFeatures) {
             $scope.options.results = features.concat(layerFeatures);
           });
         }
@@ -121,51 +152,8 @@
   });
 
   module.directive('gaQuery', function($http, gaLayerFilters, gaStyleFactory) {
-
-    var getParams = function(queries, extent) {
-      /* SearchServer
-      var bodIds = [], timeEnabled = [], timeStamps = [], attributes = [],
-          operators = [], values = [],
-          params = {
-            type: 'featuresearch',
-            bbox: extent ? extent.join(',') : undefined
-          };
-      angular.forEach(queries, function(query) {
-        var l = query.layer;
-        if (l) {
-          bodIds.push(l.bodId);
-          timeEnabled.push(l.timeenabled);
-          timeStamps.push((l.time && l.time.substr(0, 4) != '9999') ?
-              l.time.substr(0, 4) : '');
-          attributes.push(query.attribute.label);
-          operators.push(query.operator);
-          values.push(query.value);
-        }
-      });
-      return angular.extend(params, {
-        searchText: values[0],
-        features: bodIds.join(','),
-        timeEnabled: timeEnabled.join(','),
-        timeStamps: timeStamps.join(','),
-        attributes: attributes.join(','),
-        operators: operators.join(','),
-        values: values.join(',')
-
-      });*/
-    };
-
     var parser = new ol.format.GeoJSON();
-    var dragBox = new ol.interaction.DragBox({
-      condition: function(evt) {
-        //MacEnvironments don't get here because the event is not
-        //recognized as mouseEvent on Mac by the google closure.
-        //We have to use the apple key on those devices
-        return evt.originalEvent.ctrlKey ||
-            (gaBrowserSniffer.mac && evt.originalEvent.metaKey);
-      },
-      style: gaStyleFactory.getStyle('selectrectangle')
-    });
-
+    var dragBox =
     return {
       restrict: 'A',
       templateUrl: 'components/query/partials/query.html',
@@ -175,7 +163,7 @@
         options: '=gaQueryOptions'
       },
       link: function(scope, element, attrs, controller) {
-        
+
         // Watch the searchbale layers list
         scope.layers = scope.map.getLayers().getArray();
         scope.layerFilter = gaLayerFilters.selectByRectangle;
@@ -183,7 +171,7 @@
           scope.searchableLayers = layers;
           triggerChange();
         });
-        
+
         // Update the tree based on map changes. We use a timeout in
         // order to not trigger angular digest cycles and too many
         // updates. We don't use the permalink here because we want
@@ -198,28 +186,68 @@
             }, 0);
           }*/
         };
-        initInteraction(map);
-        // Add the fdragbox interaction
-            var map = scope.map;
-            var selectionRecFeature = new ol.Feature();
-            var selectionRecOverlay = new ol.FeatureOverlay({
-              map: map,
-              style: gaStyleFactory.getStyle('selectrectangle')
-            });
-                        map.addInteraction(dragBox);
-            // Events on dragbox
-            dragBox.on('boxstart', function(evt) {
-              //deactivate();
-              console.log('boxstart');
-            });
+        if (!dragBox) {
+          dragBox = new ol.interaction.DragBox({
+            condition: function(evt) {
+              //MacEnvironments don't get here because the event is not
+              //recognized as mouseEvent on Mac by the google closure.
+              //We have to use the apple key on those devices
+              return evt.originalEvent.ctrlKey ||
+                  (gaBrowserSniffer.mac && evt.originalEvent.metaKey);
+            },
+            style: gaStyleFactory.getStyle('selectrectangle');
+          });
+          scope.map.addInteraction(dragBox);
+        }
+        dragBox.on('boxend', function(evt) {
+          scope.extent = evt.target.getGeometry();
+        });
+        
+        var currentYear;
+        scope.$on('gaTimeSelectorChange', function(event, newYear) {
+          if (newYear !== currentYear) {
+            currentYear = newYear;
+            triggerChange();
+          }
+        });
 
-            dragBox.on('boxend', function(evt) {
-              //selectionRecFeature.setGeometry(scope.dragBox.getGeometry());
-              //scope.isActive = true;
-              //activate();
-            });
 
-      
+            var cancel = function() {
+              if (timeoutPromise !== null) {
+                $timeout.cancel(timeoutPromise);
+              }
+              if (canceler !== null) {
+                canceler.resolve();
+              }
+              scope.loading = false;
+              canceler = $q.defer();
+            };
+
+            var requestFeatures = function() {
+              var layersToQuery = getLayersToQuery(),
+                  req, searchExtent;
+              if (layersToQuery.ids.length &&
+                  scope.dragBox.getGeometry()) {
+                searchExtent = ol.extent.boundingExtent(
+                    scope.dragBox.getGeometry().getCoordinates()[0]);
+                req = getUrlAndParameters(layersToQuery, searchExtent);
+
+                scope.loading = true;
+
+                // Look for all features in current bounding box
+                $http.get(req.url, {
+                  timeout: canceler.promise,
+                  params: req.params
+                }).success(function(res) {
+                  scope.options.results = res.results || [];
+                  scope.loading = false;
+                }).error(function(reason) {
+                  scope.tree = {};
+                  scope.loading = false;
+                });
+              }
+            };
+
       }
     };
   });

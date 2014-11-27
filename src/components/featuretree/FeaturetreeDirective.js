@@ -32,6 +32,13 @@
           }
         };
 
+        var parseBoxString = function(stringBox2D) {
+          var extent = stringBox2D.replace('BOX(', '')
+            .replace(')', '').replace(',', ' ')
+            .split(' ');
+          return $.map(extent, parseFloat);
+        };
+
         return {
           restrict: 'A',
           replace: true,
@@ -42,7 +49,6 @@
             isActive: '=gaFeaturetreeActive'
           },
           link: function(scope, element, attrs) {
-            var currentYear;
             var timeoutPromise = null;
             var canceler = null;
             var map = scope.map;
@@ -54,24 +60,6 @@
               style: dragBoxStyle
             });
 
-            scope.dragBox = new ol.interaction.DragBox({
-              condition: function(evt) {
-                //MacEnvironments don't get here because the event is not
-                //recognized as mouseEvent on Mac by the google closure.
-                //We have to use the apple key on those devices
-                return evt.originalEvent.ctrlKey ||
-                    (gaBrowserSniffer.mac && evt.originalEvent.metaKey);
-              },
-              style: dragBoxStyle
-            });
-            //map.addInteraction(scope.dragBox);
-
-            scope.layerFilter = function(l) {
-              return gaLayerFilters.selected(l) &&
-                  l.visible &&
-                  gaLayers.getLayer(l.bodId) &&
-                  gaLayers.getLayerProperty(l.bodId, 'selectbyrectangle');
-            };
 
             scope.noResults = function() {
               // We can't use undefined or null for scope.tree
@@ -85,61 +73,14 @@
               return true;
             };
 
-            scope.layers = map.getLayers().getArray();
-            scope.filteredLayers = [];
-
-            scope.$watchCollection('layers | filter:layerFilter',
-                function(layers) {
-              scope.filteredLayers = layers;
-              triggerChange();
-            });
-
-            var getLayersToQuery = function() {
-              var ids = [];
-              var timeenabled = [];
-              var timestamps = [];
-              scope.filteredLayers.forEach(function(l) {
-                var ts = '';
-                if (l.time && l.time.substr(0, 4) != '9999') {
-                  ts = l.time.substr(0, 4);
-                }
-                ids.push(l.bodId);
-                timeenabled.push(l.timeEnabled);
-                timestamps.push(ts);
-              });
-              return {
-                ids: ids,
-                timeenabled: timeenabled,
-                timestamps: timestamps
-              };
-            };
-
-            var cancel = function() {
-              if (timeoutPromise !== null) {
-                $timeout.cancel(timeoutPromise);
-              }
-              if (canceler !== null) {
-                canceler.resolve();
-              }
-              scope.loading = false;
-              canceler = $q.defer();
-            };
-
-            var parseBoxString = function(stringBox2D) {
-              var extent = stringBox2D.replace('BOX(', '')
-                .replace(')', '').replace(',', ' ')
-                .split(' ');
-              return $.map(extent, parseFloat);
-            };
-
-            var updateTree = function() {
+            var updateTree = function(features) {
               gaPreviewFeatures.clearHighlight();
-              var res = scope.options.results;
+              var res = features;
               var tree = {}, i, li, j, lj, layerId, newNode, oldNode,
                   feature, oldFeature, result, bbox, ext, searchExtent;
 
-              if (scope.dragBox.getGeometry()) {
-                searchExtent = scope.dragBox.getGeometry().getExtent();
+              if (selectionRectFeature.getGeometry()) {
+                searchExtent = selectionRectFeature.getGeometry().getExtent();
               }
 
               for (i = 0, li = res.length; i < li; i++) {
@@ -217,62 +158,6 @@
               scope.$emit('gaUpdateFeatureTree', tree);
             };
 
-            var getUrlAndParameters = function(layersToQuery, extent) {
-              var url = scope.options.searchUrlTemplate,
-                  params = {
-                    bbox: extent[0] + ',' + extent[1] +
-                        ',' + extent[2] + ',' + extent[3],
-                    type: 'featureidentify',
-                    features: layersToQuery.ids.join(','),
-                    timeEnabled: layersToQuery.timeenabled.join(','),
-                    timeStamps: layersToQuery.timestamps.join(',')
-                  };
-              return {
-                url: url,
-                params: params
-              };
-            };
-
-            var requestFeatures = function() {
-              var layersToQuery = getLayersToQuery(),
-                  req, searchExtent;
-              if (layersToQuery.ids.length &&
-                  scope.dragBox.getGeometry()) {
-                searchExtent = ol.extent.boundingExtent(
-                    scope.dragBox.getGeometry().getCoordinates()[0]);
-                req = getUrlAndParameters(layersToQuery, searchExtent);
-
-                scope.loading = true;
-
-                // Look for all features in current bounding box
-                $http.get(req.url, {
-                  timeout: canceler.promise,
-                  params: req.params
-                }).success(function(res) {
-                  scope.options.results = res.results || [];
-                  scope.loading = false;
-                }).error(function(reason) {
-                  scope.tree = {};
-                  scope.loading = false;
-                });
-              }
-            };
-
-            // Update the tree based on map changes. We use a timeout in
-            // order to not trigger angular digest cycles and too many
-            // updates. We don't use the permalink here because we want
-            // to separate these concerns.
-            var triggerChange = function() {
-              if (scope.isActive) {
-                scope.tree = {};
-                cancel();
-                timeoutPromise = $timeout(function() {
-                  requestFeatures();
-                  timeoutPromise = null;
-                }, 0);
-              }
-            };
-
             var loadGeometry = function(feature, cb) {
               var featureUrl;
               if (!feature.geometry) {
@@ -296,11 +181,10 @@
                 //make sure it's async as the other cb() calls
                 $timeout(function() {
                   cb();
-                }, 0);
+                }, 0, false);
               }
             };
 
-            scope.loading = false;
             scope.tree = {};
 
             scope.highlightFeature = function(feature) {
@@ -417,7 +301,6 @@
             // We consider this component is activated when a box is drawn
             var activate = function() {
               showSelectionRectangle();
-              triggerChange();
             };
 
             var deactivate = function() {
@@ -440,27 +323,17 @@
               }
             });
 
-            scope.$watch('options.results', function(results) {
-              updateTree();
+            scope.$watch('options.results', function(features) {
+              updateTree(features);
             });
-
-            scope.$on('gaTimeSelectorChange', function(event, newYear) {
-              if (newYear !== currentYear) {
-                currentYear = newYear;
-                triggerChange();
+            scope.$watch('options.resultsExtent', function(geometry) {
+              selectionRecFeature.setGeometry(geometry);
+              if (!geometry) {
+                deactivate();
+              } else {
+                scope.isActive = true;
+                activate();
               }
-            });
-
-            // Events on dragbox
-            scope.dragBox.on('boxstart', function(evt) {
-              window.console.debug('boxstart2');
-              deactivate();
-            });
-
-            scope.dragBox.on('boxend', function(evt) {
-              selectionRecFeature.setGeometry(scope.dragBox.getGeometry());
-              scope.isActive = true;
-              activate();
             });
           }
         };
