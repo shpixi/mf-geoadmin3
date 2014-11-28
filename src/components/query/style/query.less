@@ -1,8 +1,12 @@
 [ga-query] {
   width: 560px;
   margin: 10px 0px;
-   
-  .ga-inputs {
+  
+  .tab-content {
+    margin: 10px 0px;
+  }
+
+  .ga-inputs, ga-queries-saved {
     display: table;
     margin-bottom: 5px;
    
@@ -13,13 +17,15 @@
      margin: 0 3px;
    }
    
-   button {
-     width: 30px;
-     padding: 0px 10px;
-   }
-
   }
-
+  .ga-queries-saved {
+    select{
+      width: 150px;
+    }
+    select, button {
+      display: inline-block;
+    }
+  }
 
 }
 

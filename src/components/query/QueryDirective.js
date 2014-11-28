@@ -3,24 +3,22 @@
 
   goog.require('ga_map_service');
   goog.require('ga_query_service');
-
+  goog.require('ga_storage_service');
 
   var module = angular.module('ga_query_directive', [
-    'ga_map_service', 'ga_query_service'
-
+    'ga_map_service', 
+    'ga_query_service',
+    'ga_storage_service'
   ]);
 
-  module.controller('GaQueryDirectiveController', function($scope, gaQuery,
-      $http) {
+  module.controller('GaQueryDirectiveController', function($scope, $http,
+      $translate, gaLayers, gaQuery, gaMapUtils, gaStorage) {
+    var queryKey = 'ga_query_saved';
+    var stored 
     $scope.queryType = 0;
     $scope.searchableLayers = [];
-    $scope.queries = [{
-      layer: null,
-      attribute: null,
-      operator: null,
-      value: null
-    }];
-    var hasRegistered = false, oldValue;
+    $scope.queriesSaved = angular.fromJson(gaStorage.getItem(queryKey) || '[]');
+        var hasRegistered = false, oldValue;
     $scope.$watch(function() {
       if (hasRegistered) return;
       hasRegistered = true;
@@ -68,6 +66,17 @@
     // Remove a query
     $scope.remove = function(idx) {
       $scope.queries.splice(idx, 1);
+    };
+
+    // Remove a query saved
+    $scope.removeQuerySaved = function(querySaved) {
+      for (var i = 0, ii = $scope.queriesSaved.length; i< ii; i++) {
+        if ($scope.queriesSaved[i].label == querySaved.label) {
+          $scope.queriesSaved.splice(i, 1);
+          break;
+        }
+      }
+      gaStorage.setItem(queryKey, angular.toJson($scope.queriesSaved));
     };
 
     // Get parameters for an ESRI query request.
@@ -151,6 +160,90 @@
         $scope.searchByAttributes();
       }
     };
+
+    // Extract only informations needed to save the current query
+    var toSaveFormat = function(queries) {
+      var queriesToSave = []
+      for (var i = 0, ii = queries.length; i < ii; i++) {
+        var query = queries[i];
+        if (query.layer && query.attribute && query.operator && query.value) {
+          var queryToSave = {
+            bodId: query.layer.bodId,
+            attrName: query.attribute.label,
+            operator: query.operator,
+            value: query.value
+          };
+          queriesToSave.push(queryToSave);
+        }
+      }
+      return queriesToSave;
+    };
+    var applyAttr = function(query, attrName) {
+      for (var j = 0, jj = query.layer.attributes.length; j < jj; j++) {
+        if (query.layer.attributes[j].label == attrName) {
+          query.attribute = query.layer.attributes[j];
+        }
+      }
+    };
+
+    var fromSaveFormat = function(queries) {
+      var queriesToRestore = []
+      for (var i = 0, ii = queries.length; i < ii; i++) {
+        var query = queries[i];
+        var queryToRestore = {};
+        // find the layer
+        var layerOnMap = gaMapUtils.getMapOverlayForBodId($scope.map, query.bodId);
+        if (!layerOnMap) {
+          layerOnMap = gaLayers.getOlLayerById(query.bodId);
+          if (!layerOnMap) {
+            // can't display the display so we remove this query
+            // TODO: warn the user ?
+            continue;
+          }
+          $scope.map.addLayer(layerOnMap);
+        }
+        queryToRestore.layer = layerOnMap; 
+        
+        if (queryToRestore.layer.attributes) {
+          applyAttr(queryToRestore, query.attrName); 
+        } else {
+          // load attributes
+          gaQuery.getLayerAttributes($scope, queryToRestore.layer.bodId)
+            .then(function(attributes) {
+              queryToRestore.layer.attributes = attributes;
+              applyAttr(queryToRestore, query.attrName); 
+            });
+        }
+        queryToRestore.operator = query.operator;
+        queryToRestore.value = query.value;
+        queriesToRestore.push(queryToRestore);
+      }
+      return queriesToRestore;
+    };
+
+    $scope.save = function() {
+      var label = prompt($translate('query_name_prompt'), 'Query n ' + $scope.queriesSaved.length + 1);
+      if (label) {
+        var saved = toSaveFormat($scope.queries);
+        $scope.queriesSaved.push({
+          label: label,
+          queries: saved
+        });
+        gaStorage.setItem(queryKey, angular.toJson($scope.queriesSaved));
+      }
+    };
+    $scope.load = function(queries) {
+      $scope.queries = fromSaveFormat(queries);
+    };
+    $scope.reset = function(queries) {
+      $scope.queries = [{
+        layer: null,
+        attribute: null,
+        operator: null,
+        value: null
+      }];
+    }
+    $scope.reset(); // Init queries value  
   });
 
   module.directive('gaQuery', function($http, gaBrowserSniffer, gaLayerFilters,
@@ -159,7 +252,10 @@
     var dragBox, boxOverlay;
     var dragBoxStyle = gaStyleFactory.getStyle('selectrectangle');
     var boxFeature = new ol.Feature();
-
+    var boxOverlay = new ol.FeatureOverlay({
+      style: dragBoxStyle
+    });
+    boxOverlay.addFeature(boxFeature);
 
     return {
       restrict: 'A',
@@ -173,13 +269,6 @@
       link: function(scope, element, attrs, controller) {
 
         // Init the map stuff
-        if (!boxOverlay) {
-          boxOverlay = new ol.FeatureOverlay({
-            map: scope.map,
-            style: dragBoxStyle
-          });
-          boxOverlay.addFeature(boxFeature);
-        }
         if (!dragBox) {
           dragBox = new ol.interaction.DragBox({
             condition: function(evt) {
@@ -200,7 +289,11 @@
             scope.queryType = 0;
             scope.extent = evt.target.getGeometry().getExtent();
             boxFeature.setGeometry(evt.target.getGeometry());
-            scope.searchByBbox();
+            if (scope.searchableLayers.length == 0) {
+              scope.$apply();
+            } else {
+              scope.searchByBbox();
+            }
           });
         }
 
@@ -211,13 +304,11 @@
         var hideBox = function() {
           boxOverlay.setMap(null);
         };
-
         var activate = function() {
           if (scope.queryType == 0) {
             showBox();
           }
         };
-
         var deactivate = function() {
           hideBox();
         };
@@ -260,7 +351,6 @@
             }
           }
         });
-
       }
     };
   });
