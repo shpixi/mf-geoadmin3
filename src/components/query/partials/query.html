@@ -43,8 +43,6 @@
                   ng-model="q.attribute" 
                   ng-options="a.label for a in q.layer.attributes"
                   ng-change="applyOpValues(q)">
-            <option value="" selected disabled translate>choose_attribute</option>
-
           </select>
           <select class="form-control"
                   ng-disabled="!q.attribute"

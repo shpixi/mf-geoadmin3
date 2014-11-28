@@ -6,7 +6,7 @@
   goog.require('ga_storage_service');
 
   var module = angular.module('ga_query_directive', [
-    'ga_map_service', 
+    'ga_map_service',
     'ga_query_service',
     'ga_storage_service'
   ]);
@@ -14,7 +14,7 @@
   module.controller('GaQueryDirectiveController', function($scope, $http,
       $translate, gaLayers, gaQuery, gaMapUtils, gaStorage) {
     var queryKey = 'ga_query_saved';
-    var stored 
+    var stored;
     $scope.queryType = 0;
     $scope.searchableLayers = [];
     $scope.queriesSaved = angular.fromJson(gaStorage.getItem(queryKey) || '[]');
@@ -44,11 +44,15 @@
 
     // Load attributes of the selected layer in the select box
     $scope.loadAttributes = function(query) {
-      gaQuery.getLayerAttributes($scope, query.layer.bodId)
-        .then(function(attributes) {
-          query.layer.attributes = attributes;
-          applyAttrValues(query);
-        });
+      if (!query.layer.attributes) {
+        gaQuery.getLayerAttributes($scope, query.layer.bodId)
+          .then(function(attributes) {
+            query.layer.attributes = attributes;
+            applyAttrValues(query);
+          });
+      } else {
+        applyAttrValues(query);
+      }
     };
 
     // Add a query
@@ -70,7 +74,7 @@
 
     // Remove a query saved
     $scope.removeQuerySaved = function(querySaved) {
-      for (var i = 0, ii = $scope.queriesSaved.length; i< ii; i++) {
+      for (var i = 0, ii = $scope.queriesSaved.length; i < ii; i++) {
         if ($scope.queriesSaved[i].label == querySaved.label) {
           $scope.queriesSaved.splice(i, 1);
           break;
@@ -163,7 +167,7 @@
 
     // Extract only informations needed to save the current query
     var toSaveFormat = function(queries) {
-      var queriesToSave = []
+      var queriesToSave = [];
       for (var i = 0, ii = queries.length; i < ii; i++) {
         var query = queries[i];
         if (query.layer && query.attribute && query.operator && query.value) {
@@ -187,12 +191,13 @@
     };
 
     var fromSaveFormat = function(queries) {
-      var queriesToRestore = []
+      var queriesToRestore = [];
       for (var i = 0, ii = queries.length; i < ii; i++) {
         var query = queries[i];
         var queryToRestore = {};
         // find the layer
-        var layerOnMap = gaMapUtils.getMapOverlayForBodId($scope.map, query.bodId);
+        var layerOnMap = gaMapUtils.getMapOverlayForBodId($scope.map,
+            query.bodId);
         if (!layerOnMap) {
           layerOnMap = gaLayers.getOlLayerById(query.bodId);
           if (!layerOnMap) {
@@ -202,17 +207,19 @@
           }
           $scope.map.addLayer(layerOnMap);
         }
-        queryToRestore.layer = layerOnMap; 
-        
+        queryToRestore.layer = layerOnMap;
+
         if (queryToRestore.layer.attributes) {
-          applyAttr(queryToRestore, query.attrName); 
+          applyAttr(queryToRestore, query.attrName);
         } else {
           // load attributes
           gaQuery.getLayerAttributes($scope, queryToRestore.layer.bodId)
             .then(function(attributes) {
               queryToRestore.layer.attributes = attributes;
-              applyAttr(queryToRestore, query.attrName); 
+              applyAttr(queryToRestore, query.attrName);
+              $scope.load(queries); // Reload until all layer have finished
             });
+          return;
         }
         queryToRestore.operator = query.operator;
         queryToRestore.value = query.value;
@@ -222,7 +229,8 @@
     };
 
     $scope.save = function() {
-      var label = prompt($translate('query_name_prompt'), 'Query n ' + $scope.queriesSaved.length + 1);
+      var label = prompt($translate('query_name_prompt'), 'Query n ' +
+          $scope.queriesSaved.length + 1);
       if (label) {
         var saved = toSaveFormat($scope.queries);
         $scope.queriesSaved.push({
@@ -233,6 +241,7 @@
       }
     };
     $scope.load = function(queries) {
+      // load attributes
       $scope.queries = fromSaveFormat(queries);
     };
     $scope.reset = function(queries) {
@@ -242,8 +251,8 @@
         operator: null,
         value: null
       }];
-    }
-    $scope.reset(); // Init queries value  
+    };
+    $scope.reset(); // Init queries value
   });
 
   module.directive('gaQuery', function($http, gaBrowserSniffer, gaLayerFilters,

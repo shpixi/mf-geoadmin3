@@ -102,7 +102,8 @@
                     layer: layerId
                   };
                 }
-                feature.label = getTranslatedLabel((result.attrs || result));
+                feature.label = getTranslatedLabel((result.attrs ||
+                    result.properties));
                 newNode.features.push(feature);
               }
               //assure that label contains number of items

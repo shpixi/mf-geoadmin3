@@ -1,6 +1,6 @@
 <div>
   <div ng-if="loading" translate>wait_data_loading</div>
-  <div ng-if="!loading && noResults()" translate>no_feature_results</div>
+  <div ng-if="!loading && noResults()" class="ga-no-result" translate>no_feature_results</div>
   <ul>
     <li ng-repeat="layer in tree">
       <label ng-click="layer.open = !layer.open" class="ga-truncate-text">
