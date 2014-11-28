@@ -281,5 +281,17 @@
   "feedback_create_geometry": "",
   "feedback_kml_attached": "",
   "feedback_modify_drawing": "",
-  "remove": ""
+  "remove": "",
+  "query_bbox": "",
+  "query_attributes": "",
+  "query_saved": "",
+  "query_load": "",
+  "query_remove": "",
+  "query_current": "",
+  "query_reset": "",
+  "query_save": "",
+  "query_search": "",
+  "query_name_prompt": "",
+  "choose_layer": "",
+  "choose_query": ""
 }

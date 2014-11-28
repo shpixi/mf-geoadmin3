@@ -2,10 +2,10 @@
 
   <ul class="nav nav-tabs" ng-init="queryType = 0">
     <li ng-class="{active: (queryType == 0)}">
-      <a ng-click="queryType = 0">query_bbox</a>
+      <a ng-click="queryType = 0">{{'query_bbox' | translate}}</a>
     </li>
     <li ng-class="{active: (queryType == 1)}">
-      <a ng-click="queryType = 1">query_attributes</a>
+      <a ng-click="queryType = 1">{{'query_attributes' | translate}}</a>
     </li>
   </ul>
   <div class="tab-content">
@@ -68,13 +68,13 @@
         </div>
         <button class="btn btn-default" 
               ng-hide="!queries[0].value"
-              ng-click="reset()">query_reset</button>
+              ng-click="reset()" translate>query_reset</button>
         <button class="btn btn-default"
               ng-hide="!queries[0].value"
-              ng-click="save()">query_save</button>
+              ng-click="save()" translate>query_save</button>
         <button class="btn btn-default" 
               ng-hide="!queries[0].value"
-              ng-click="search()">query_search</button>
+              ng-click="search()" translate>query_search</button>
 
       </div>
     </div>
