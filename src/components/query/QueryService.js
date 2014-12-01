@@ -94,6 +94,9 @@
                  transformToLiteral: function(value) {
                    if (value && this.inputType != 'number' &&
                        this.inputType != 'checkbox') {
+                     if (this.inputType == 'text') {
+                       return '\'%' + value + '%\'';
+                     }
                      return '\'' + value + '\'';
                    }
                    return value;
