@@ -18,7 +18,8 @@
     $scope.queryType = 0;
     $scope.searchableLayers = [];
     $scope.queriesSaved = angular.fromJson(gaStorage.getItem(queryKey) || '[]');
-        var hasRegistered = false, oldValue;
+
+    var hasRegistered = false, oldValue;
     $scope.$watch(function() {
       if (hasRegistered) return;
       hasRegistered = true;
@@ -27,7 +28,14 @@
         hasRegistered = false;
       });
     });
-
+    var getEmptyQuery = function() {
+      return {
+        layer: null,
+        attribute: null,
+        operator: null,
+        value: null
+      };
+    };
     // Display the first attribute as selected
     var noAttr = {label: 'query_no_attr'};
     var applyAttrValues = function(query) {
@@ -44,6 +52,9 @@
 
     // Load attributes of the selected layer in the select box
     $scope.loadAttributes = function(query) {
+      query.attribute = null;
+      query.operator = null;
+      query.value = null;
       if (!query.layer.attributes) {
         gaQuery.getLayerAttributes($scope, query.layer.bodId)
           .then(function(attributes) {
@@ -65,6 +76,11 @@
         value: query.value
       };
       $scope.queries.splice(idx, 0, clone);
+    };
+
+    // Clear a query
+    $scope.clear = function(idx) {
+      $scope.queries[idx] = getEmptyQuery();
     };
 
     // Remove a query

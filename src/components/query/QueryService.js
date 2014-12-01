@@ -16,7 +16,7 @@
         },
         STRING: {
           inputType: 'text',
-          operators: ['ilike', 'like', 'not ilike', 'not like']
+          operators: ['ilike', 'not ilike']
         },
         BOOLEAN: {
           inputType: 'checkbox',
@@ -92,7 +92,8 @@
                  inputType: attrInfos[field.type].inputType,
                  operators: attrInfos[field.type].operators,
                  transformToLiteral: function(value) {
-                   if (value && this.inputType == 'text') {
+                   if (value && this.inputType != 'number' &&
+                       this.inputType != 'checkbox') {
                      return '\'' + value + '\'';
                    }
                    return value;
