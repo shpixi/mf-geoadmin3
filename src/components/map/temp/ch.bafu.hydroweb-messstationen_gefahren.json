@@ -1,0 +1,3463 @@
+{
+"features": [
+{
+"geometry": {
+"coordinates": [
+627190,
+267840
+],
+"type": "Point"
+},
+"id": "2091",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2091.png'></img> <br> 2014-12-01T13:12 | <b>101.5</b> | 1001.5 | m3/s",
+"name": "Rheinfelden, Messstation - Rhein (2091)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+617280,
+171750
+],
+"type": "Point"
+},
+"id": "2093",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2093.png'></img> <br> 2014-12-01T13:12 | <b>102.5</b> | 1002.5 | m ü.M.",
+"name": "Spiez, Kraftwerk BKW - Thunersee (2093)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+682055,
+249430
+],
+"type": "Point"
+},
+"id": "2099",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2099.png'></img> <br> 2014-12-01T13:12 | <b>103.5</b> | 1003.5 | m3/s",
+"name": "Zürich, Unterhard - Limmat (2099)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+559370,
+206810
+],
+"type": "Point"
+},
+"id": "2458",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2458.png'></img> <br> 2014-12-01T13:12 | <b>104.5</b> | 1004.5 | m3/s",
+"name": "Valangin - Seyon (2458)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718010,
+97380
+],
+"type": "Point"
+},
+"id": "2321",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2321.png'></img> <br> 2014-12-01T13:12 | <b>105.5</b> | 1005.5 | m3/s",
+"name": "Pregassona - Cassarate (2321)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+786220,
+183370
+],
+"type": "Point"
+},
+"id": "2327",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2327.png'></img> <br> 2014-12-01T13:12 | <b>106.5</b> | 1006.5 | m3/s",
+"name": "Davos, Kriegsmatte - Dischmabach (2327)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+610680,
+167850
+],
+"type": "Point"
+},
+"id": "2488",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2488.png'></img> <br> 2014-12-01T13:12 | <b>107.5</b> | 1007.5 | m3/s",
+"name": "Latterbach, nur Hauptstation - Simme (2488)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+554675,
+146565
+],
+"type": "Point"
+},
+"id": "2486",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2486.png'></img> <br> 2014-12-01T13:12 | <b>108.5</b> | 1008.5 | m3/s",
+"name": "Vevey, Copet - Veveyse (2486)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+647870,
+209510
+],
+"type": "Point"
+},
+"id": "2487",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2487.png'></img> <br> 2014-12-01T13:12 | <b>109.5</b> | 1009.5 | m3/s",
+"name": "Werthenstein, Chappelboden - Kleine Emme (2487)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+567830,
+261200
+],
+"type": "Point"
+},
+"id": "2485",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2485.png'></img> <br> 2014-12-01T13:12 | <b>110.5</b> | 1010.5 | m3/s",
+"name": "Boncourt, Frontière - Allaine (2485)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+501220,
+115120
+],
+"type": "Point"
+},
+"id": "2170",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2170.png'></img> <br> 2014-12-01T13:12 | <b>111.5</b> | 1011.5 | m3/s",
+"name": "Genève, Bout du Monde - Arve (2170)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+554350,
+199940
+],
+"type": "Point"
+},
+"id": "2480",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2480.png'></img> <br> 2014-12-01T13:12 | <b>112.5</b> | 1012.5 | m3/s",
+"name": "Boudry - Areuse (2480)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+673555,
+202870
+],
+"type": "Point"
+},
+"id": "2481",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2481.png'></img> <br> 2014-12-01T13:12 | <b>113.5</b> | 1013.5 | m3/s",
+"name": "Buochs, Flugplatz - Engelberger Aa (2481)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+608220,
+223250
+],
+"type": "Point"
+},
+"id": "2155",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2155.png'></img> <br> 2014-12-01T13:12 | <b>114.5</b> | 1014.5 | m3/s",
+"name": "Wiler, Limpachmündung, nur Hauptstation - Emme (2155)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629130,
+140910
+],
+"type": "Point"
+},
+"id": "2269",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2269.png'></img> <br> 2014-12-01T13:12 | <b>115.5</b> | 1015.5 | m3/s",
+"name": "Blatten - Lonza (2269)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+649930,
+177380
+],
+"type": "Point"
+},
+"id": "2019",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2019.png'></img> <br> 2014-12-01T13:12 | <b>116.5</b> | 1016.5 | m3/s",
+"name": "Brienzwiler - Aare (2019)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+600060,
+167090
+],
+"type": "Point"
+},
+"id": "2151",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2151.png'></img> <br> 2014-12-01T13:12 | <b>117.5</b> | 1017.5 | m3/s",
+"name": "Oberwil - Simme (2151)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+665330,
+211800
+],
+"type": "Point"
+},
+"id": "2152",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2152.png'></img> <br> 2014-12-01T13:12 | <b>118.5</b> | 1018.5 | m3/s",
+"name": "Luzern, Geissmattbrücke - Reuss (2152)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+644500,
+119420
+],
+"type": "Point"
+},
+"id": "2244",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2244.png'></img> <br> 2014-12-01T13:12 | <b>119.5</b> | 1019.5 | m3/s",
+"name": "Klusmatten - Krummbach (2244)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+681555,
+224660
+],
+"type": "Point"
+},
+"id": "2017",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2017.png'></img> <br> 2014-12-01T13:12 | <b>120.5</b> | 1020.5 | m ü.M.",
+"name": "Zug - Zugersee (2017)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+657000,
+259360
+],
+"type": "Point"
+},
+"id": "2016",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2016.png'></img> <br> 2014-12-01T13:12 | <b>121.5</b> | 1021.5 | m3/s",
+"name": "Brugg - Aare (2016)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+593770,
+118630
+],
+"type": "Point"
+},
+"id": "2011",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2011.png'></img> <br> 2014-12-01T13:12 | <b>122.5</b> | 1022.5 | m3/s",
+"name": "Sion - Rhône (2011)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+604810,
+192680
+],
+"type": "Point"
+},
+"id": "2159",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2159.png'></img> <br> 2014-12-01T13:12 | <b>123.5</b> | 1023.5 | m3/s",
+"name": "Belp, Mülimatt - Gürbe (2159)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+627910,
+191180
+],
+"type": "Point"
+},
+"id": "2409",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2409.png'></img> <br> 2014-12-01T13:12 | <b>124.5</b> | 1024.5 | m3/s",
+"name": "Eggiwil, Heidbüel - Emme (2409)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+486600,
+112340
+],
+"type": "Point"
+},
+"id": "2174",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2174.png'></img> <br> 2014-12-01T13:12 | <b>125.5</b> | 1025.5 | m3/s",
+"name": "Chancy, Aux Ripes - Rhône (2174)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+742540,
+253230
+],
+"type": "Point"
+},
+"id": "2468",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2468.png'></img> <br> 2014-12-01T13:12 | <b>126.5</b> | 1026.5 | m3/s",
+"name": "St. Gallen, Bruggen / Au - Sitter (2468)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+617790,
+168400
+],
+"type": "Point"
+},
+"id": "2469",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2469.png'></img> <br> 2014-12-01T13:12 | <b>127.5</b> | 1027.5 | m3/s",
+"name": "Hondrich - Kander (2469)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+702392,
+203328
+],
+"type": "Point"
+},
+"id": "2499",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2499.png'></img> <br> 2014-12-01T13:12 | <b>128.5</b> | 1028.5 | m3/s",
+"name": "Muotathal - Schlichenden Brünnen (2499)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+735330,
+181790
+],
+"type": "Point"
+},
+"id": "2498",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2498.png'></img> <br> 2014-12-01T13:12 | <b>129.5</b> | 1029.5 | m3/s",
+"name": "Castrisch - Glenner (2498)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+593350,
+193020
+],
+"type": "Point"
+},
+"id": "2179",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2179.png'></img> <br> 2014-12-01T13:12 | <b>130.5</b> | 1030.5 | m3/s",
+"name": "Thörishaus, Sensematt - Sense (2179)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+804930,
+174830
+],
+"type": "Point"
+},
+"id": "2319",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2319.png'></img> <br> 2014-12-01T13:12 | <b>131.5</b> | 1031.5 | m3/s",
+"name": "Zernez - Ova da Cluozza (2319)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+692480,
+191810
+],
+"type": "Point"
+},
+"id": "2491",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2491.png'></img> <br> 2014-12-01T13:12 | <b>132.5</b> | 1032.5 | m3/s",
+"name": "Bürglen, Galgenwäldli, nur Hauptstation - Schächen (2491)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+488880,
+119460
+],
+"type": "Point"
+},
+"id": "2490",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2490.png'></img> <br> 2014-12-01T13:12 | <b>133.5</b> | 1033.5 | m3/s",
+"name": "Dardagny, Les Granges - Allondon (2490)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+510080,
+140080
+],
+"type": "Point"
+},
+"id": "2493",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2493.png'></img> <br> 2014-12-01T13:12 | <b>134.5</b> | 1034.5 | m3/s",
+"name": "Gland, Route Suisse - Promenthouse (2493)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+744410,
+268400
+],
+"type": "Point"
+},
+"id": "2312",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2312.png'></img> <br> 2014-12-01T13:12 | <b>135.5</b> | 1035.5 | m3/s",
+"name": "Salmsach, Hungerbühl - Aach (2312)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+716120,
+135330
+],
+"type": "Point"
+},
+"id": "2494",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2494.png'></img> <br> 2014-12-01T13:12 | <b>136.5</b> | 1036.5 | m3/s",
+"name": "Pollegio, Campagna - Ticino (2494)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+640560,
+226740
+],
+"type": "Point"
+},
+"id": "2497",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2497.png'></img> <br> 2014-12-01T13:12 | <b>137.5</b> | 1037.5 | m3/s",
+"name": "Nebikon - Luthern (2497)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+757750,
+234590
+],
+"type": "Point"
+},
+"id": "2410",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2410.png'></img> <br> 2014-12-01T13:12 | <b>138.5</b> | 1038.5 | m3/s",
+"name": "Ruggell - Liechtensteiner Binn (2410)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+572420,
+167540
+],
+"type": "Point"
+},
+"id": "2412",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2412.png'></img> <br> 2014-12-01T13:12 | <b>139.5</b> | 1039.5 | m3/s",
+"name": "Vuippens, Château - Sionge (2412)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+667060,
+269230
+],
+"type": "Point"
+},
+"id": "2143",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2143.png'></img> <br> 2014-12-01T13:12 | <b>140.5</b> | 1040.5 | m3/s",
+"name": "Rekingen - Rhein (2143)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718840,
+248440
+],
+"type": "Point"
+},
+"id": "2414",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2414.png'></img> <br> 2014-12-01T13:12 | <b>141.5</b> | 1041.5 | l/s",
+"name": "Mosnang, Rietholz - Rietholzbach (2414)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+651320,
+223140
+],
+"type": "Point"
+},
+"id": "2417",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2417.png'></img> <br> 2014-12-01T13:12 | <b>142.5</b> | 1042.5 | m3/s",
+"name": "Oberkirch - Suhre (2417)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+661390,
+230220
+],
+"type": "Point"
+},
+"id": "2416",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2416.png'></img> <br> 2014-12-01T13:12 | <b>143.5</b> | 1043.5 | m3/s",
+"name": "Hitzkirch, Richensee - Aabach (2416)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+661910,
+146780
+],
+"type": "Point"
+},
+"id": "2419",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2419.png'></img> <br> 2014-12-01T13:12 | <b>144.5</b> | 1044.5 | m3/s",
+"name": "Reckingen - Rhone (2419)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+788810,
+151690
+],
+"type": "Point"
+},
+"id": "2256",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2256.png'></img> <br> 2014-12-01T13:12 | <b>145.5</b> | 1045.5 | m3/s",
+"name": "Pontresina - Rosegbach (2256)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629530,
+235090
+],
+"type": "Point"
+},
+"id": "2063",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2063.png'></img> <br> 2014-12-01T13:12 | <b>146.5</b> | 1046.5 | m3/s",
+"name": "Murgenthal - Aare (2063)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+588340,
+171015
+],
+"type": "Point"
+},
+"id": "2252",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2252.png'></img> <br> 2014-12-01T13:12 | <b>147.5</b> | 1047.5 | l/s",
+"name": "Plaffeien, Schweinsberg - Schwändlibach (2252)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+561580,
+204570
+],
+"type": "Point"
+},
+"id": "2149",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2149.png'></img> <br> 2014-12-01T13:12 | <b>148.5</b> | 1048.5 | m ü.M.",
+"name": "Neuchâtel, Port - Lac de Neuchâtel (2149)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+830640,
+197190
+],
+"type": "Point"
+},
+"id": "2067",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2067.png'></img> <br> 2014-12-01T13:12 | <b>149.5</b> | 1049.5 | m3/s",
+"name": "Martina - Inn (2067)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+680600,
+226070
+],
+"type": "Point"
+},
+"id": "2477",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2477.png'></img> <br> 2014-12-01T13:12 | <b>150.5</b> | 1050.5 | m3/s",
+"name": "Zug, Letzi - Lorze (2477)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+697240,
+223280
+],
+"type": "Point"
+},
+"id": "2604",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2604.png'></img> <br> 2014-12-01T13:12 | <b>151.5</b> | 1051.5 | m3/s",
+"name": "Biberbrugg - Biber (2604)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+690040,
+132550
+],
+"type": "Point"
+},
+"id": "2475",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2475.png'></img> <br> 2014-12-01T13:12 | <b>152.5</b> | 1052.5 | m3/s",
+"name": "Bignasco, Ponte nuovo - Maggia (2475)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+729440,
+127180
+],
+"type": "Point"
+},
+"id": "2474",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2474.png'></img> <br> 2014-12-01T13:12 | <b>153.5</b> | 1053.5 | m3/s",
+"name": "Buseno - Calancasca (2474)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+766280,
+250360
+],
+"type": "Point"
+},
+"id": "2473",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2473.png'></img> <br> 2014-12-01T13:12 | <b>154.5</b> | 1054.5 | m3/s",
+"name": "Diepoldsau, Rietbrücke - Rhein (2473)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+605890,
+181880
+],
+"type": "Point"
+},
+"id": "2472",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2472.png'></img> <br> 2014-12-01T13:12 | <b>155.5</b> | 1055.5 | m3/s",
+"name": "Burgistein, Pfandersmatt - Gürbe (2472)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629340,
+233555
+],
+"type": "Point"
+},
+"id": "2471",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2471.png'></img> <br> 2014-12-01T13:12 | <b>156.5</b> | 1056.5 | m3/s",
+"name": "Murgenthal, Walliswil - Murg (2471)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+708420,
+122920
+],
+"type": "Point"
+},
+"id": "2605",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2605.png'></img> <br> 2014-12-01T13:12 | <b>157.5</b> | 1057.5 | m3/s",
+"name": "Lavertezzo, Campiòi - Verzasca (2605)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+593520,
+246290
+],
+"type": "Point"
+},
+"id": "2479",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2479.png'></img> <br> 2014-12-01T13:12 | <b>158.5</b> | 1058.5 | m3/s",
+"name": "Delémont - Sorne (2479)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+596780,
+249070
+],
+"type": "Point"
+},
+"id": "2478",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2478.png'></img> <br> 2014-12-01T13:12 | <b>159.5</b> | 1059.5 | m3/s",
+"name": "Soyhières, Bois du Treuil - Birse (2478)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+753190,
+261600
+],
+"type": "Point"
+},
+"id": "2308",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2308.png'></img> <br> 2014-12-01T13:12 | <b>160.5</b> | 1060.5 | m3/s",
+"name": "Goldach, Bleiche, nur Hauptstation - Goldach (2308)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+704425,
+215310
+],
+"type": "Point"
+},
+"id": "2300",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2300.png'></img> <br> 2014-12-01T13:12 | <b>161.5</b> | 1061.5 | m3/s",
+"name": "Euthal, Rüti - Minster (2300)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+723675,
+252720
+],
+"type": "Point"
+},
+"id": "2303",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2303.png'></img> <br> 2014-12-01T13:12 | <b>162.5</b> | 1062.5 | m3/s",
+"name": "Jonschwil, Mühlau - Thur (2303)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+737270,
+251290
+],
+"type": "Point"
+},
+"id": "2305",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2305.png'></img> <br> 2014-12-01T13:12 | <b>163.5</b> | 1063.5 | m3/s",
+"name": "Herisau, Zellersmühle - Glatt (2305)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+810560,
+170790
+],
+"type": "Point"
+},
+"id": "2304",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2304.png'></img> <br> 2014-12-01T13:12 | <b>164.5</b> | 1064.5 | m3/s",
+"name": "Zernez, Punt la Drossa - Ova dal Fuorn (2304)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+579810,
+227350
+],
+"type": "Point"
+},
+"id": "2307",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2307.png'></img> <br> 2014-12-01T13:12 | <b>165.5</b> | 1065.5 | m3/s",
+"name": "Sonceboz - Suze (2307)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+670810,
+157200
+],
+"type": "Point"
+},
+"id": "2268",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2268.png'></img> <br> 2014-12-01T13:12 | <b>166.5</b> | 1066.5 | m3/s",
+"name": "Gletsch - Rhone (2268)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+803490,
+130530
+],
+"type": "Point"
+},
+"id": "2078",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2078.png'></img> <br> 2014-12-01T13:12 | <b>167.5</b> | 1067.5 | m3/s",
+"name": "Le Prese, stazione principale - Poschiavino (2078)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+682145,
+246890
+],
+"type": "Point"
+},
+"id": "2176",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2176.png'></img> <br> 2014-12-01T13:12 | <b>168.5</b> | 1068.5 | m3/s",
+"name": "Zürich, Sihlhölzli - Sihl (2176)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+753570,
+175730
+],
+"type": "Point"
+},
+"id": "2387",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2387.png'></img> <br> 2014-12-01T13:12 | <b>169.5</b> | 1069.5 | m3/s",
+"name": "Fürstenau - Hinterrhein (2387)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+709540,
+269660
+],
+"type": "Point"
+},
+"id": "2386",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2386.png'></img> <br> 2014-12-01T13:12 | <b>170.5</b> | 1070.5 | m3/s",
+"name": "Frauenfeld - Murg (2386)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+789440,
+151320
+],
+"type": "Point"
+},
+"id": "2262",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2262.png'></img> <br> 2014-12-01T13:12 | <b>171.5</b> | 1071.5 | m3/s",
+"name": "Pontresina - Berninabach (2262)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+791430,
+160600
+],
+"type": "Point"
+},
+"id": "2263",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2263.png'></img> <br> 2014-12-01T13:12 | <b>172.5</b> | 1072.5 | m3/s",
+"name": "La Punt - Chamuerabach (2263)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+623610,
+200430
+],
+"type": "Point"
+},
+"id": "2070",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2070.png'></img> <br> 2014-12-01T13:12 | <b>173.5</b> | 1073.5 | m3/s",
+"name": "Emmenmatt, nur Hauptstation - Emme (2070)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+816800,
+185910
+],
+"type": "Point"
+},
+"id": "2265",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2265.png'></img> <br> 2014-12-01T13:12 | <b>174.5</b> | 1074.5 | m3/s",
+"name": "Tarasp - Inn (2265)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+689145,
+281975
+],
+"type": "Point"
+},
+"id": "2288",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2288.png'></img> <br> 2014-12-01T13:12 | <b>175.5</b> | 1075.5 | m3/s",
+"name": "Neuhausen, Flurlingerbrücke - Rhein (2288)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+613400,
+267650
+],
+"type": "Point"
+},
+"id": "2289",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2289.png'></img> <br> 2014-12-01T13:12 | <b>176.5</b> | 1076.5 | m3/s",
+"name": "Basel, Rheinhalle - Rhein (2289)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+499890,
+117850
+],
+"type": "Point"
+},
+"id": "2606",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2606.png'></img> <br> 2014-12-01T13:12 | <b>177.5</b> | 1077.5 | m3/s",
+"name": "Genève, Halle de l'île - Rhône (2606)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+670520,
+153830
+],
+"type": "Point"
+},
+"id": "2607",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2607.png'></img> <br> 2014-12-01T13:12 | <b>178.5</b> | 1078.5 | m3/s",
+"name": "Oberwald - Goneri (2607)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+569250,
+207860
+],
+"type": "Point"
+},
+"id": "2446",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2446.png'></img> <br> 2014-12-01T13:12 | <b>179.5</b> | 1079.5 | m3/s",
+"name": "Gampelen, Zihlbrücke - Zihlkanal (2446)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+575340,
+201450
+],
+"type": "Point"
+},
+"id": "2447",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2447.png'></img> <br> 2014-12-01T13:12 | <b>180.5</b> | 1080.5 | m3/s",
+"name": "Sugiez - Canal de la Broye (2447)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+753890,
+189370
+],
+"type": "Point"
+},
+"id": "2602",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2602.png'></img> <br> 2014-12-01T13:12 | <b>181.5</b> | 1081.5 | m3/s",
+"name": "Domat/Ems - Rhein (2602)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+627320,
+198600
+],
+"type": "Point"
+},
+"id": "2603",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2603.png'></img> <br> 2014-12-01T13:12 | <b>182.5</b> | 1082.5 | m3/s",
+"name": "Langnau - Ilfis (2603)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+658530,
+218290
+],
+"type": "Point"
+},
+"id": "2608",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2608.png'></img> <br> 2014-12-01T13:12 | <b>183.5</b> | 1083.5 | m3/s",
+"name": "Neuenkirch - Sellenbodenbach (2608)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+698640,
+223020
+],
+"type": "Point"
+},
+"id": "2609",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2609.png'></img> <br> 2014-12-01T13:12 | <b>184.5</b> | 1084.5 | m3/s",
+"name": "Einsiedeln - Alp (2609)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+582550,
+103270
+],
+"type": "Point"
+},
+"id": "2117",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2117.png'></img> <br> 2014-12-01T13:12 | <b>185.5</b> | 1085.5 | m3/s",
+"name": "Le Châble, Villette - Drance de Bagnes (2117)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+763570,
+169910
+],
+"type": "Point"
+},
+"id": "2418",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2418.png'></img> <br> 2014-12-01T13:12 | <b>186.5</b> | 1086.5 | m3/s",
+"name": "Tiefencastel - Julia (2418)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+693510,
+272500
+],
+"type": "Point"
+},
+"id": "2044",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2044.png'></img> <br> 2014-12-01T13:12 | <b>187.5</b> | 1087.5 | m3/s",
+"name": "Andelfingen - Thur (2044)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+685500,
+196050
+],
+"type": "Point"
+},
+"id": "2276",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2276.png'></img> <br> 2014-12-01T13:12 | <b>188.5</b> | 1088.5 | m3/s",
+"name": "Isenthal - Grosstalbach (2276)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718570,
+281730
+],
+"type": "Point"
+},
+"id": "2043",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2043.png'></img> <br> 2014-12-01T13:12 | <b>189.5</b> | 1089.5 | m ü.M.",
+"name": "Berlingen - Bodensee (Untersee) (2043)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+690085,
+193210
+],
+"type": "Point"
+},
+"id": "2056",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2056.png'></img> <br> 2014-12-01T13:12 | <b>190.5</b> | 1090.5 | m3/s",
+"name": "Seedorf - Reuss (2056)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+613570,
+263080
+],
+"type": "Point"
+},
+"id": "2106",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2106.png'></img> <br> 2014-12-01T13:12 | <b>191.5</b> | 1091.5 | m3/s",
+"name": "Münchenstein, Hofmatt - Birs (2106)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+530080,
+175560
+],
+"type": "Point"
+},
+"id": "2378",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2378.png'></img> <br> 2014-12-01T13:12 | <b>192.5</b> | 1092.5 | m3/s",
+"name": "Orbe, Le Chalet - Orbe (2378)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+587980,
+170590
+],
+"type": "Point"
+},
+"id": "2251",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2251.png'></img> <br> 2014-12-01T13:12 | <b>193.5</b> | 1093.5 | l/s",
+"name": "Plaffeien, Schweinsberg - Rotenbach (2251)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+727110,
+247290
+],
+"type": "Point"
+},
+"id": "2374",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2374.png'></img> <br> 2014-12-01T13:12 | <b>194.5</b> | 1094.5 | m3/s",
+"name": "Mogelsberg, Aachsäge - Necker (2374)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+709580,
+92145
+],
+"type": "Point"
+},
+"id": "2167",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2167.png'></img> <br> 2014-12-01T13:12 | <b>195.5</b> | 1095.5 | m3/s",
+"name": "Ponte Tresa, Rocchetta - Tresa (2167)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+725160,
+221380
+],
+"type": "Point"
+},
+"id": "2104",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2104.png'></img> <br> 2014-12-01T13:12 | <b>196.5</b> | 1096.5 | m3/s",
+"name": "Weesen, Biäsche - Linth (2104)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+643700,
+137290
+],
+"type": "Point"
+},
+"id": "2161",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2161.png'></img> <br> 2014-12-01T13:12 | <b>197.5</b> | 1097.5 | m3/s",
+"name": "Blatten bei Naters - Massa (2161)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+573520,
+161345
+],
+"type": "Point"
+},
+"id": "2160",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2160.png'></img> <br> 2014-12-01T13:12 | <b>198.5</b> | 1098.5 | m3/s",
+"name": "Broc, Château d'en bas - Sarine (2160)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+723985,
+217965
+],
+"type": "Point"
+},
+"id": "2372",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2372.png'></img> <br> 2014-12-01T13:12 | <b>199.5</b> | 1099.5 | m3/s",
+"name": "Mollis, Linthbrücke - Linth (2372)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+830800,
+168700
+],
+"type": "Point"
+},
+"id": "2617",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2617.png'></img> <br> 2014-12-01T13:12 | <b>200.5</b> | 1100.5 | m3/s",
+"name": "Müstair - Rom (2617)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+678040,
+269720
+],
+"type": "Point"
+},
+"id": "2415",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2415.png'></img> <br> 2014-12-01T13:12 | <b>201.5</b> | 1101.5 | m3/s",
+"name": "Rheinsfelden - Glatt (2415)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+688560,
+185120
+],
+"type": "Point"
+},
+"id": "2299",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2299.png'></img> <br> 2014-12-01T13:12 | <b>202.5</b> | 1102.5 | m3/s",
+"name": "Erstfeld, Bodenberg - Alpbach (2299)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+708060,
+123950
+],
+"type": "Point"
+},
+"id": "2612",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2612.png'></img> <br> 2014-12-01T13:12 | <b>203.5</b> | 1103.5 | m3/s",
+"name": "Lavertezzo - Riale di Pincascia (2612)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+599485,
+244150
+],
+"type": "Point"
+},
+"id": "2610",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2610.png'></img> <br> 2014-12-01T13:12 | <b>204.5</b> | 1104.5 | m3/s",
+"name": "Vicques - Scheulte (2610)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+633730,
+171510
+],
+"type": "Point"
+},
+"id": "2457",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2457.png'></img> <br> 2014-12-01T13:12 | <b>205.5</b> | 1105.5 | m3/s",
+"name": "Ringgenberg, Goldswil - Aare (2457)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+532980,
+195880
+],
+"type": "Point"
+},
+"id": "2290",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2290.png'></img> <br> 2014-12-01T13:12 | <b>206.5</b> | 1106.5 | m3/s",
+"name": "St - Areuse (2290)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+637580,
+237080
+],
+"type": "Point"
+},
+"id": "2450",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2450.png'></img> <br> 2014-12-01T13:12 | <b>207.5</b> | 1107.5 | m3/s",
+"name": "Zofingen - Wigger (2450)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+611800,
+269700
+],
+"type": "Point"
+},
+"id": "2199",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2199.png'></img> <br> 2014-12-01T13:12 | <b>208.5</b> | 1108.5 | m3/s",
+"name": "Basel - Wiese (2199)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+570930,
+105200
+],
+"type": "Point"
+},
+"id": "2053",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2053.png'></img> <br> 2014-12-01T13:12 | <b>209.5</b> | 1109.5 | m3/s",
+"name": "Martigny, Pont de Rossettan - Drance (2053)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+635310,
+164550
+],
+"type": "Point"
+},
+"id": "2200",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2200.png'></img> <br> 2014-12-01T13:12 | <b>210.5</b> | 1110.5 | m3/s",
+"name": "Zweilütschinen - Weisse Lütschine (2200)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+622270,
+259750
+],
+"type": "Point"
+},
+"id": "2202",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2202.png'></img> <br> 2014-12-01T13:12 | <b>211.5</b> | 1111.5 | m3/s",
+"name": "Liestal - Ergolz (2202)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+563975,
+129825
+],
+"type": "Point"
+},
+"id": "2203",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2203.png'></img> <br> 2014-12-01T13:12 | <b>212.5</b> | 1112.5 | m3/s",
+"name": "Aigle - Grande Eau (2203)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+659970,
+263180
+],
+"type": "Point"
+},
+"id": "2205",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2205.png'></img> <br> 2014-12-01T13:12 | <b>213.5</b> | 1113.5 | m3/s",
+"name": "Untersiggenthal, Stilli - Aare (2205)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+726988,
+114670
+],
+"type": "Point"
+},
+"id": "2206",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2206.png'></img> <br> 2014-12-01T13:12 | <b>214.5</b> | 1114.5 | l/s",
+"name": "Melera (Valle Morobbia) - Melera (2206)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+666950,
+211915
+],
+"type": "Point"
+},
+"id": "2207",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2207.png'></img> <br> 2014-12-01T13:12 | <b>215.5</b> | 1115.5 | m ü.M.",
+"name": "Luzern - Vierwaldstättersee (2207)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+578320,
+215670
+],
+"type": "Point"
+},
+"id": "2208",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2208.png'></img> <br> 2014-12-01T13:12 | <b>216.5</b> | 1116.5 | m ü.M.",
+"name": "Ligerz, Klein Twann - Bielersee (2208)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+684000,
+245475
+],
+"type": "Point"
+},
+"id": "2209",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2209.png'></img> <br> 2014-12-01T13:12 | <b>217.5</b> | 1117.5 | m ü.M.",
+"name": "Zürich - Zürichsee (2209)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+734430,
+219560
+],
+"type": "Point"
+},
+"id": "2118",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2118.png'></img> <br> 2014-12-01T13:12 | <b>218.5</b> | 1118.5 | m ü.M.",
+"name": "Murg - Walensee (2118)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+579420,
+183670
+],
+"type": "Point"
+},
+"id": "2119",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2119.png'></img> <br> 2014-12-01T13:12 | <b>219.5</b> | 1119.5 | m3/s",
+"name": "Fribourg - Sarine (2119)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+545440,
+180875
+],
+"type": "Point"
+},
+"id": "2369",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2369.png'></img> <br> 2014-12-01T13:12 | <b>220.5</b> | 1120.5 | m3/s",
+"name": "Yvonand, La Mauguettaz - Mentue (2369)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+703100,
+113860
+],
+"type": "Point"
+},
+"id": "2368",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2368.png'></img> <br> 2014-12-01T13:12 | <b>221.5</b> | 1121.5 | m3/s",
+"name": "Locarno, Solduno - Maggia (2368)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+672520,
+230600
+],
+"type": "Point"
+},
+"id": "2110",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2110.png'></img> <br> 2014-12-01T13:12 | <b>222.5</b> | 1122.5 | m3/s",
+"name": "Mühlau, Hünenberg - Reuss (2110)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+765365,
+204910
+],
+"type": "Point"
+},
+"id": "2150",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2150.png'></img> <br> 2014-12-01T13:12 | <b>223.5</b> | 1123.5 | m3/s",
+"name": "Felsenbach - Landquart (2150)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+749040,
+244220
+],
+"type": "Point"
+},
+"id": "2112",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2112.png'></img> <br> 2014-12-01T13:12 | <b>224.5</b> | 1124.5 | m3/s",
+"name": "Appenzell - Sitter (2112)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+694610,
+152450
+],
+"type": "Point"
+},
+"id": "2364",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2364.png'></img> <br> 2014-12-01T13:12 | <b>225.5</b> | 1125.5 | m3/s",
+"name": "Piotta - Ticino (2364)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+763420,
+170145
+],
+"type": "Point"
+},
+"id": "2141",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2141.png'></img> <br> 2014-12-01T13:12 | <b>226.5</b> | 1126.5 | m3/s",
+"name": "Tiefencastel - Albula (2141)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+662830,
+252580
+],
+"type": "Point"
+},
+"id": "2018",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2018.png'></img> <br> 2014-12-01T13:12 | <b>227.5</b> | 1127.5 | m3/s",
+"name": "Mellingen - Reuss (2018)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+724765,
+120360
+],
+"type": "Point"
+},
+"id": "2420",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2420.png'></img> <br> 2014-12-01T13:12 | <b>228.5</b> | 1128.5 | m3/s",
+"name": "Lumino, Sassello - Moesa (2420)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+552060,
+161650
+],
+"type": "Point"
+},
+"id": "2437",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2437.png'></img> <br> 2014-12-01T13:12 | <b>229.5</b> | 1129.5 | l/s",
+"name": "Ecublens, Eschiens - Parimbot (2437)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+714110,
+95690
+],
+"type": "Point"
+},
+"id": "2629",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2629.png'></img> <br> 2014-12-01T13:12 | <b>230.5</b> | 1130.5 | m3/s",
+"name": "Agno, stazione principale - Vedeggio (2629)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+750410,
+212510
+],
+"type": "Point"
+},
+"id": "2426",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2426.png'></img> <br> 2014-12-01T13:12 | <b>231.5</b> | 1131.5 | m3/s",
+"name": "Mels - Seez (2426)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+733560,
+263180
+],
+"type": "Point"
+},
+"id": "2181",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2181.png'></img> <br> 2014-12-01T13:12 | <b>232.5</b> | 1132.5 | m3/s",
+"name": "Halden - Thur (2181)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+595740,
+237010
+],
+"type": "Point"
+},
+"id": "2122",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2122.png'></img> <br> 2014-12-01T13:12 | <b>233.5</b> | 1133.5 | m3/s",
+"name": "Moutier, La Charrue - Birse (2122)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+756795,
+234005
+],
+"type": "Point"
+},
+"id": "2187",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2187.png'></img> <br> 2014-12-01T13:12 | <b>234.5</b> | 1134.5 | m3/s",
+"name": "Salez - Werdenberger Binnenk (2187)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+757975,
+191935
+],
+"type": "Point"
+},
+"id": "2185",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2185.png'></img> <br> 2014-12-01T13:12 | <b>235.5</b> | 1135.5 | m3/s",
+"name": "Chur, nur Hauptstation - Plessur (2185)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+802120,
+142010
+],
+"type": "Point"
+},
+"id": "2366",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2366.png'></img> <br> 2014-12-01T13:12 | <b>236.5</b> | 1136.5 | m3/s",
+"name": "La Rösa - Poschiavino (2366)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+557530,
+227320
+],
+"type": "Point"
+},
+"id": "2270",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2270.png'></img> <br> 2014-12-01T13:12 | <b>237.5</b> | 1137.5 | m3/s",
+"name": "Combe des Sarrasins - Doubs (2270)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+572530,
+244460
+],
+"type": "Point"
+},
+"id": "2210",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2210.png'></img> <br> 2014-12-01T13:12 | <b>238.5</b> | 1138.5 | m3/s",
+"name": "Ocourt - Doubs (2210)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+584440,
+195300
+],
+"type": "Point"
+},
+"id": "2215",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2215.png'></img> <br> 2014-12-01T13:12 | <b>239.5</b> | 1139.5 | m3/s",
+"name": "Laupen - Saane (2215)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+602630,
+141660
+],
+"type": "Point"
+},
+"id": "2219",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2219.png'></img> <br> 2014-12-01T13:12 | <b>240.5</b> | 1140.5 | m3/s",
+"name": "Oberried / Lenk - Simme (2219)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 3
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+573150,
+108300
+],
+"type": "Point"
+},
+"id": "2024",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2024.png'></img> <br> 2014-12-01T13:12 | <b>241.5</b> | 1141.5 | m3/s",
+"name": "Branson - Rhône (2024)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+633130,
+168200
+],
+"type": "Point"
+},
+"id": "2109",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2109.png'></img> <br> 2014-12-01T13:12 | <b>242.5</b> | 1142.5 | m3/s",
+"name": "Gsteig - Lütschine (2109)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+524940,
+148410
+],
+"type": "Point"
+},
+"id": "2027",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2027.png'></img> <br> 2014-12-01T13:12 | <b>243.5</b> | 1143.5 | m ü.M.",
+"name": "St - Lac Léman (2027)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+721245,
+117025
+],
+"type": "Point"
+},
+"id": "2020",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2020.png'></img> <br> 2014-12-01T13:12 | <b>244.5</b> | 1144.5 | m3/s",
+"name": "Bellinzona - Ticino (2020)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+705480,
+113380
+],
+"type": "Point"
+},
+"id": "2022",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2022.png'></img> <br> 2014-12-01T13:12 | <b>245.5</b> | 1145.5 | m ü.M.",
+"name": "Locarno - Lago Maggiore (2022)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+635150,
+172340
+],
+"type": "Point"
+},
+"id": "2023",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2023.png'></img> <br> 2014-12-01T13:12 | <b>246.5</b> | 1146.5 | m ü.M.",
+"name": "Ringgenberg - Brienzersee (2023)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718285,
+197320
+],
+"type": "Point"
+},
+"id": "2352",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2352.png'></img> <br> 2014-12-01T13:12 | <b>247.5</b> | 1147.5 | m3/s",
+"name": "Linthal, Ausgleichsbecken KLL, nur Haupt - Linth (2352)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+661460,
+194220
+],
+"type": "Point"
+},
+"id": "2102",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2102.png'></img> <br> 2014-12-01T13:12 | <b>248.5</b> | 1148.5 | m3/s",
+"name": "Sarnen - Sarner Aa (2102)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+717070,
+91650
+],
+"type": "Point"
+},
+"id": "2101",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2101.png'></img> <br> 2014-12-01T13:12 | <b>249.5</b> | 1149.5 | m ü.M.",
+"name": "Melide, Ferrera - Lago di Lugano (2101)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+665640,
+258690
+],
+"type": "Point"
+},
+"id": "2243",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2243.png'></img> <br> 2014-12-01T13:12 | <b>250.5</b> | 1150.5 | m3/s",
+"name": "Baden, Limmatpromenade - Limmat (2243)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+684970,
+135960
+],
+"type": "Point"
+},
+"id": "2356",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2356.png'></img> <br> 2014-12-01T13:12 | <b>251.5</b> | 1151.5 | m3/s",
+"name": "Cavergno, Pontit - Riale di Calneggia (2356)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+588220,
+219020
+],
+"type": "Point"
+},
+"id": "2029",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2029.png'></img> <br> 2014-12-01T13:12 | <b>252.5</b> | 1152.5 | m3/s",
+"name": "Brügg, Aegerten - Aare (2029)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+783910,
+150960
+],
+"type": "Point"
+},
+"id": "2105",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2105.png'></img> <br> 2014-12-01T13:12 | <b>253.5</b> | 1153.5 | m3/s",
+"name": "St. Moritzbad - Inn (2105)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+779640,
+181200
+],
+"type": "Point"
+},
+"id": "2355",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2355.png'></img> <br> 2014-12-01T13:12 | <b>254.5</b> | 1154.5 | m3/s",
+"name": "Davos, Frauenkirch - Landwasser (2355)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+520720,
+147410
+],
+"type": "Point"
+},
+"id": "2433",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2433.png'></img> <br> 2014-12-01T13:12 | <b>255.5</b> | 1155.5 | m3/s",
+"name": "Allaman, Le Coulet - Aubonne (2433)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+532040,
+154160
+],
+"type": "Point"
+},
+"id": "2432",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2432.png'></img> <br> 2014-12-01T13:12 | <b>256.5</b> | 1156.5 | m3/s",
+"name": "Ecublens, Les Bois - Venoge (2432)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718810,
+167690
+],
+"type": "Point"
+},
+"id": "2430",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2430.png'></img> <br> 2014-12-01T13:12 | <b>257.5</b> | 1157.5 | m3/s",
+"name": "Sumvitg, Encardens - Rein da Sumvitg (2430)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+733706,
+153945
+],
+"type": "Point"
+},
+"id": "2631",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2631.png'></img> <br> 2014-12-01T13:12 | <b>258.5</b> | 1158.5 | m3/s",
+"name": "Hinterrhein, Schiessplatz - Hinterrhein (2631)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+663800,
+199570
+],
+"type": "Point"
+},
+"id": "2436",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2436.png'></img> <br> 2014-12-01T13:12 | <b>259.5</b> | 1159.5 | m3/s",
+"name": "Alpnach, Chilch Erli - Chli Schliere (2436)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+634330,
+244480
+],
+"type": "Point"
+},
+"id": "2434",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2434.png'></img> <br> 2014-12-01T13:12 | <b>260.5</b> | 1160.5 | m3/s",
+"name": "Olten, Hammermühle - Dünnern (2434)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+580680,
+211650
+],
+"type": "Point"
+},
+"id": "2085",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2085.png'></img> <br> 2014-12-01T13:12 | <b>261.5</b> | 1161.5 | m3/s",
+"name": "Hagneck - Aare (2085)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+711620,
+93290
+],
+"type": "Point"
+},
+"id": "2461",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2461.png'></img> <br> 2014-12-01T13:12 | <b>262.5</b> | 1162.5 | m3/s",
+"name": "Magliaso, Ponte - Magliasina (2461)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+733545,
+118160
+],
+"type": "Point"
+},
+"id": "2347",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2347.png'></img> <br> 2014-12-01T13:12 | <b>263.5</b> | 1163.5 | m3/s",
+"name": "Roveredo, Bacino di compenso - Riale di Roggiasca (2347)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+600710,
+198000
+],
+"type": "Point"
+},
+"id": "2135",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2135.png'></img> <br> 2014-12-01T13:12 | <b>264.5</b> | 1164.5 | m3/s",
+"name": "Bern, Schönau - Aare (2135)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+691460,
+263820
+],
+"type": "Point"
+},
+"id": "2132",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2132.png'></img> <br> 2014-12-01T13:12 | <b>265.5</b> | 1165.5 | m3/s",
+"name": "Neftenbach - Töss (2132)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629560,
+219135
+],
+"type": "Point"
+},
+"id": "2343",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2343.png'></img> <br> 2014-12-01T13:12 | <b>266.5</b> | 1166.5 | m3/s",
+"name": "Huttwil, Häberenbad - Langeten (2343)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+642220,
+129630
+],
+"type": "Point"
+},
+"id": "2342",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2342.png'></img> <br> 2014-12-01T13:12 | <b>267.5</b> | 1167.5 | m3/s",
+"name": "Brig - Saltina (2342)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+722315,
+78320
+],
+"type": "Point"
+},
+"id": "2349",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2349.png'></img> <br> 2014-12-01T13:12 | <b>268.5</b> | 1168.5 | m3/s",
+"name": "Chiasso, Ponte di Polenta - Breggia (2349)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+767160,
+257780
+],
+"type": "Point"
+},
+"id": "2139",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2139.png'></img> <br> 2014-12-01T13:12 | <b>269.5</b> | 1169.5 | m3/s",
+"name": "St. Margrethen - Rheintaler Binnenkan (2139)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+561660,
+187320
+],
+"type": "Point"
+},
+"id": "2034",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2034.png'></img> <br> 2014-12-01T13:12 | <b>270.5</b> | 1170.5 | m3/s",
+"name": "Payerne, Caserne d'aviation - Broye (2034)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+735000,
+182030
+],
+"type": "Point"
+},
+"id": "2033",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2033.png'></img> <br> 2014-12-01T13:12 | <b>271.5</b> | 1171.5 | m3/s",
+"name": "Ilanz - Vorderrhein (2033)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 4
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+746160,
+270040
+],
+"type": "Point"
+},
+"id": "2032",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2032.png'></img> <br> 2014-12-01T13:12 | <b>272.5</b> | 1172.5 | m ü.M.",
+"name": "Romanshorn - Bodensee (Obersee) (2032)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+700710,
+218125
+],
+"type": "Point"
+},
+"id": "2635",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2635.png'></img> <br> 2014-12-01T13:12 | <b>273.5</b> | 1173.5 | m3/s",
+"name": "Einsiedeln, Gross - Grossbach (2635)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+613230,
+179280
+],
+"type": "Point"
+},
+"id": "2030",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2030.png'></img> <br> 2014-12-01T13:12 | <b>274.5</b> | 1174.5 | m3/s",
+"name": "Thun - Aare (2030)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+603005,
+202455
+],
+"type": "Point"
+},
+"id": "2500",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2500.png'></img> <br> 2014-12-01T13:12 | <b>275.5</b> | 1175.5 | m3/s",
+"name": "Ittigen - Worble (2500)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+663790,
+213575
+],
+"type": "Point"
+},
+"id": "2634",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2634.png'></img> <br> 2014-12-01T13:12 | <b>276.5</b> | 1176.5 | m3/s",
+"name": "Emmen - Kleine Emme (2634)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+544560,
+214880
+],
+"type": "Point"
+},
+"id": "2247",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2247.png'></img> <br> 2014-12-01T13:12 | <b>277.5</b> | 1177.5 | m3/s",
+"name": "Sortie du lac des Brenets - Doubs (2247)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+641340,
+129700
+],
+"type": "Point"
+},
+"id": "2346",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2346.png'></img> <br> 2014-12-01T13:12 | <b>278.5</b> | 1178.5 | m3/s",
+"name": "Brig - Rhone (2346)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+634150,
+124850
+],
+"type": "Point"
+},
+"id": "2351",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2351.png'></img> <br> 2014-12-01T13:12 | <b>279.5</b> | 1179.5 | m3/s",
+"name": "Visp - Vispa (2351)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+811020,
+167920
+],
+"type": "Point"
+},
+"id": "2239",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2239.png'></img> <br> 2014-12-01T13:12 | <b>280.5</b> | 1180.5 | m3/s",
+"name": "Punt dal Gall - Spöl (2239)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+545025,
+211575
+],
+"type": "Point"
+},
+"id": "2333",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2333.png'></img> <br> 2014-12-01T13:12 | <b>281.5</b> | 1181.5 | m3/s",
+"name": "La Rançonnière - Bied du Locle (2333)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+674715,
+229845
+],
+"type": "Point"
+},
+"id": "2125",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2125.png'></img> <br> 2014-12-01T13:12 | <b>282.5</b> | 1182.5 | m3/s",
+"name": "Frauenthal - Lorze (2125)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 5
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+714105,
+261720
+],
+"type": "Point"
+},
+"id": "2126",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2126.png'></img> <br> 2014-12-01T13:12 | <b>283.5</b> | 1183.5 | m3/s",
+"name": "Wängi - Murg (2126)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+561430,
+231050
+],
+"type": "Point"
+},
+"id": "2370",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2370.png'></img> <br> 2014-12-01T13:12 | <b>284.5</b> | 1184.5 | m3/s",
+"name": "Le Noirmont, La Goule - Doubs (2370)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+797700,
+168180
+],
+"type": "Point"
+},
+"id": "2403",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2403.png'></img> <br> 2014-12-01T13:12 | <b>285.5</b> | 1185.5 | m3/s",
+"name": "Cinuos - Inn (2403)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+608710,
+148300
+],
+"type": "Point"
+},
+"id": "2232",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2232.png'></img> <br> 2014-12-01T13:12 | <b>286.5</b> | 1186.5 | m3/s",
+"name": "Adelboden - Allenbach (2232)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+717770,
+137270
+],
+"type": "Point"
+},
+"id": "2086",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2086.png'></img> <br> 2014-12-01T13:12 | <b>287.5</b> | 1187.5 | m3/s",
+"name": "Loderio - Brenno (2086)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+688120,
+166320
+],
+"type": "Point"
+},
+"id": "2087",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2087.png'></img> <br> 2014-12-01T13:12 | <b>288.5</b> | 1188.5 | m3/s",
+"name": "Andermatt - Reuss (2087)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+688230,
+206140
+],
+"type": "Point"
+},
+"id": "2084",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2084.png'></img> <br> 2014-12-01T13:12 | <b>289.5</b> | 1189.5 | m3/s",
+"name": "Ingenbohl - Muota (2084)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+501445,
+156305
+],
+"type": "Point"
+},
+"id": "2371",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2371.png'></img> <br> 2014-12-01T13:12 | <b>290.5</b> | 1190.5 | m3/s",
+"name": "Le Chenit, Frontière - Orbe (2371)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 1
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+575500,
+197790
+],
+"type": "Point"
+},
+"id": "2004",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2004.png'></img> <br> 2014-12-01T13:12 | <b>291.5</b> | 1191.5 | m ü.M.",
+"name": "Murten - Murtensee (2004)",
+"param": "pegel",
+"w-typ": "lake",
+"ws-class": 0
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+557660,
+133280
+],
+"type": "Point"
+},
+"id": "2009",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/2009.png'></img> <br> 2014-12-01T13:12 | <b>292.5</b> | 1192.5 | m3/s",
+"name": "Porte du Scex - Rhône (2009)",
+"param": "runoff",
+"w-typ": "river",
+"ws-class": 2
+},
+"type": "Feature"
+}
+],
+"mapname": "ch.bafu.hydroweb-messstationen_gefahren",
+"timestamp": "2014-09-19T18:15",
+"type": "FeatureCollection"
+}

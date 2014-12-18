@@ -1,0 +1,43 @@
+{
+"features": [
+{
+"geometry": {
+"coordinates": [
+766280,
+250360
+],
+"type": "Point"
+},
+"id": "2473",
+"properties": {
+"description": "<html>...</html>",
+"name": "Diepoldsau, Rietbrücke - Rhein (2473)",
+"param": "runoff",
+"vorhersage-class": 0,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+663790,
+213575
+],
+"type": "Point"
+},
+"id": "2634",
+"properties": {
+"description": "<html>...</html>",
+"name": "Diepoldsau, Rietbrücke - Rhein (2473)",
+"param": "Pegel",
+"vorhersage-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+}
+],
+"mapname": "ch.bafu.hydroweb-messstationen_vorhersage",
+"timestamp": "2014-09-19T18:15",
+"type": "FeatureCollection"
+}

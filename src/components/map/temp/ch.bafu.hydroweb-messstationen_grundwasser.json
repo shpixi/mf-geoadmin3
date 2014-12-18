@@ -1,0 +1,61 @@
+{
+"features": [
+{
+"geometry": {
+"coordinates": [
+576000,
+108000
+],
+"type": "Point"
+},
+"id": "6578",
+"properties": {
+"description": "<html>....</html>",
+"name": "Charrat",
+"param": "Pegel",
+"grundwasser-class": 0,
+"w-typ": "abstraction well"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+569000,
+224000
+],
+"type": "Point"
+},
+"id": "6749",
+"properties": {
+"description": "<html>....</html>",
+"name": "Cormoret",
+"param": "runoff",
+"grundwasser-class": 1,
+"w-typ": "spring"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+786000,
+182000
+],
+"type": "Point"
+},
+"id": "6511",
+"properties": {
+"description": "<html>....</html>",
+"name": "Davos",
+"param": "Abfluss",
+"grundwasser-class": 2,
+"w-typ": "piezometer"
+},
+"type": "Feature"
+}
+],
+"mapname": "ch.bafu.hydroweb-messstationen_grundwasser",
+"timestamp": "2014-09-19T18:15",
+"type": "FeatureCollection"
+}

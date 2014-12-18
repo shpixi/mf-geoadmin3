@@ -1,0 +1,1429 @@
+{
+"features": [
+{
+"geometry": {
+"coordinates": [
+830800,
+168700
+],
+"type": "Point"
+},
+"id": "2617",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2617.png'></img> <br> 2014-12-01T13:13 | <b>101.5</b> | 1001.5 | °C",
+"name": "Müstair - Rom (2617)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+697240,
+223280
+],
+"type": "Point"
+},
+"id": "2604",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2604.png'></img> <br> 2014-12-01T13:13 | <b>102.5</b> | 1002.5 | °C",
+"name": "Biberbrugg - Biber (2604)",
+"param": "temperature",
+"temp-class": 0,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+613570,
+263080
+],
+"type": "Point"
+},
+"id": "2106",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2106.png'></img> <br> 2014-12-01T13:13 | <b>103.5</b> | 1003.5 | °C",
+"name": "Münchenstein, Hofmatt - Birs (2106)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+545440,
+180875
+],
+"type": "Point"
+},
+"id": "2369",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2369.png'></img> <br> 2014-12-01T13:13 | <b>104.5</b> | 1004.5 | °C",
+"name": "Yvonand, La Mauguettaz - Mentue (2369)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+766280,
+250360
+],
+"type": "Point"
+},
+"id": "2473",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2473.png'></img> <br> 2014-12-01T13:13 | <b>105.5</b> | 1005.5 | °C",
+"name": "Diepoldsau, Rietbrücke - Rhein (2473)",
+"param": "temperature",
+"temp-class": 5,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+605890,
+181880
+],
+"type": "Point"
+},
+"id": "2472",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2472.png'></img> <br> 2014-12-01T13:13 | <b>106.5</b> | 1006.5 | °C",
+"name": "Burgistein, Pfandersmatt - Gürbe (2472)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+700710,
+218125
+],
+"type": "Point"
+},
+"id": "2635",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2635.png'></img> <br> 2014-12-01T13:13 | <b>107.5</b> | 1007.5 | °C",
+"name": "Einsiedeln, Gross - Grossbach (2635)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+663790,
+213575
+],
+"type": "Point"
+},
+"id": "2634",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2634.png'></img> <br> 2014-12-01T13:13 | <b>108.5</b> | 1008.5 | °C",
+"name": "Emmen - Kleine Emme (2634)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+633730,
+171510
+],
+"type": "Point"
+},
+"id": "2457",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2457.png'></img> <br> 2014-12-01T13:13 | <b>109.5</b> | 1009.5 | °C",
+"name": "Ringgenberg, Goldswil - Aare (2457)",
+"param": "temperature",
+"temp-class": 3,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+627190,
+267840
+],
+"type": "Point"
+},
+"id": "2091",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2091.png'></img> <br> 2014-12-01T13:13 | <b>110.5</b> | 1010.5 | °C",
+"name": "Rheinfelden, Messstation - Rhein (2091)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+611740,
+272310
+],
+"type": "Point"
+},
+"id": "2613",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2613.png'></img> <br> 2014-12-01T13:13 | <b>111.5</b> | 1011.5 | °C",
+"name": "Weil, Palmrainbrücke - Rhein (2613)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+580680,
+211650
+],
+"type": "Point"
+},
+"id": "2085",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2085.png'></img> <br> 2014-12-01T13:13 | <b>112.5</b> | 1012.5 | °C",
+"name": "Hagneck - Aare (2085)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+708060,
+123950
+],
+"type": "Point"
+},
+"id": "2612",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2612.png'></img> <br> 2014-12-01T13:13 | <b>113.5</b> | 1013.5 | °C",
+"name": "Lavertezzo - Riale di Pincascia (2612)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+753190,
+261600
+],
+"type": "Point"
+},
+"id": "2308",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2308.png'></img> <br> 2014-12-01T13:13 | <b>114.5</b> | 1014.5 | °C",
+"name": "Goldach, Bleiche, nur Hauptstation - Goldach (2308)",
+"param": "temperature",
+"temp-class": 7,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+733545,
+118160
+],
+"type": "Point"
+},
+"id": "2347",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2347.png'></img> <br> 2014-12-01T13:13 | <b>115.5</b> | 1015.5 | °C",
+"name": "Roveredo, Bacino di compenso - Riale di Roggiasca (2347)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+600710,
+198000
+],
+"type": "Point"
+},
+"id": "2135",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2135.png'></img> <br> 2014-12-01T13:13 | <b>116.5</b> | 1016.5 | °C",
+"name": "Bern, Schönau - Aare (2135)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+786220,
+183370
+],
+"type": "Point"
+},
+"id": "2327",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2327.png'></img> <br> 2014-12-01T13:13 | <b>117.5</b> | 1017.5 | °C",
+"name": "Davos, Kriegsmatte - Dischmabach (2327)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+659970,
+263180
+],
+"type": "Point"
+},
+"id": "2205",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2205.png'></img> <br> 2014-12-01T13:13 | <b>118.5</b> | 1018.5 | °C",
+"name": "Untersiggenthal, Stilli - Aare (2205)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+646000,
+267410
+],
+"type": "Point"
+},
+"id": "2130",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2130.png'></img> <br> 2014-12-01T13:13 | <b>119.5</b> | 1019.5 | °C",
+"name": "Laufenburg - Rhein (Oberwasser) (2130)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+690085,
+193210
+],
+"type": "Point"
+},
+"id": "2056",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2056.png'></img> <br> 2014-12-01T13:13 | <b>120.5</b> | 1020.5 | °C",
+"name": "Seedorf - Reuss (2056)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+567830,
+261200
+],
+"type": "Point"
+},
+"id": "2485",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2485.png'></img> <br> 2014-12-01T13:13 | <b>121.5</b> | 1021.5 | °C",
+"name": "Boncourt, Frontière - Allaine (2485)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+633130,
+168200
+],
+"type": "Point"
+},
+"id": "2109",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2109.png'></img> <br> 2014-12-01T13:13 | <b>122.5</b> | 1022.5 | °C",
+"name": "Gsteig - Lütschine (2109)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+579810,
+227350
+],
+"type": "Point"
+},
+"id": "2307",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2307.png'></img> <br> 2014-12-01T13:13 | <b>123.5</b> | 1023.5 | °C",
+"name": "Sonceboz - Suze (2307)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+673555,
+202870
+],
+"type": "Point"
+},
+"id": "2481",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2481.png'></img> <br> 2014-12-01T13:13 | <b>124.5</b> | 1024.5 | °C",
+"name": "Buochs, Flugplatz - Engelberger Aa (2481)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+501220,
+115120
+],
+"type": "Point"
+},
+"id": "2170",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2170.png'></img> <br> 2014-12-01T13:13 | <b>125.5</b> | 1025.5 | °C",
+"name": "Genève, Bout du Monde - Arve (2170)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+561660,
+187320
+],
+"type": "Point"
+},
+"id": "2034",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2034.png'></img> <br> 2014-12-01T13:13 | <b>126.5</b> | 1026.5 | °C",
+"name": "Payerne, Caserne d'aviation - Broye (2034)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+765365,
+204910
+],
+"type": "Point"
+},
+"id": "2150",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2150.png'></img> <br> 2014-12-01T13:13 | <b>127.5</b> | 1027.5 | °C",
+"name": "Felsenbach - Landquart (2150)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+662830,
+252580
+],
+"type": "Point"
+},
+"id": "2018",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2018.png'></img> <br> 2014-12-01T13:13 | <b>128.5</b> | 1028.5 | °C",
+"name": "Mellingen - Reuss (2018)",
+"param": "temperature",
+"temp-class": 2,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+665330,
+211800
+],
+"type": "Point"
+},
+"id": "2152",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2152.png'></img> <br> 2014-12-01T13:13 | <b>129.5</b> | 1029.5 | °C",
+"name": "Luzern, Geissmattbrücke - Reuss (2152)",
+"param": "temperature",
+"temp-class": 3,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+613230,
+179280
+],
+"type": "Point"
+},
+"id": "2030",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2030.png'></img> <br> 2014-12-01T13:13 | <b>130.5</b> | 1030.5 | °C",
+"name": "Thun - Aare (2030)",
+"param": "temperature",
+"temp-class": 4,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+687420,
+277140
+],
+"type": "Point"
+},
+"id": "2392",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2392.png'></img> <br> 2014-12-01T13:13 | <b>131.5</b> | 1031.5 | °C",
+"name": "Rheinau - Rhein (Oberwasser) (2392)",
+"param": "temperature",
+"temp-class": 5,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+749040,
+244220
+],
+"type": "Point"
+},
+"id": "2112",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2112.png'></img> <br> 2014-12-01T13:13 | <b>132.5</b> | 1032.5 | °C",
+"name": "Appenzell - Sitter (2112)",
+"param": "temperature",
+"temp-class": 6,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+659150,
+271790
+],
+"type": "Point"
+},
+"id": "2113",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2113.png'></img> <br> 2014-12-01T13:13 | <b>133.5</b> | 1033.5 | °C",
+"name": "Felsenau, K.W. Klingnau (U.W.) - Aare (2113)",
+"param": "temperature",
+"temp-class": 7,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+593770,
+118630
+],
+"type": "Point"
+},
+"id": "2011",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2011.png'></img> <br> 2014-12-01T13:13 | <b>134.5</b> | 1034.5 | °C",
+"name": "Sion - Rhône (2011)",
+"param": "temperature",
+"temp-class": 8,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+604810,
+192680
+],
+"type": "Point"
+},
+"id": "2159",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2159.png'></img> <br> 2014-12-01T13:13 | <b>135.5</b> | 1035.5 | °C",
+"name": "Belp, Mülimatt - Gürbe (2159)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+603005,
+202455
+],
+"type": "Point"
+},
+"id": "2500",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2500.png'></img> <br> 2014-12-01T13:13 | <b>136.5</b> | 1036.5 | °C",
+"name": "Ittigen - Worble (2500)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+689145,
+281975
+],
+"type": "Point"
+},
+"id": "2288",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2288.png'></img> <br> 2014-12-01T13:13 | <b>137.5</b> | 1037.5 | °C",
+"name": "Neuhausen, Flurlingerbrücke - Rhein (2288)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+669870,
+154080
+],
+"type": "Point"
+},
+"id": "2623",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2623.png'></img> <br> 2014-12-01T13:13 | <b>138.5</b> | 1038.5 | °C",
+"name": "Oberwald - Rhone (2623)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+499890,
+117850
+],
+"type": "Point"
+},
+"id": "2606",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2606.png'></img> <br> 2014-12-01T13:13 | <b>139.5</b> | 1039.5 | °C",
+"name": "Genève, Halle de l'île - Rhône (2606)",
+"param": "temperature",
+"temp-class": 2,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+585100,
+199240
+],
+"type": "Point"
+},
+"id": "2467",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2467.png'></img> <br> 2014-12-01T13:13 | <b>140.5</b> | 1040.5 | °C",
+"name": "Gümmenen - Saane (2467)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+575340,
+201450
+],
+"type": "Point"
+},
+"id": "2447",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2447.png'></img> <br> 2014-12-01T13:13 | <b>141.5</b> | 1041.5 | °C",
+"name": "Sugiez - Canal de la Broye (2447)",
+"param": "temperature",
+"temp-class": 3,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+795800,
+165910
+],
+"type": "Point"
+},
+"id": "2462",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2462.png'></img> <br> 2014-12-01T13:13 | <b>142.5</b> | 1042.5 | °C",
+"name": "S - Inn (2462)",
+"param": "temperature",
+"temp-class": 4,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629560,
+219135
+],
+"type": "Point"
+},
+"id": "2343",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2343.png'></img> <br> 2014-12-01T13:13 | <b>143.5</b> | 1043.5 | °C",
+"name": "Huttwil, Häberenbad - Langeten (2343)",
+"param": "temperature",
+"temp-class": 6,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+630725,
+207270
+],
+"type": "Point"
+},
+"id": "2282",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2282.png'></img> <br> 2014-12-01T13:13 | <b>144.5</b> | 1044.5 | °C",
+"name": "Wasen, Kurzeneialp - Sperbelgraben (2282)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+735000,
+182030
+],
+"type": "Point"
+},
+"id": "2033",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2033.png'></img> <br> 2014-12-01T13:13 | <b>145.5</b> | 1045.5 | °C",
+"name": "Ilanz - Vorderrhein (2033)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+658530,
+218290
+],
+"type": "Point"
+},
+"id": "2608",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2608.png'></img> <br> 2014-12-01T13:13 | <b>146.5</b> | 1046.5 | °C",
+"name": "Neuenkirch - Sellenbodenbach (2608)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+698640,
+223020
+],
+"type": "Point"
+},
+"id": "2609",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2609.png'></img> <br> 2014-12-01T13:13 | <b>147.5</b> | 1047.5 | °C",
+"name": "Einsiedeln - Alp (2609)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+709540,
+269660
+],
+"type": "Point"
+},
+"id": "2386",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2386.png'></img> <br> 2014-12-01T13:13 | <b>148.5</b> | 1048.5 | °C",
+"name": "Frauenfeld - Murg (2386)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+486600,
+112340
+],
+"type": "Point"
+},
+"id": "2174",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2174.png'></img> <br> 2014-12-01T13:13 | <b>149.5</b> | 1049.5 | °C",
+"name": "Chancy, Aux Ripes - Rhône (2174)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+532040,
+154160
+],
+"type": "Point"
+},
+"id": "2432",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2432.png'></img> <br> 2014-12-01T13:13 | <b>150.5</b> | 1050.5 | °C",
+"name": "Ecublens, Les Bois - Venoge (2432)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+557660,
+133280
+],
+"type": "Point"
+},
+"id": "2009",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2009.png'></img> <br> 2014-12-01T13:13 | <b>151.5</b> | 1051.5 | °C",
+"name": "Porte du Scex - Rhône (2009)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+572530,
+244460
+],
+"type": "Point"
+},
+"id": "2210",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2210.png'></img> <br> 2014-12-01T13:13 | <b>152.5</b> | 1052.5 | °C",
+"name": "Ocourt - Doubs (2210)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+802120,
+142010
+],
+"type": "Point"
+},
+"id": "2366",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2366.png'></img> <br> 2014-12-01T13:13 | <b>153.5</b> | 1053.5 | °C",
+"name": "La Rösa - Poschiavino (2366)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+685500,
+196050
+],
+"type": "Point"
+},
+"id": "2276",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2276.png'></img> <br> 2014-12-01T13:13 | <b>154.5</b> | 1054.5 | °C",
+"name": "Isenthal - Grosstalbach (2276)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+634150,
+124850
+],
+"type": "Point"
+},
+"id": "2351",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2351.png'></img> <br> 2014-12-01T13:13 | <b>155.5</b> | 1055.5 | °C",
+"name": "Visp - Vispa (2351)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+667060,
+269230
+],
+"type": "Point"
+},
+"id": "2143",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2143.png'></img> <br> 2014-12-01T13:13 | <b>156.5</b> | 1056.5 | °C",
+"name": "Rekingen - Rhein (2143)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+693510,
+272500
+],
+"type": "Point"
+},
+"id": "2044",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2044.png'></img> <br> 2014-12-01T13:13 | <b>157.5</b> | 1057.5 | °C",
+"name": "Andelfingen - Thur (2044)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+657000,
+259360
+],
+"type": "Point"
+},
+"id": "2016",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2016.png'></img> <br> 2014-12-01T13:13 | <b>158.5</b> | 1058.5 | °C",
+"name": "Brugg - Aare (2016)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+623610,
+200430
+],
+"type": "Point"
+},
+"id": "2070",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2070.png'></img> <br> 2014-12-01T13:13 | <b>159.5</b> | 1059.5 | °C",
+"name": "Emmenmatt, nur Hauptstation - Emme (2070)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+714105,
+261720
+],
+"type": "Point"
+},
+"id": "2126",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2126.png'></img> <br> 2014-12-01T13:13 | <b>160.5</b> | 1060.5 | °C",
+"name": "Wängi - Murg (2126)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+643700,
+137290
+],
+"type": "Point"
+},
+"id": "2161",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2161.png'></img> <br> 2014-12-01T13:13 | <b>161.5</b> | 1061.5 | °C",
+"name": "Blatten bei Naters - Massa (2161)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+510080,
+140080
+],
+"type": "Point"
+},
+"id": "2493",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2493.png'></img> <br> 2014-12-01T13:13 | <b>162.5</b> | 1062.5 | °C",
+"name": "Gland, Route Suisse - Promenthouse (2493)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+608710,
+148300
+],
+"type": "Point"
+},
+"id": "2232",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2232.png'></img> <br> 2014-12-01T13:13 | <b>163.5</b> | 1063.5 | °C",
+"name": "Adelboden - Allenbach (2232)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+593350,
+193020
+],
+"type": "Point"
+},
+"id": "2179",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2179.png'></img> <br> 2014-12-01T13:13 | <b>164.5</b> | 1064.5 | °C",
+"name": "Thörishaus, Sensematt - Sense (2179)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+688230,
+206140
+],
+"type": "Point"
+},
+"id": "2084",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2084.png'></img> <br> 2014-12-01T13:13 | <b>165.5</b> | 1065.5 | °C",
+"name": "Ingenbohl - Muota (2084)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+713670,
+113500
+],
+"type": "Point"
+},
+"id": "2068",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2068.png'></img> <br> 2014-12-01T13:13 | <b>166.5</b> | 1066.5 | °C",
+"name": "Riazzino - Ticino (2068)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+757750,
+234590
+],
+"type": "Point"
+},
+"id": "2410",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2410.png'></img> <br> 2014-12-01T13:13 | <b>167.5</b> | 1067.5 | °C",
+"name": "Ruggell - Liechtensteiner Binn (2410)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+649930,
+177380
+],
+"type": "Point"
+},
+"id": "2019",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2019.png'></img> <br> 2014-12-01T13:13 | <b>168.5</b> | 1068.5 | °C",
+"name": "Brienzwiler - Aare (2019)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+678040,
+269720
+],
+"type": "Point"
+},
+"id": "2415",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2415.png'></img> <br> 2014-12-01T13:13 | <b>169.5</b> | 1069.5 | °C",
+"name": "Rheinsfelden - Glatt (2415)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+718840,
+248440
+],
+"type": "Point"
+},
+"id": "2414",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2414.png'></img> <br> 2014-12-01T13:13 | <b>170.5</b> | 1070.5 | °C",
+"name": "Mosnang, Rietholz - Rietholzbach (2414)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+629130,
+140910
+],
+"type": "Point"
+},
+"id": "2269",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2269.png'></img> <br> 2014-12-01T13:13 | <b>171.5</b> | 1071.5 | °C",
+"name": "Blatten - Lonza (2269)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+727110,
+247290
+],
+"type": "Point"
+},
+"id": "2374",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2374.png'></img> <br> 2014-12-01T13:13 | <b>172.5</b> | 1072.5 | °C",
+"name": "Mogelsberg, Aachsäge - Necker (2374)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+788810,
+151690
+],
+"type": "Point"
+},
+"id": "2256",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2256.png'></img> <br> 2014-12-01T13:13 | <b>173.5</b> | 1073.5 | °C",
+"name": "Pontresina - Rosegbach (2256)",
+"param": "temperature",
+"temp-class": 1,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+709580,
+92145
+],
+"type": "Point"
+},
+"id": "2167",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2167.png'></img> <br> 2014-12-01T13:13 | <b>174.5</b> | 1074.5 | °C",
+"name": "Ponte Tresa, Rocchetta - Tresa (2167)",
+"param": "temperature",
+"temp-class": 3,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+665640,
+258690
+],
+"type": "Point"
+},
+"id": "2243",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2243.png'></img> <br> 2014-12-01T13:13 | <b>175.5</b> | 1075.5 | °C",
+"name": "Baden, Limmatpromenade - Limmat (2243)",
+"param": "temperature",
+"temp-class": 2,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+684970,
+135960
+],
+"type": "Point"
+},
+"id": "2356",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2356.png'></img> <br> 2014-12-01T13:13 | <b>176.5</b> | 1076.5 | °C",
+"name": "Cavergno, Pontit - Riale di Calneggia (2356)",
+"param": "temperature",
+"temp-class": 6,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+588220,
+219020
+],
+"type": "Point"
+},
+"id": "2029",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2029.png'></img> <br> 2014-12-01T13:13 | <b>177.5</b> | 1077.5 | °C",
+"name": "Brügg, Aegerten - Aare (2029)",
+"param": "temperature",
+"temp-class": 7,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+723985,
+217965
+],
+"type": "Point"
+},
+"id": "2372",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2372.png'></img> <br> 2014-12-01T13:13 | <b>178.5</b> | 1078.5 | °C",
+"name": "Mollis, Linthbrücke - Linth (2372)",
+"param": "temperature",
+"temp-class": 0,
+"w-typ": "river"
+},
+"type": "Feature"
+},
+{
+"geometry": {
+"coordinates": [
+725160,
+221380
+],
+"type": "Point"
+},
+"id": "2104",
+"properties": {
+"description": "<img src='//www.hydrodaten.admin.ch/lhg/az/plots/surface/3day_mobile/T_2104.png'></img> <br> 2014-12-01T13:13 | <b>179.5</b> | 1079.5 | °C",
+"name": "Weesen, Biäsche - Linth (2104)",
+"param": "temperature",
+"temp-class": 8,
+"w-typ": "river"
+},
+"type": "Feature"
+}
+],
+"mapname": "ch.bafu.hydroweb-messstationen_temperatur",
+"timestamp": "2014-09-19T18:15",
+"type": "FeatureCollection"
+}
