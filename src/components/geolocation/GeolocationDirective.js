@@ -106,6 +106,17 @@
           geolocationZooming = false;
         };
 
+        //HEADING - DEV
+        var deviceOrientation = new ol.DeviceOrientation();
+        deviceOrientation.on('change', function(event) {
+          if (deviceOrientation.getHeading() != undefined) {
+            var heading = -deviceOrientation.getHeading();
+            heading -= window['orientation'] * Math.PI / 180.0;
+            map.getView().setRotation(heading);
+          }
+        });
+        //deviceOrientation.setTracking(true);
+
         var updatePositionFeature = function() {
           if (geolocation.getPosition()) {
             positionFeature.getGeometry().setCoordinates(
@@ -165,10 +176,38 @@
         view.on('change:resolution', updateUserTakesControl);
 
         // Button event
+        var btnStatus;
+        if (btnStatus == undefined) {
+          btnStatus = 0;
+        }
+        var tracking = geolocation.getTracking();
         btnElt.bind('click', function(e) {
           e.preventDefault();
-          var tracking = !geolocation.getTracking();
-          geolocation.setTracking(tracking);
+          //Set 3-state button
+          if (btnStatus < 2) {
+            btnStatus++;
+          } else {
+            btnStatus = 0;
+            tracking = false;
+            geolocation.setTracking(tracking);
+            deviceOrientation.setTracking(tracking);
+          }
+
+          /*if (btnStatus =! 0) {
+            tracking = true;
+          } else {
+            tracking = false;
+          };*/
+
+         if (btnStatus == 1) {
+            tracking = true;
+            geolocation.setTracking(tracking);
+          } else if (btnStatus == 2) {
+            tracking = true;
+            geolocation.setTracking(tracking);
+            deviceOrientation.setTracking(tracking);
+          }
+
           if (tracking) {
             btnElt.addClass('ga-geolocation-tracking');
           } else {
