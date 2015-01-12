@@ -35,8 +35,9 @@
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
         var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+        var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
         var featuresOverlay = new ol.FeatureOverlay({
-          features: [accuracyFeature, positionFeature],
+          features: [accuracyFeature, positionFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
         });
         var geolocation = new ol.Geolocation({
@@ -112,10 +113,15 @@
           if (deviceOrientation.getHeading() != undefined) {
             var heading = -deviceOrientation.getHeading();
             heading -= window['orientation'] * Math.PI / 180.0;
-            map.getView().setRotation(heading);
+            if (btnStatus == 1) {
+              //alert('hello');
+              updateHeadingFeature();
+            }
+            if (btnStatus == 2) {
+              map.getView().setRotation(heading);
+            }            
           }
         });
-        //deviceOrientation.setTracking(true);
 
         var updatePositionFeature = function() {
           if (geolocation.getPosition()) {
@@ -128,6 +134,15 @@
           if (geolocation.getPosition() && geolocation.getAccuracy()) {
             accuracyFeature.setGeometry(new ol.geom.Circle(
                 geolocation.getPosition(), geolocation.getAccuracy()));
+          }
+        };
+
+        var updateHeadingFeature = function() {
+          if (deviceOrientation.getHeading()) {
+            headingFeature.getGeometry().setCoordinates(
+              geolocation.getPosition());
+            headingFeature.getGeometry().flatCoordinates[0] =  headingFeature.getGeometry().flatCoordinates[0] + 100*Math.sin(deviceOrientation.getHeading());
+            headingFeature.getGeometry().flatCoordinates[1] =  headingFeature.getGeometry().flatCoordinates[1] + 100*Math.cos(deviceOrientation.getHeading());
           }
         };
 
@@ -202,6 +217,7 @@
          if (btnStatus == 1) {
             tracking = true;
             geolocation.setTracking(tracking);
+            deviceOrientation.setTracking(tracking);
           } else if (btnStatus == 2) {
             tracking = true;
             geolocation.setTracking(tracking);
