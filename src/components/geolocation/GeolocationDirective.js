@@ -35,7 +35,7 @@
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
         var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
-        var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+        var headingFeature = new ol.Feature(new ol.geom.Polygon([[[0, 0], [0, 0]]]));
         var featuresOverlay = new ol.FeatureOverlay({
           features: [accuracyFeature, positionFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
@@ -108,6 +108,9 @@
         };
 
         //HEADING - DEV
+        
+         
+        // Orientation control events
         var deviceOrientation = new ol.DeviceOrientation();
         deviceOrientation.on('change', function(event) {
           if (deviceOrientation.getHeading() != undefined) {
@@ -118,7 +121,15 @@
               updateHeadingFeature();
             }
             if (btnStatus == 2) {
-              map.getView().setRotation(heading);
+              if (Math.abs(heading - view.getRotation()) > 0.01) { 
+                map.beforeRender(ol.animation.rotate({
+                  //rotation: view.getRotation(),
+                  start: view.getRotation(),
+                  duration: 1000,
+                  easing: ol.easing.easeOut
+                }));
+                map.getView().setRotation(heading);
+              }
             }            
           }
         });
@@ -139,10 +150,9 @@
 
         var updateHeadingFeature = function() {
           if (deviceOrientation.getHeading()) {
-            headingFeature.getGeometry().setCoordinates(
-              geolocation.getPosition());
-            headingFeature.getGeometry().flatCoordinates[0] =  headingFeature.getGeometry().flatCoordinates[0] + 100*Math.sin(deviceOrientation.getHeading());
-            headingFeature.getGeometry().flatCoordinates[1] =  headingFeature.getGeometry().flatCoordinates[1] + 100*Math.cos(deviceOrientation.getHeading());
+            var xPos = geolocation.getPosition()[0];
+            var yPos = geolocation.getPosition()[1];
+            headingFeature.getGeometry().setCoordinates([[[xPos, yPos], [xPos + 100*Math.sin(deviceOrientation.getHeading()), yPos + 100*Math.cos(deviceOrientation.getHeading())]]]);
           }
         };
 
