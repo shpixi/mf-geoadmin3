@@ -3,14 +3,16 @@
 
   goog.require('ga_permalink');
   goog.require('ga_styles_service');
+  goog.require('ga_throttle_service');
 
   var module = angular.module('ga_geolocation_directive', [
     'ga_permalink',
-    'ga_styles_service'
+    'ga_styles_service',
+    'ga_throttle_service'
   ]);
 
   module.directive('gaGeolocation', function($parse, $window,
-      gaPermalink, gaStyleFactory) {
+      gaPermalink, gaStyleFactory, gaThrottle) {
     return {
       restrict: 'A',
       replace: true,
@@ -109,28 +111,33 @@
 
         //HEADING - DEV
         
-         
         // Orientation control events
+
         var deviceOrientation = new ol.DeviceOrientation();
-        deviceOrientation.on('change', function(event) {
+
+        var headingUpdate = function() {
           if (deviceOrientation.getHeading() != undefined) {
             var heading = -deviceOrientation.getHeading();
             heading -= window['orientation'] * Math.PI / 180.0;
             if (btnStatus == 1) {
-              //alert('hello');
               updateHeadingFeature();
             }
             if (btnStatus == 2) {
-              if (Math.abs(heading - view.getRotation()) > 0.01) { 
-                map.beforeRender(ol.animation.rotate({
-                  //rotation: view.getRotation(),
-                  start: view.getRotation(),
-                  duration: 1000,
-                  easing: ol.easing.easeOut
-                }));
-                map.getView().setRotation(heading);
-              }
-            }            
+              map.beforeRender(ol.animation.rotate({
+                rotation: view.getRotation(),
+                duration: 350,
+                easing: ol.easing.linear
+              }));
+              map.getView().setRotation(heading);
+            }
+          }
+        };
+
+        var headingUpdateThrottled = gaThrottle.throttle(headingUpdate, 45, false, false); 
+
+        deviceOrientation.on('change:heading', function(event) {
+          if (Math.abs(deviceOrientation.getHeading() != -view.getRotation()) > 0) {
+            headingUpdateThrottled();
           }
         });
 
@@ -217,12 +224,6 @@
             geolocation.setTracking(tracking);
             deviceOrientation.setTracking(tracking);
           }
-
-          /*if (btnStatus =! 0) {
-            tracking = true;
-          } else {
-            tracking = false;
-          };*/
 
          if (btnStatus == 1) {
             tracking = true;
