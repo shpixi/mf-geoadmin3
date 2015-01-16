@@ -41,6 +41,7 @@
             geometry: new ol.geom.Point([0, 0])
         });
         var fill = new ol.style.Fill({color: 'red'});
+        //Use a style function. TODO: use StyleService.js
         var shapeStyleFunction = function(angle) {return new ol.style.Style({
             image: new ol.style.RegularShape({
               fill: fill,
@@ -141,12 +142,25 @@
                 easing: ol.easing.linear
               }));
               map.getView().setRotation(heading);
+              resetHeadingNorth();
             }
           }
         };
 
+        //use the new ThrottleService.js, which should be refactored with
+        //the DebounceService.js
         var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
             45, false, false);
+
+        var resetHeadingNorth = function() {
+          if (deviceOrientation.getHeading()) {
+            var xPos = geolocation.getPosition()[0];
+            var yPos = geolocation.getPosition()[1];
+            var offset = -28;
+            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(deviceOrientation.getHeading() + Math.PI), yPos + offset * Math.cos(deviceOrientation.getHeading() + Math.PI)]);
+            shapeFeature.setStyle(shapeStyleFunction(0));
+          }
+        };
 
         deviceOrientation.on('change:heading', function(event) {
           if (Math.abs(deviceOrientation.getHeading() != -view.getRotation()) > 0) {
