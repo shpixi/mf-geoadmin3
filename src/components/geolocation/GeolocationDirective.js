@@ -37,6 +37,17 @@
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
         var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+        var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+        var headingStyleFunction = function(rotation) {return new ol.style.Style({
+            image: new ol.style.Icon({
+              anchorXUnits: 'fraction',
+              anchorYUnits: 'fraction',
+              opacity: 1,
+              rotation: rotation,
+              src: 'components/geolocation/style/orientation_8.png'
+            })
+          });
+        };
         var shapeFeature = new ol.Feature({
             geometry: new ol.geom.Point([0, 0])
         });
@@ -52,7 +63,7 @@
           });
         };
         var featuresOverlay = new ol.FeatureOverlay({
-          features: [accuracyFeature, positionFeature, shapeFeature],
+          features: [accuracyFeature, positionFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
         });
         var geolocation = new ol.Geolocation({
@@ -157,8 +168,11 @@
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
             var offset = -28;
-            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(deviceOrientation.getHeading() + Math.PI), yPos + offset * Math.cos(deviceOrientation.getHeading() + Math.PI)]);
+            var rotation = deviceOrientation.getHeading();
+            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(rotation + Math.PI), yPos + offset * Math.cos(rotation + Math.PI)]);
             shapeFeature.setStyle(shapeStyleFunction(0));
+            headingFeature.setStyle(headingStyleFunction(0));
+            headingFeature.getGeometry().setCoordinates([xPos, yPos]);
           }
         };
 
@@ -187,8 +201,11 @@
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
             var offset = 28;
-            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(deviceOrientation.getHeading()), yPos + offset * Math.cos(deviceOrientation.getHeading())]);
+            var rotation = deviceOrientation.getHeading();
+            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(rotation), yPos + offset * Math.cos(rotation)]);
             shapeFeature.setStyle(shapeStyleFunction(deviceOrientation.getHeading()));
+            headingFeature.getGeometry().setCoordinates([xPos, yPos]);
+            headingFeature.setStyle(headingStyleFunction(rotation));
           }
         };
 

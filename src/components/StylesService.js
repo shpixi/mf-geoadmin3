@@ -65,7 +65,7 @@
           color: [255, 0, 0, 0.9]
         }),
         stroke: new ol.style.Stroke({
-          color: [255, 0, 0, 1],
+          color: [255, 255, 255, 1],
           width: 3
         })
       })
