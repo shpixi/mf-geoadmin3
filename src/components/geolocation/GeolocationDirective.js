@@ -37,40 +37,21 @@
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
         var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
-        var headingFeature = new ol.Feature(new ol.geom.Polygon([[[0, 0], [0, 0]]]));
-
-        var iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point([0, 0])
-        });
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-              //anchor: [0.5, 46],
-              //anchorXUnits: 'fraction',
-              //anchorYUnits: 'pixels',
-              opacity: 1,
-              src: 'components/geolocation/style/orientation_5.png'
-            }))
-        });
-        iconFeature.setStyle(iconStyle);
-
         var shapeFeature = new ol.Feature({
             geometry: new ol.geom.Point([0, 0])
         });
-
         var fill = new ol.style.Fill({color: 'red'});
-
-        var shapeStyle = new ol.style.Style({
-            image: new ol.style.RegularShape(/** @type {olx.style.RegularShapeOptions} */ ({
+        var shapeStyleFunction = function(angle) {return new ol.style.Style({
+            image: new ol.style.RegularShape({
               fill: fill,
               points: 3,
-              radius: 50,
-              angle: 0
-            }))
-        });
-        shapeFeature.setStyle(shapeStyle);
-        
+              radius: 6,
+              angle: angle
+            })
+          });
+        };
         var featuresOverlay = new ol.FeatureOverlay({
-          features: [accuracyFeature, positionFeature, headingFeature, iconFeature, shapeFeature],
+          features: [accuracyFeature, positionFeature, shapeFeature],
           style: gaStyleFactory.getStyle('geolocation')
         });
         var geolocation = new ol.Geolocation({
@@ -141,7 +122,7 @@
         };
 
         //HEADING - DEV
-        
+
         // Orientation control events
 
         var deviceOrientation = new ol.DeviceOrientation();
@@ -164,7 +145,8 @@
           }
         };
 
-        var headingUpdateThrottled = gaThrottle.throttle(headingUpdate, 45, false, false); 
+        var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
+            45, false, false);
 
         deviceOrientation.on('change:heading', function(event) {
           if (Math.abs(deviceOrientation.getHeading() != -view.getRotation()) > 0) {
@@ -190,9 +172,9 @@
           if (deviceOrientation.getHeading()) {
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
-            headingFeature.getGeometry().setCoordinates([[[xPos, yPos], [xPos + 100*Math.sin(deviceOrientation.getHeading()), yPos + 100*Math.cos(deviceOrientation.getHeading())]]]);
-            iconFeature.getGeometry().setCoordinates([xPos + 100*Math.sin(deviceOrientation.getHeading()), yPos + 100*Math.cos(deviceOrientation.getHeading())]);
-            shapeFeature.getGeometry().setCoordinates([xPos + 200*Math.sin(deviceOrientation.getHeading()), yPos + 200*Math.cos(deviceOrientation.getHeading())]);
+            var offset = 28;
+            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(deviceOrientation.getHeading()), yPos + offset * Math.cos(deviceOrientation.getHeading())]);
+            shapeFeature.setStyle(shapeStyleFunction(deviceOrientation.getHeading()));
           }
         };
 
