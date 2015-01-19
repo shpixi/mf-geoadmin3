@@ -38,7 +38,8 @@
         var accuracyFeature = new ol.Feature();
         var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
         var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
-        var headingStyleFunction = function(rotation) {return new ol.style.Style({
+        var headingStyleFunction = function(rotation) {
+          return new ol.style.Style({
             image: new ol.style.Icon({
               anchorXUnits: 'fraction',
               anchorYUnits: 'fraction',
@@ -169,15 +170,28 @@
             var yPos = geolocation.getPosition()[1];
             var offset = -28;
             var rotation = deviceOrientation.getHeading();
-            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(rotation + Math.PI), yPos + offset * Math.cos(rotation + Math.PI)]);
+            shapeFeature.getGeometry().setCoordinates([xPos + offset *
+                Math.sin(rotation + Math.PI), yPos + offset *
+                    Math.cos(rotation + Math.PI)]);
             shapeFeature.setStyle(shapeStyleFunction(0));
             headingFeature.setStyle(headingStyleFunction(0));
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
           }
         };
 
+        //FIXME. At the moment no gaRotate service
+        var resetMapToNorth = function() {
+          map.beforeRender(ol.animation.rotate({
+            rotation: view.getRotation(),
+            duration: 1000,
+            easing: ol.easing.easeOut
+          }));
+          map.getView().setRotation(0);
+        };
+
         deviceOrientation.on('change:heading', function(event) {
-          if (Math.abs(deviceOrientation.getHeading() != -view.getRotation()) > 0) {
+          var heading = -deviceOrientation.getHeading();
+          if (Math.abs(heading != view.getRotation()) > 0) {
             headingUpdateThrottled();
           }
         });
@@ -202,8 +216,9 @@
             var yPos = geolocation.getPosition()[1];
             var offset = 28;
             var rotation = deviceOrientation.getHeading();
-            shapeFeature.getGeometry().setCoordinates([xPos + offset * Math.sin(rotation), yPos + offset * Math.cos(rotation)]);
-            shapeFeature.setStyle(shapeStyleFunction(deviceOrientation.getHeading()));
+            shapeFeature.getGeometry().setCoordinates([xPos + offset *
+                Math.sin(rotation), yPos + offset * Math.cos(rotation)]);
+            shapeFeature.setStyle(shapeStyleFunction(rotation));
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
             headingFeature.setStyle(headingStyleFunction(rotation));
           }
@@ -269,6 +284,7 @@
             tracking = false;
             geolocation.setTracking(tracking);
             deviceOrientation.setTracking(tracking);
+            resetMapToNorth();
           }
 
          if (btnStatus == 1) {
@@ -276,15 +292,31 @@
             geolocation.setTracking(tracking);
             deviceOrientation.setTracking(tracking);
           } else if (btnStatus == 2) {
+            btnElt.removeClass('ga-geolocation-tracking');
+            btnElt.addClass('ga-geolocation-northarrow');
             tracking = true;
             geolocation.setTracking(tracking);
             deviceOrientation.setTracking(tracking);
+            // Button is rotated according to map rotation
+            view.on('change:rotation', function(evt) {
+              setButtonRotation(evt.target.getRotation() * 180 / Math.PI);
+            });
           }
+          //FIXME. There is no service for gaRotate
+          var setButtonRotation = function(rotation) {
+            var rotateString = 'rotate(' + rotation + 'deg)';
+            element.css({
+              'transform': rotateString,
+              '-ms-transform': rotateString,
+              '-webkit-transform': rotateString
+            }).toggleClass('ga-rotate-enabled', !(rotation == 0));
+          };
 
           if (tracking) {
             btnElt.addClass('ga-geolocation-tracking');
           } else {
             btnElt.removeClass('ga-geolocation-tracking');
+            btnElt.removeClass('ga-geolocation-northarrow');
           }
 
           scope.$apply(function() {

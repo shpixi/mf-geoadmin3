@@ -29,12 +29,12 @@
           return function() {
             var that = this,
                 elapsed = +new Date() - last_exec,
-                args = arguments,
-                exec = function() {
+                args = arguments;
+            var exec = function() {
                   last_exec = +new Date();
                   callback.apply(that, args);
-                },
-                clear = function() {
+                };
+            var clear = function() {
                   timeout_id = undefined;
                 };
 
