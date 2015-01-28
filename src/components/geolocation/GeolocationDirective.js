@@ -45,24 +45,11 @@
               anchorYUnits: 'fraction',
               opacity: 1,
               rotation: rotation,
-              src: 'components/geolocation/style/orientation_8.png'
+              src: 'components/geolocation/style/geolocation_heading_marker.png'
             })
           });
         };
-        var shapeFeature = new ol.Feature({
-            geometry: new ol.geom.Point([0, 0])
-        });
-        var fill = new ol.style.Fill({color: 'red'});
-        //Use a style function. TODO: use StyleService.js
-        var shapeStyleFunction = function(angle) {return new ol.style.Style({
-            image: new ol.style.RegularShape({
-              fill: fill,
-              points: 3,
-              radius: 6,
-              angle: angle
-            })
-          });
-        };
+
         var featuresOverlay = new ol.FeatureOverlay({
           features: [accuracyFeature, positionFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
@@ -168,26 +155,11 @@
           if (deviceOrientation.getHeading()) {
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
-            var offset = -28;
             var rotation = deviceOrientation.getHeading();
-            shapeFeature.getGeometry().setCoordinates([xPos + offset *
-                Math.sin(rotation + Math.PI), yPos + offset *
-                    Math.cos(rotation + Math.PI)]);
-            shapeFeature.setStyle(shapeStyleFunction(0));
             headingFeature.setStyle(headingStyleFunction(0));
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
           }
         };
-
-        //FIXME. At the moment no gaRotate service
-        /*var resetMapToNorth = function() {
-          map.beforeRender(ol.animation.rotate({
-            rotation: view.getRotation(),
-            duration: 1000,
-            easing: ol.easing.easeOut
-          }));
-          map.getView().setRotation(0);
-        };*/
 
         deviceOrientation.on('change:heading', function(event) {
           var heading = -deviceOrientation.getHeading();
@@ -214,11 +186,7 @@
           if (deviceOrientation.getHeading()) {
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
-            var offset = 28;
             var rotation = deviceOrientation.getHeading();
-            shapeFeature.getGeometry().setCoordinates([xPos + offset *
-                Math.sin(rotation), yPos + offset * Math.cos(rotation)]);
-            shapeFeature.setStyle(shapeStyleFunction(rotation));
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
             headingFeature.setStyle(headingStyleFunction(rotation));
           }
@@ -268,7 +236,7 @@
         view.on('change:center', updateUserTakesControl);
         view.on('change:resolution', updateUserTakesControl);
 
-        // Button event
+        // Button events
         var btnStatus;
         if (btnStatus == undefined) {
           btnStatus = 0;
@@ -302,7 +270,8 @@
               setButtonRotation(evt.target.getRotation() * 180 / Math.PI);
             });
           }
-          //FIXME. There is no service for gaRotate
+
+          //FIXME. Maybe put in gaMapUtils as well
           var setButtonRotation = function(rotation) {
             var rotateString = 'rotate(' + rotation + 'deg)';
             element.css({
