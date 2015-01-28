@@ -12,7 +12,7 @@
   ]);
 
   module.directive('gaGeolocation', function($parse, $window,
-      gaPermalink, gaStyleFactory, gaThrottle) {
+      gaPermalink, gaStyleFactory, gaThrottle, gaMapUtils) {
     return {
       restrict: 'A',
       replace: true,
@@ -180,14 +180,14 @@
         };
 
         //FIXME. At the moment no gaRotate service
-        var resetMapToNorth = function() {
+        /*var resetMapToNorth = function() {
           map.beforeRender(ol.animation.rotate({
             rotation: view.getRotation(),
             duration: 1000,
             easing: ol.easing.easeOut
           }));
           map.getView().setRotation(0);
-        };
+        };*/
 
         deviceOrientation.on('change:heading', function(event) {
           var heading = -deviceOrientation.getHeading();
@@ -284,7 +284,7 @@
             tracking = false;
             geolocation.setTracking(tracking);
             deviceOrientation.setTracking(tracking);
-            resetMapToNorth();
+            gaMapUtils.resetMapToNorth(map, view);
           }
 
          if (btnStatus == 1) {
