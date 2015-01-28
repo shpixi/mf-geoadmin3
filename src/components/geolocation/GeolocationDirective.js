@@ -162,7 +162,7 @@
         //use the new ThrottleService.js, which should be refactored with
         //the DebounceService.js
         var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
-            45, false, false);
+            45);
 
         var resetHeadingNorth = function() {
           if (deviceOrientation.getHeading()) {
