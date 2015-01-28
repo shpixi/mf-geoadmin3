@@ -141,7 +141,7 @@
                 easing: ol.easing.linear
               }));
               map.getView().setRotation(heading);
-              resetHeadingNorth();
+              setHeadingFeatureAngle(0);
             }
           }
         };
@@ -151,12 +151,12 @@
         var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
             45);
 
-        var resetHeadingNorth = function() {
+        var setHeadingFeatureAngle = function(angle) {
           if (deviceOrientation.getHeading()) {
             var xPos = geolocation.getPosition()[0];
             var yPos = geolocation.getPosition()[1];
             var rotation = deviceOrientation.getHeading();
-            headingFeature.setStyle(headingStyleFunction(0));
+            headingFeature.setStyle(headingStyleFunction(angle));
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
           }
         };
@@ -188,7 +188,7 @@
             var yPos = geolocation.getPosition()[1];
             var rotation = deviceOrientation.getHeading();
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
-            headingFeature.setStyle(headingStyleFunction(rotation));
+            headingFeature.setStyle(headingStyleFunction(rotation + view.getRotation()));
           }
         };
 
