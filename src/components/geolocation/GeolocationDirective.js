@@ -36,7 +36,6 @@
         var map = scope.map;
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
-        var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
         var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
         var headingStyleFunction = function(rotation) {
           return new ol.style.Style({
@@ -51,7 +50,7 @@
         };
 
         var featuresOverlay = new ol.FeatureOverlay({
-          features: [accuracyFeature, positionFeature, headingFeature],
+          features: [accuracyFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
         });
         var geolocation = new ol.Geolocation({
@@ -170,7 +169,7 @@
 
         var updatePositionFeature = function() {
           if (geolocation.getPosition()) {
-            positionFeature.getGeometry().setCoordinates(
+            headingFeature.getGeometry().setCoordinates(
                geolocation.getPosition());
           }
         };
@@ -184,11 +183,12 @@
 
         var updateHeadingFeature = function() {
           if (deviceOrientation.getHeading()) {
-            var xPos = geolocation.getPosition()[0];
-            var yPos = geolocation.getPosition()[1];
+            //var xPos = geolocation.getPosition()[0];
+            //var yPos = geolocation.getPosition()[1];
             var rotation = deviceOrientation.getHeading();
-            headingFeature.getGeometry().setCoordinates([xPos, yPos]);
-            headingFeature.setStyle(headingStyleFunction(rotation + view.getRotation()));
+            //headingFeature.getGeometry().setCoordinates([xPos, yPos]);
+            headingFeature.setStyle(headingStyleFunction(rotation +
+              view.getRotation()));
           }
         };
 
@@ -199,6 +199,7 @@
           locate();
           updatePositionFeature();
           updateAccuracyFeature();
+          updateHeadingFeature();
         });
 
         geolocation.on('change:accuracy', function(evt) {
