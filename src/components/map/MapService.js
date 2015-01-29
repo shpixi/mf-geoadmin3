@@ -1063,7 +1063,7 @@
         // Test if a layer is a KML layer
         isKmlLayer: function(olLayer) {
           return olLayer.type == 'KML';
-        }
+        },
 
         /**
          * Reset map rotation no North

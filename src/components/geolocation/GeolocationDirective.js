@@ -128,8 +128,7 @@
 
         var headingUpdate = function() {
           if (deviceOrientation.getHeading() != undefined) {
-            var heading = -deviceOrientation.getHeading();
-            heading -= window['orientation'] * Math.PI / 180.0;
+            var heading = deviceOrientation.getHeading();
             if (btnStatus == 1) {
               updateHeadingFeature();
             }
@@ -139,7 +138,7 @@
                 duration: 350,
                 easing: ol.easing.linear
               }));
-              map.getView().setRotation(heading);
+              map.getView().setRotation(-heading);
               setHeadingFeatureAngle(0);
             }
           }
@@ -161,7 +160,7 @@
         };
 
         deviceOrientation.on('change:heading', function(event) {
-          var heading = -deviceOrientation.getHeading();
+          var heading = deviceOrientation.getHeading();
           if (Math.abs(heading != view.getRotation()) > 0) {
             headingUpdateThrottled();
           }
