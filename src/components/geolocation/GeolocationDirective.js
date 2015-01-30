@@ -28,9 +28,13 @@
           return;
         }
 
-        // This boolean defines if the user has moved the map itself after the
+        // This object with boolean properties defines either:
+        // geolocation: if the user has moved the map itself after the
         // first change of position.
-        var userTakesControl = false;
+        // rotation: if the user has touched-rotated the map on btn state 2
+        var userTakesControl = {geolocation: false, rotation: false};
+        // Defines if the heading of the map is being rendered
+        var mapHeadingRendering = false;
         // Defines if the geolocation control is zooming
         var geolocationZooming = false;
         var map = scope.map;
@@ -112,7 +116,7 @@
               map.beforeRender(pan, zoom, bounce);
               view.setCenter(dest);
               view.setResolution(resolution);
-            } else if (!userTakesControl) {
+            } else if (!userTakesControl.geolocation) {
               map.beforeRender(pan);
               view.setCenter(dest);
             }
@@ -133,13 +137,19 @@
               updateHeadingFeature();
             }
             if (btnStatus == 2) {
-              map.beforeRender(ol.animation.rotate({
-                rotation: view.getRotation(),
-                duration: 350,
-                easing: ol.easing.linear
-              }));
-              map.getView().setRotation(-heading);
-              setHeadingFeatureAngle(0);
+              if (userTakesControl.rotation == false) {
+                mapHeadingRendering = true;
+                map.beforeRender(ol.animation.rotate({
+                  rotation: view.getRotation(),
+                  duration: 350,
+                  easing: ol.easing.linear
+                }));
+                map.getView().setRotation(-heading);
+                setHeadingFeatureAngle(0);
+                mapHeadingRendering = false;
+              } else {
+                updateHeadingFeature();
+              }
             }
           }
         };
@@ -210,7 +220,8 @@
           var tracking = geolocation.getTracking();
           if (tracking) {
             first = true;
-            userTakesControl = false;
+            userTakesControl.geolocation = false;
+            userTakesControl.rotation = false;
             featuresOverlay.setMap(map);
           } else {
             // stop tracking
@@ -230,11 +241,17 @@
         // View events
         var updateUserTakesControl = function() {
           if (!geolocationZooming) {
-            userTakesControl = true;
+            userTakesControl.geolocation = true;
+          }
+        };
+        var updateUserHasControl = function() {
+          if (!mapHeadingRendering) {
+            userTakesControl.rotation = true;
           }
         };
         view.on('change:center', updateUserTakesControl);
         view.on('change:resolution', updateUserTakesControl);
+        view.on('change:rotation', updateUserHasControl);
 
         // Button events
         var btnStatus;
