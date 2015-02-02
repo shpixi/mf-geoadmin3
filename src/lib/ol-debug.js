@@ -1,6 +1,6 @@
 // OpenLayers 3. See http://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/ol3/master/LICENSE.md
-// Version: v3.1.1-130-g3abcbcf
+// Version: v3.1.1-142-g130535c
 
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
@@ -33857,32 +33857,33 @@ ol.control.Attribution = function(opt_options) {
   var tipLabel = goog.isDef(options.tipLabel) ?
       options.tipLabel : 'Attributions';
 
-  /**
-   * @private
-   * @type {string}
-   */
-  this.collapseLabel_ = goog.isDef(options.collapseLabel) ?
+  var collapseLabel = goog.isDef(options.collapseLabel) ?
       options.collapseLabel : '\u00BB';
 
   /**
    * @private
-   * @type {string}
+   * @type {Node}
    */
-  this.label_ = goog.isDef(options.label) ? options.label : 'i';
-  var label = goog.dom.createDom(goog.dom.TagName.SPAN, {},
-      (this.collapsible_ && !this.collapsed_) ?
-      this.collapseLabel_ : this.label_);
+  this.collapseLabel_ = /** @type {Node} */ (goog.isString(collapseLabel) ?
+      goog.dom.createDom(goog.dom.TagName.SPAN, {}, collapseLabel) :
+      collapseLabel);
 
+  var label = goog.isDef(options.label) ? options.label : 'i';
 
   /**
    * @private
-   * @type {Element}
+   * @type {Node}
    */
-  this.labelSpan_ = label;
+  this.label_ = /** @type {Node} */ (goog.isString(label) ?
+      goog.dom.createDom(goog.dom.TagName.SPAN, {}, label) :
+      label);
+
+  var activeLabel = (this.collapsible_ && !this.collapsed_) ?
+      this.collapseLabel_ : this.label_;
   var button = goog.dom.createDom(goog.dom.TagName.BUTTON, {
     'type': 'button',
     'title': tipLabel
-  }, this.labelSpan_);
+  }, activeLabel);
 
   goog.events.listen(button, goog.events.EventType.CLICK,
       this.handleClick_, false, this);
@@ -34129,8 +34130,11 @@ ol.control.Attribution.prototype.handleClick_ = function(event) {
  */
 ol.control.Attribution.prototype.handleToggle_ = function() {
   goog.dom.classlist.toggle(this.element, 'ol-collapsed');
-  goog.dom.setTextContent(this.labelSpan_,
-      (this.collapsed_) ? this.collapseLabel_ : this.label_);
+  if (this.collapsed_) {
+    goog.dom.replaceNode(this.collapseLabel_, this.label_);
+  } else {
+    goog.dom.replaceNode(this.label_, this.collapseLabel_);
+  }
   this.collapsed_ = !this.collapsed_;
 };
 
@@ -34214,12 +34218,22 @@ ol.control.Rotate = function(opt_options) {
   var className = goog.isDef(options.className) ?
       options.className : 'ol-rotate';
 
+  var label = goog.isDef(options.label) ?
+      options.label : '\u21E7';
+
   /**
-   * @type {Element}
+   * @type {Node}
    * @private
    */
-  this.label_ = goog.dom.createDom(goog.dom.TagName.SPAN,
-      'ol-compass', goog.isDef(options.label) ? options.label : '\u21E7');
+  this.label_ = null;
+
+  if (goog.isString(label)) {
+    this.label_ = goog.dom.createDom(goog.dom.TagName.SPAN,
+        'ol-compass', label);
+  } else {
+    this.label_ = label;
+    goog.dom.classlist.add(this.label_, 'ol-compass');
+  }
 
   var tipLabel = goog.isDef(options.tipLabel) ?
       options.tipLabel : 'Reset rotation';
@@ -34675,7 +34689,6 @@ goog.provide('ol.control.FullScreen');
 goog.require('goog.asserts');
 goog.require('goog.dom');
 goog.require('goog.dom.TagName');
-goog.require('goog.dom.classlist');
 goog.require('goog.dom.fullscreen');
 goog.require('goog.dom.fullscreen.EventType');
 goog.require('goog.events');
@@ -34709,13 +34722,33 @@ ol.control.FullScreen = function(opt_options) {
   this.cssClassName_ = goog.isDef(options.className) ?
       options.className : 'ol-full-screen';
 
+  var label = goog.isDef(options.label) ?
+      options.label : '\u2194';
+
+  /**
+   * @private
+   * @type {Node}
+   */
+  this.labelNode_ = /** @type {Node} */ (goog.isString(label) ?
+          goog.dom.createTextNode(label) : label);
+
+  var labelActive = goog.isDef(options.labelActive) ?
+      options.labelActive : '\u00d7';
+
+  /**
+   * @private
+   * @type {Node}
+   */
+  this.labelActiveNode_ = /** @type {Node} */ (goog.isString(labelActive) ?
+          goog.dom.createTextNode(labelActive) : labelActive);
+
   var tipLabel = goog.isDef(options.tipLabel) ?
       options.tipLabel : 'Toggle full-screen';
   var button = goog.dom.createDom(goog.dom.TagName.BUTTON, {
     'class': this.cssClassName_ + '-' + goog.dom.fullscreen.isFullScreen(),
     'type': 'button',
     'title': tipLabel
-  });
+  }, this.labelNode_);
 
   goog.events.listen(button, goog.events.EventType.CLICK,
       this.handleClick_, false, this);
@@ -34792,14 +34825,11 @@ ol.control.FullScreen.prototype.handleFullScreen_ = function() {
  * @private
  */
 ol.control.FullScreen.prototype.handleFullScreenChange_ = function() {
-  var opened = this.cssClassName_ + '-true';
-  var closed = this.cssClassName_ + '-false';
-  var anchor = goog.dom.getFirstElementChild(this.element);
   var map = this.getMap();
   if (goog.dom.fullscreen.isFullScreen()) {
-    goog.dom.classlist.swap(anchor, closed, opened);
+    goog.dom.replaceNode(this.labelActiveNode_, this.labelNode_);
   } else {
-    goog.dom.classlist.swap(anchor, opened, closed);
+    goog.dom.replaceNode(this.labelNode_, this.labelActiveNode_);
   }
   if (!goog.isNull(map)) {
     map.updateSize();
@@ -47252,9 +47282,11 @@ goog.require('ol.pointer.PointerEventHandler');
  * @param {string} type Event type.
  * @param {ol.Map} map Map.
  * @param {goog.events.BrowserEvent} browserEvent Browser event.
+ * @param {boolean=} opt_dragging Is the map currently being dragged?
  * @param {?olx.FrameState=} opt_frameState Frame state.
  */
-ol.MapBrowserEvent = function(type, map, browserEvent, opt_frameState) {
+ol.MapBrowserEvent = function(type, map, browserEvent, opt_dragging,
+    opt_frameState) {
 
   goog.base(this, type, map, opt_frameState);
 
@@ -47282,6 +47314,15 @@ ol.MapBrowserEvent = function(type, map, browserEvent, opt_frameState) {
    * @api stable
    */
   this.coordinate = map.getCoordinateFromPixel(this.pixel);
+
+  /**
+   * Indicates if the map is currently being dragged. Only set for
+   * `POINTERDRAG` and `POINTERMOVE` events. Default is `false`.
+   *
+   * @type {boolean}
+   * @api stable
+   */
+  this.dragging = goog.isDef(opt_dragging) ? opt_dragging : false;
 
 };
 goog.inherits(ol.MapBrowserEvent, ol.MapEvent);
@@ -47318,11 +47359,14 @@ ol.MapBrowserEvent.prototype.stopPropagation = function() {
  * @param {string} type Event type.
  * @param {ol.Map} map Map.
  * @param {ol.pointer.PointerEvent} pointerEvent Pointer event.
+ * @param {boolean=} opt_dragging Is the map currently being dragged?
  * @param {?olx.FrameState=} opt_frameState Frame state.
  */
-ol.MapBrowserPointerEvent = function(type, map, pointerEvent, opt_frameState) {
+ol.MapBrowserPointerEvent = function(type, map, pointerEvent, opt_dragging,
+    opt_frameState) {
 
-  goog.base(this, type, map, pointerEvent.browserEvent, opt_frameState);
+  goog.base(this, type, map, pointerEvent.browserEvent, opt_dragging,
+      opt_frameState);
 
   /**
    * @const
@@ -47361,7 +47405,7 @@ ol.MapBrowserEventHandler = function(map) {
    * @type {boolean}
    * @private
    */
-  this.dragged_ = false;
+  this.dragging_ = false;
 
   /**
    * @type {Array.<number>}
@@ -47384,6 +47428,8 @@ ol.MapBrowserEventHandler = function(map) {
   }
 
   /**
+   * The most recent "down" type event (or null if none have occurred).
+   * Set on pointerdown.
    * @type {ol.pointer.PointerEvent}
    * @private
    */
@@ -47442,16 +47488,6 @@ ol.MapBrowserEventHandler = function(map) {
 
 };
 goog.inherits(ol.MapBrowserEventHandler, goog.events.EventTarget);
-
-
-/**
- * Get the last "down" type event. This will be set on pointerdown.
- * @return {ol.pointer.PointerEvent} The most recent "down" type event (or null
- * if none have occurred).
- */
-ol.MapBrowserEventHandler.prototype.getDown = function() {
-  return this.down_;
-};
 
 
 /**
@@ -47526,21 +47562,23 @@ ol.MapBrowserEventHandler.prototype.handlePointerUp_ = function(pointerEvent) {
       ol.MapBrowserEvent.EventType.POINTERUP, this.map_, pointerEvent);
   this.dispatchEvent(newEvent);
 
+  // We emulate click events on left mouse button click, touch contact, and pen
+  // contact. isMouseActionButton returns true in these cases (evt.button is set
+  // to 0).
+  // See http://www.w3.org/TR/pointerevents/#button-states
+  if (!this.dragging_ && this.isMouseActionButton_(pointerEvent)) {
+    goog.asserts.assert(!goog.isNull(this.down_));
+    this.emulateClick_(this.down_);
+  }
+
   goog.asserts.assert(this.activePointers_ >= 0);
   if (this.activePointers_ === 0) {
     goog.array.forEach(this.dragListenerKeys_, goog.events.unlistenByKey);
     this.dragListenerKeys_ = null;
+    this.dragging_ = false;
+    this.down_ = null;
     goog.dispose(this.documentPointerEventHandler_);
     this.documentPointerEventHandler_ = null;
-  }
-
-  // We emulate click event on left mouse button click, touch contact, and pen
-  // contact. isMouseActionButton returns true in these cases (evt.button is set
-  // to 0).
-  // See http://www.w3.org/TR/pointerevents/#button-states
-  if (!this.dragged_ && this.isMouseActionButton_(pointerEvent)) {
-    goog.asserts.assert(!goog.isNull(this.down_));
-    this.emulateClick_(this.down_);
   }
 };
 
@@ -47572,7 +47610,6 @@ ol.MapBrowserEventHandler.prototype.handlePointerDown_ =
   this.dispatchEvent(newEvent);
 
   this.down_ = pointerEvent;
-  this.dragged_ = false;
 
   if (goog.isNull(this.dragListenerKeys_)) {
     /* Set up a pointer event handler on the `document`,
@@ -47621,11 +47658,11 @@ ol.MapBrowserEventHandler.prototype.handlePointerMove_ =
   // the exact same coordinates of the pointerdown event. To avoid a
   // 'false' touchmove event to be dispatched , we test if the pointer
   // effectively moved.
-  if (pointerEvent.clientX != this.down_.clientX ||
-      pointerEvent.clientY != this.down_.clientY) {
-    this.dragged_ = true;
+  if (this.isMoving_(pointerEvent)) {
+    this.dragging_ = true;
     var newEvent = new ol.MapBrowserPointerEvent(
-        ol.MapBrowserEvent.EventType.POINTERDRAG, this.map_, pointerEvent);
+        ol.MapBrowserEvent.EventType.POINTERDRAG, this.map_, pointerEvent,
+        this.dragging_);
     this.dispatchEvent(newEvent);
   }
 
@@ -47644,8 +47681,20 @@ ol.MapBrowserEventHandler.prototype.handlePointerMove_ =
  * @private
  */
 ol.MapBrowserEventHandler.prototype.relayEvent_ = function(pointerEvent) {
+  var dragging = !goog.isNull(this.down_) && this.isMoving_(pointerEvent);
   this.dispatchEvent(new ol.MapBrowserPointerEvent(
-      pointerEvent.type, this.map_, pointerEvent));
+      pointerEvent.type, this.map_, pointerEvent, dragging));
+};
+
+
+/**
+ * @param {ol.pointer.PointerEvent} pointerEvent Pointer event.
+ * @return {boolean}
+ * @private
+ */
+ol.MapBrowserEventHandler.prototype.isMoving_ = function(pointerEvent) {
+  return pointerEvent.clientX != this.down_.clientX ||
+      pointerEvent.clientY != this.down_.clientY;
 };
 
 
@@ -76632,31 +76681,33 @@ ol.control.OverviewMap = function(opt_options) {
   var tipLabel = goog.isDef(options.tipLabel) ?
       options.tipLabel : 'Overview map';
 
-  /**
-   * @private
-   * @type {string}
-   */
-  this.collapseLabel_ = goog.isDef(options.collapseLabel) ?
+  var collapseLabel = goog.isDef(options.collapseLabel) ?
       options.collapseLabel : '\u00AB';
 
   /**
    * @private
-   * @type {string}
+   * @type {Node}
    */
-  this.label_ = goog.isDef(options.label) ? options.label : '\u00BB';
-  var label = goog.dom.createDom(goog.dom.TagName.SPAN, {},
-      (this.collapsible_ && !this.collapsed_) ?
-      this.collapseLabel_ : this.label_);
+  this.collapseLabel_ = /** @type {Node} */ (goog.isString(collapseLabel) ?
+      goog.dom.createDom(goog.dom.TagName.SPAN, {}, collapseLabel) :
+      collapseLabel);
+
+  var label = goog.isDef(options.label) ? options.label : '\u00BB';
 
   /**
    * @private
-   * @type {Element}
+   * @type {Node}
    */
-  this.labelSpan_ = label;
+  this.label_ = /** @type {Node} */ (goog.isString(label) ?
+      goog.dom.createDom(goog.dom.TagName.SPAN, {}, label) :
+      label);
+
+  var activeLabel = (this.collapsible_ && !this.collapsed_) ?
+      this.collapseLabel_ : this.label_;
   var button = goog.dom.createDom(goog.dom.TagName.BUTTON, {
     'type': 'button',
     'title': tipLabel
-  }, this.labelSpan_);
+  }, activeLabel);
 
   goog.events.listen(button, goog.events.EventType.CLICK,
       this.handleClick_, false, this);
@@ -77002,8 +77053,11 @@ ol.control.OverviewMap.prototype.handleClick_ = function(event) {
  */
 ol.control.OverviewMap.prototype.handleToggle_ = function() {
   goog.dom.classlist.toggle(this.element, 'ol-collapsed');
-  goog.dom.setTextContent(this.labelSpan_,
-      (this.collapsed_) ? this.collapseLabel_ : this.label_);
+  if (this.collapsed_) {
+    goog.dom.replaceNode(this.collapseLabel_, this.label_);
+  } else {
+    goog.dom.replaceNode(this.label_, this.collapseLabel_);
+  }
   this.collapsed_ = !this.collapsed_;
 
   // manage overview map if it had not been rendered before and control
@@ -80807,12 +80861,13 @@ ol.control.ZoomToExtent = function(opt_options) {
   var className = goog.isDef(options.className) ? options.className :
       'ol-zoom-extent';
 
+  var label = goog.isDef(options.label) ? options.label : 'E';
   var tipLabel = goog.isDef(options.tipLabel) ?
       options.tipLabel : 'Fit to extent';
   var button = goog.dom.createDom(goog.dom.TagName.BUTTON, {
     'type': 'button',
     'title': tipLabel
-  });
+  }, label);
 
   goog.events.listen(button, goog.events.EventType.CLICK,
       this.handleClick_, false, this);
@@ -86841,7 +86896,7 @@ ol.format.GML.prototype.writeFeatures;
  * Encode an array of features in the GML 3.1.1 format as an XML node.
  *
  * @function
- * @param {ol.Feature} feature Feature.
+ * @param {Array.<ol.Feature>} features Features.
  * @param {olx.format.WriteOptions=} opt_options Options.
  * @return {Node} Node.
  * @api
@@ -88977,7 +89032,7 @@ ol.format.KML.DEFAULT_FILL_STYLE_ = new ol.style.Fill({
  * @type {ol.Size}
  * @private
  */
-ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_ = [2, 20]; // FIXME maybe [8, 32] ?
+ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_ = [20, 2]; // FIXME maybe [8, 32] ?
 
 
 /**
@@ -89003,7 +89058,7 @@ ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_Y_UNITS_ =
  * @type {ol.Size}
  * @private
  */
-ol.format.KML.DEFAULT_IMAGE_STYLE_SIZE_ = [32, 32];
+ol.format.KML.DEFAULT_IMAGE_STYLE_SIZE_ = [64, 64];
 
 
 /**
@@ -89022,11 +89077,12 @@ ol.format.KML.DEFAULT_IMAGE_STYLE_SRC_ =
  */
 ol.format.KML.DEFAULT_IMAGE_STYLE_ = new ol.style.Icon({
   anchor: ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_,
+  anchorOrigin: ol.style.IconOrigin.BOTTOM_LEFT,
   anchorXUnits: ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_X_UNITS_,
   anchorYUnits: ol.format.KML.DEFAULT_IMAGE_STYLE_ANCHOR_Y_UNITS_,
   crossOrigin: 'anonymous',
   rotation: 0,
-  scale: 1,
+  scale: 0.5,
   size: ol.format.KML.DEFAULT_IMAGE_STYLE_SIZE_,
   src: ol.format.KML.DEFAULT_IMAGE_STYLE_SRC_
 });
@@ -114323,6 +114379,11 @@ goog.exportProperty(
 
 goog.exportProperty(
     ol.MapBrowserEvent.prototype,
+    'dragging',
+    ol.MapBrowserEvent.prototype.dragging);
+
+goog.exportProperty(
+    ol.MapBrowserEvent.prototype,
     'preventDefault',
     ol.MapBrowserEvent.prototype.preventDefault);
 
@@ -117685,6 +117746,11 @@ goog.exportProperty(
     ol.MapBrowserPointerEvent.prototype,
     'coordinate',
     ol.MapBrowserPointerEvent.prototype.coordinate);
+
+goog.exportProperty(
+    ol.MapBrowserPointerEvent.prototype,
+    'dragging',
+    ol.MapBrowserPointerEvent.prototype.dragging);
 
 goog.exportProperty(
     ol.MapBrowserPointerEvent.prototype,
