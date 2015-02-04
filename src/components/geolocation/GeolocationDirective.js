@@ -124,15 +124,12 @@
           geolocationZooming = false;
         };
 
-        //HEADING - DEV
-
         // Orientation control events
-
         var deviceOrientation = new ol.DeviceOrientation();
 
         var headingUpdate = function() {
-          if (deviceOrientation.getHeading() != undefined) {
-            var heading = deviceOrientation.getHeading();
+          var heading = deviceOrientation.getHeading();
+          if (angular.isDefined(heading)) {
             if (btnStatus == 1) {
               updateHeadingFeature();
             }
@@ -157,7 +154,7 @@
         //use the new ThrottleService.js, which should be refactored with
         //the DebounceService.js
         var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
-            45);
+            300);
 
         var setHeadingFeatureAngle = function(angle) {
           if (deviceOrientation.getHeading()) {
@@ -192,10 +189,7 @@
 
         var updateHeadingFeature = function() {
           if (deviceOrientation.getHeading()) {
-            //var xPos = geolocation.getPosition()[0];
-            //var yPos = geolocation.getPosition()[1];
             var rotation = deviceOrientation.getHeading();
-            //headingFeature.getGeometry().setCoordinates([xPos, yPos]);
             headingFeature.setStyle(headingStyleFunction(rotation +
               view.getRotation()));
           }
@@ -240,24 +234,15 @@
 
         // View events
         var updateUserTakesControl = function() {
-          if (!geolocationZooming) {
-            userTakesControl.geolocation = true;
-          }
-        };
-        var updateUserHasControl = function() {
-          if (!mapHeadingRendering) {
-            userTakesControl.rotation = true;
-          }
+          userTakesControl.geolocation = !geolocationZooming;
+          userTakesControl.rotation = !mapHeadingRendering;
         };
         view.on('change:center', updateUserTakesControl);
         view.on('change:resolution', updateUserTakesControl);
-        view.on('change:rotation', updateUserHasControl);
+        view.on('change:rotation', updateUserTakesControl);
 
         // Button events
-        var btnStatus;
-        if (btnStatus == undefined) {
-          btnStatus = 0;
-        }
+        var btnStatus = 0;
         var tracking = geolocation.getTracking();
         btnElt.bind('click', function(e) {
           e.preventDefault();
