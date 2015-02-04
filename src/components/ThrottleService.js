@@ -3,32 +3,27 @@
 
   var module = angular.module('ga_throttle_service', []);
 
-  //no deferring at the moment
-
   module.provider('gaThrottle', function() {
     this.$get = function($timeout) {
       var Throttle = function() {
-        this.throttle = function(callback, delay, noTrailing) {
-
-          var timeoutId,
-          lastExec = 0;
-
+        this.throttle = function(func, delay, noTrailing, invokeApply) {
+          var timeout, lastExec = 0;
           return function() {
-            var that = this,
-                elapsed = +new Date() - lastExec,
-                args = arguments;
+            var context = this, args = arguments,
+                elapsed = +new Date() - lastExec;
             var exec = function() {
-                  lastExec = +new Date();
-                  callback.apply(that, args);
-                };
-            var clear = function() {
-                  timeoutId = undefined;
-                };
+              lastExec = +new Date();
+              func.apply(context, args);
 
-            if (timeoutId) {
-              $timeout.cancel(timeoutId);
+            };
+            if (timeout) {
+              $timeout.cancel(timeout);
             }
-            timeoutId = $timeout(exec, delay);
+            if (elapsed > delay) {
+              exec();
+            } else if (!noTrailing) {
+              timeout = $timeout(exec, delay - elapsed, invokeApply);
+            }
           };
         };
       };
