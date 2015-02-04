@@ -52,11 +52,11 @@
             })
           });
         };
-
         var featuresOverlay = new ol.FeatureOverlay({
           features: [accuracyFeature, headingFeature],
           style: gaStyleFactory.getStyle('geolocation')
         });
+        var deviceOrientation = new ol.DeviceOrientation();
         var geolocation = new ol.Geolocation({
           trackingOptions: {
             maximumAge: 10000,
@@ -124,9 +124,7 @@
           geolocationZooming = false;
         };
 
-        // Orientation control events
-        var deviceOrientation = new ol.DeviceOrientation();
-
+        // Update heading
         var headingUpdate = function() {
           var heading = deviceOrientation.getHeading();
           if (angular.isDefined(heading)) {
@@ -151,11 +149,6 @@
           }
         };
 
-        //use the new ThrottleService.js, which should be refactored with
-        //the DebounceService.js
-        var headingUpdateThrottled = gaThrottle.throttle(headingUpdate,
-            300);
-
         var setHeadingFeatureAngle = function(angle) {
           if (deviceOrientation.getHeading()) {
             var xPos = geolocation.getPosition()[0];
@@ -165,15 +158,6 @@
             headingFeature.getGeometry().setCoordinates([xPos, yPos]);
           }
         };
-
-        var currHeading = 0;
-        deviceOrientation.on('change:heading', function(event) {
-          var heading = deviceOrientation.getHeading();
-          if (heading < currHeading - 0.001 || currHeading + 0.001 < heading) {
-            currHeading = heading;
-            headingUpdateThrottled();
-          }
-        });
 
         var updatePositionFeature = function() {
           if (geolocation.getPosition()) {
@@ -196,6 +180,20 @@
               view.getRotation()));
           }
         };
+
+
+        // Orientation control events
+        var currHeading = 0;
+        var headingUpdateThrottled = gaThrottle.throttle(headingUpdate, 300);
+
+        deviceOrientation.on('change:heading', function(event) {
+          var heading = deviceOrientation.getHeading();
+          if (heading < currHeading - 0.001 || currHeading + 0.001 < heading) {
+            currHeading = heading;
+            headingUpdateThrottled();
+          }
+        });
+
 
         // Geolocation control events
         geolocation.on('change:position', function(evt) {
@@ -234,6 +232,7 @@
         // Geolocation control bindings
         geolocation.bindTo('projection', view);
 
+
         // View events
         var updateUserTakesControl = function() {
           userTakesControl.geolocation = !geolocationZooming;
@@ -242,6 +241,7 @@
         view.on('change:center', updateUserTakesControl);
         view.on('change:resolution', updateUserTakesControl);
         view.on('change:rotation', updateUserTakesControl);
+
 
         // Button events
         var btnStatus = 0;
