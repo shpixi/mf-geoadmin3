@@ -71,6 +71,22 @@
       })
     });
 
+    var headingStyle = new ol.style.Style({
+      image: new ol.style.Icon({
+        rotateWithView: true,
+        src: 'components/geolocation/style/geolocation_heading_marker.png'
+      })
+    });
+
+    var geolocationStyleFunction = function(feature, res) {
+      var rotation = feature.get('rotation');
+      if (angular.isDefined(rotation)) {
+        headingStyle.getImage().setRotation(rotation);
+        return [headingStyle];
+      }
+      return [geolocationStyle];
+    };
+
     var offlineStyle = new ol.style.Style({
       stroke: new ol.style.Stroke({
         color: [255, 0, 0, 0.9],
@@ -121,6 +137,10 @@
       'transparentCircle': transparentCircle
     };
 
+    var stylesFunction = {
+      'geolocation': geolocationStyleFunction
+    };
+
     this.$get = function() {
       return {
         // Rules for the z-index (useful for a correct selection):
@@ -142,8 +162,8 @@
           return styles[type];
         },
         getStyleFunction: function(type) {
-          return function(feature, resolution) {
-            return styles[feature.get('styleId')];
+          return stylesFunction[type] || function(feature, resolution) {
+            return styles[type];
           };
         },
         // Defines a text stroke (white or black) depending on a text color
