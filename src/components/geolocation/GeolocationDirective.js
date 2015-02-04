@@ -166,9 +166,11 @@
           }
         };
 
+        var currHeading = 0;
         deviceOrientation.on('change:heading', function(event) {
           var heading = deviceOrientation.getHeading();
-          if (Math.abs(heading != view.getRotation()) > 0) {
+          if (heading < currHeading - 0.001 || currHeading + 0.001 < heading) {
+            currHeading = heading;
             headingUpdateThrottled();
           }
         });
