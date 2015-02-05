@@ -21,13 +21,13 @@
       },
       templateUrl: 'components/geolocation/partials/geolocation.html',
       link: function(scope, element, attrs) {
-        var btnElt = element;
 
         if (!('geolocation' in $window.navigator)) {
-          btnElt.addClass('ga-geolocation-error');
+          element.addClass('ga-geolocation-error');
           return;
         }
 
+        var unRegKey;
         // This object with boolean properties defines either:
         // geolocation: if the user has moved the map itself after the
         // first change of position.
@@ -40,18 +40,36 @@
         var map = scope.map;
         var view = map.getView();
         var accuracyFeature = new ol.Feature();
-        var headingFeature = new ol.Feature(new ol.geom.Point([0, 0]));
+        var positionFeature = new ol.Feature(new ol.geom.Point([0, 0]));
         var featuresOverlay = new ol.FeatureOverlay({
-          features: [accuracyFeature, headingFeature],
+          features: [accuracyFeature, positionFeature],
           style: gaStyleFactory.getStyleFunction('geolocation')
         });
         var deviceOrientation = new ol.DeviceOrientation();
         var geolocation = new ol.Geolocation({
+          projection: view.getProjection(),
           trackingOptions: {
             maximumAge: 10000,
             enableHighAccuracy: true,
             timeout: 600000
           }
+        });
+
+        // Scope watchers
+        scope.$watch('tracking', function(tracking) {
+         if (tracking) {
+            userTakesControl.geolocation = false;
+            userTakesControl.rotation = false;
+            featuresOverlay.setMap(map);
+            gaPermalink.updateParams({
+              geolocation: tracking.toString()
+            });
+          } else {
+            featuresOverlay.setMap(null);
+            gaPermalink.deleteParam('geolocation');
+          }
+          geolocation.setTracking(tracking);
+          deviceOrientation.setTracking(tracking);
         });
 
         // Animation
@@ -78,6 +96,7 @@
             var bounce;
             if (first) {
               first = false;
+              var currentAccuracy = geolocation.getAccuracy();
               var extent = [
                 dest[0] - currentAccuracy,
                 dest[1] - currentAccuracy,
@@ -141,7 +160,7 @@
 
         var updatePositionFeature = function() {
           if (geolocation.getPosition()) {
-            headingFeature.getGeometry().setCoordinates(
+            positionFeature.getGeometry().setCoordinates(
                geolocation.getPosition());
           }
         };
@@ -156,7 +175,7 @@
         var updateHeadingFeature = function(forceRotation) {
           var rotation = forceRotation || deviceOrientation.getHeading();
           if (angular.isDefined(rotation)) {
-            headingFeature.set('rotation', rotation);
+            positionFeature.set('rotation', rotation);
           }
         };
 
@@ -185,8 +204,7 @@
 
         // Geolocation control events
         geolocation.on('change:position', function(evt) {
-          btnElt.removeClass('ga-geolocation-error');
-          btnElt.addClass('ga-geolocation-tracking');
+          element.removeClass('ga-geolocation-error');
           locate();
           updatePositionFeature();
           updateAccuracyFeature();
@@ -194,32 +212,15 @@
         });
 
         geolocation.on('change:accuracy', function(evt) {
-          currentAccuracy = geolocation.getAccuracy();
           updateAccuracyFeature();
         });
 
-        geolocation.on('change:tracking', function(evt) {
-          var tracking = geolocation.getTracking();
-          if (tracking) {
-            first = true;
-            userTakesControl.geolocation = false;
-            userTakesControl.rotation = false;
-            featuresOverlay.setMap(map);
-          } else {
-            // stop tracking
-            btnElt.removeClass('ga-geolocation-tracking');
-            featuresOverlay.setMap(null);
-          }
-        });
-
         geolocation.on('error', function() {
-          btnElt.removeClass('ga-geolocation-tracking');
-          btnElt.addClass('ga-geolocation-error');
+          scope.$apply(function() {
+            scope.tracking = false;
+          });
+          element.addClass('ga-geolocation-error');
         });
-
-        // Geolocation control bindings
-        geolocation.bindTo('projection', view);
-
 
         // View events
         var updateUserTakesControl = function(evt) {
@@ -234,63 +235,57 @@
 
 
         // Button events
-        var btnStatus = 0;
-        var tracking = geolocation.getTracking();
-        btnElt.bind('click', function(e) {
+        element.bind('click', function(e) {
           e.preventDefault();
-          //Set 3-state button
-          if (btnStatus < 2) {
+          var tracking;
+
+          // We deactivate unneeded event.
+          if (unRegKey) {
+            ol.Observable.unByKey(unRegKey);
+          }
+
+          // Go to the next button state (3 states)
+          if (btnStatus < maxNumStatus) {
             btnStatus++;
           } else {
             btnStatus = 0;
+          }
+
+          // Apply the new state
+          if (btnStatus == 0) {
             tracking = false;
-            geolocation.setTracking(tracking);
-            deviceOrientation.setTracking(tracking);
-            gaMapUtils.resetMapToNorth(map, view);
-          }
-
-         if (btnStatus == 1) {
+            gaMapUtils.resetMapToNorth(map);
+            element.removeClass('ga-geolocation-northarrow');
+          } else if (btnStatus == 1) {
             tracking = true;
-            geolocation.setTracking(tracking);
-            deviceOrientation.setTracking(tracking);
           } else if (btnStatus == 2) {
-            btnElt.removeClass('ga-geolocation-tracking');
-            btnElt.addClass('ga-geolocation-northarrow');
             tracking = true;
-            geolocation.setTracking(tracking);
-            deviceOrientation.setTracking(tracking);
+            element.addClass('ga-geolocation-northarrow');
+
             // Button is rotated according to map rotation
-            view.on('change:rotation', function(evt) {
-              setButtonRotation(evt.target.getRotation() * 180 / Math.PI);
+            unRegKey = view.on('change:rotation', function(evt) {
+              var rotation = evt.target.getRotation() * 180 / Math.PI;
+              var rotateString = 'rotate(' + rotation + 'deg)';
+              element.css({
+                'transform': rotateString,
+                '-ms-transform': rotateString,
+                '-webkit-transform': rotateString
+              }).toggleClass('ga-rotate-enabled', !(rotation == 0));
             });
           }
 
-          //FIXME. Maybe put in gaMapUtils as well
-          var setButtonRotation = function(rotation) {
-            var rotateString = 'rotate(' + rotation + 'deg)';
-            element.css({
-              'transform': rotateString,
-              '-ms-transform': rotateString,
-              '-webkit-transform': rotateString
-            }).toggleClass('ga-rotate-enabled', !(rotation == 0));
-          };
-
-          if (tracking) {
-            btnElt.addClass('ga-geolocation-tracking');
-          } else {
-            btnElt.removeClass('ga-geolocation-tracking');
-            btnElt.removeClass('ga-geolocation-northarrow');
-          }
-
-          scope.$apply(function() {
-            gaPermalink.updateParams({
-              geolocation: tracking ? 'true' : 'false'
+          // Trigger a digest cycle only if tracking value has changed
+          if (tracking != scope.tracking) {
+            scope.$apply(function() {
+              scope.tracking = tracking;
             });
-          });
+          }
         });
 
-        // Init with permalink
-        geolocation.setTracking(gaPermalink.getParams().geolocation == 'true');
+        // Initialize state of the component
+        scope.tracking = (gaPermalink.getParams().geolocation == 'true');
+        var btnStatus = scope.tracking ? 1 : 0;
+        var maxNumStatus = (ol.has.DEVICE_ORIENTATION) ? 2 : 1;
       }
     };
   });
