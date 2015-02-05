@@ -1066,15 +1066,15 @@
         },
 
         /**
-         * Reset map rotation no North
+         * Reset map rotation to North
          */
-        resetMapToNorth: function(map, view) {
+        resetMapToNorth: function(map) {
           map.beforeRender(ol.animation.rotate({
-            rotation: view.getRotation(),
+            rotation: map.getView().getRotation(),
             duration: 1000,
             easing: ol.easing.easeOut
           }));
-          view.setRotation(0);
+          map.getView().setRotation(0);
         }
       };
     };
