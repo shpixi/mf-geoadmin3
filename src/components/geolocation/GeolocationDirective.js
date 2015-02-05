@@ -146,12 +146,22 @@
             // The map rotate
             } else if (btnStatus == 2 && !userTakesControl.rotation) {
               mapHeadingRendering = true;
+              var currRotation = view.getRotation();
+              var heading = -heading;
+              var diff = heading - currRotation;
+
+              if (diff > Math.PI) {
+                heading -= 2 * Math.PI;
+              } else if (diff < -Math.PI) {
+                currRotation -= 2 * Math.PI;
+              }
+
               map.beforeRender(ol.animation.rotate({
-                rotation: view.getRotation(),
+                rotation: currRotation,
                 duration: 350,
                 easing: ol.easing.linear
               }));
-              map.getView().setRotation(-heading);
+              map.getView().setRotation(heading);
               updateHeadingFeature(0);
               mapHeadingRendering = false;
             }
@@ -284,7 +294,7 @@
 
         // Initialize state of the component
         scope.tracking = (gaPermalink.getParams().geolocation == 'true');
-        var btnStatus = scope.tracking ? 1 : 0;
+        var btnStatus = (scope.tracking) ? 1 : 0;
         var maxNumStatus = (ol.has.DEVICE_ORIENTATION) ? 2 : 1;
       }
     };
