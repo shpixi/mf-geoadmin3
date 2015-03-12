@@ -371,7 +371,8 @@
               var l = gaMapUtils.getMapOverlayForBodId($scope.map,
                                                        res.attrs.layer);
               if (!angular.isDefined(l)) {
-                var olLayer = gaLayers.getOlLayerById(res.attrs.layer);
+                var olLayer = gaLayers.getOlLayerById(res.attrs.layer,
+                    $scope.map);
                 $scope.map.addLayer(olLayer);
               }
               $scope.options.valueSelected(

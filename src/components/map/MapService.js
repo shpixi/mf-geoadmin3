@@ -154,14 +154,6 @@
               this.set('timestamps', val);
             }
           },
-          timestamp: {
-            get: function() {
-              return this.get('timestamp');
-            },
-            set: function(val) {
-              this.set('timestamp', val);
-            }
-          },
           time: {
             get: function() {
               if (this instanceof ol.layer.Layer) {
@@ -668,7 +660,7 @@
   module.provider('gaLayers', function() {
 
     this.$get = function($http, $q, $rootScope, $translate, $window,
-        gaBrowserSniffer, gaDefinePropertiesForLayer, gaMapUtils,
+        $timeout, gaBrowserSniffer, gaDefinePropertiesForLayer, gaMapUtils,
         gaNetworkStatus, gaStorage, gaTileGrid, gaUrlUtils,
         gaStylesFromLiterals) {
 
@@ -757,8 +749,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'temp-class',
@@ -910,8 +902,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'vorhersage-class',
@@ -966,8 +958,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'grundwasser-class',
@@ -1037,8 +1029,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'quant-class',
@@ -1148,8 +1140,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'ws-class',
@@ -1259,8 +1251,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'warning-class',
@@ -1418,8 +1410,8 @@
             type: 'geojson',
             timeEnabled: false,
             queryable: false,
-            timestamp: '2014-09-19T18:15',
             timestamps: [],
+            updateDelay: 6000,
             style: {
               type: 'unique',
               property: 'warning-class',
@@ -1611,7 +1603,7 @@
         /**
          * Return an ol.layer.Layer object for a layer id.
          */
-        this.getOlLayerById = function(bodId) {
+        this.getOlLayerById = function(bodId, map) {
           var layer = layers[bodId];
           var olLayer;
           var timestamp = this.getLayerTimestampFromYear(bodId, currentTime);
@@ -1729,37 +1721,59 @@
               layers: subLayers
             });
           } else if (layer.type == 'geojson') {
-            var olSource = new ol.source.GeoJSON({
-              url: layer.geojsonUrl
-            });
+            var olSource = new ol.source.GeoJSON();
             var olStyleForVector = gaStylesFromLiterals(layer.style);
             olLayer = new ol.layer.Vector({
               source: olSource,
               style: function(feature) {
-                feature.set('highlightable', true);
-                var properties = feature.getProperties();
-                var key = olStyleForVector.key;
-                var property = properties[key];
-                var geom = feature.getGeometry();
-                if (geom instanceof ol.geom.Point ||
-                    geom instanceof ol.geom.MultiPoint) {
-                  return [olStyleForVector.get('point', property)];
-                } else if (geom instanceof ol.geom.LineString ||
-                    geom instanceof ol.geom.MultiLineString) {
-                  return [olStyleForVector.get('line', property)];
-                } else if (geom instanceof ol.geom.Polygon ||
-                    geom instanceof ol.geom.MultiPolygon) {
-                  return [olStyleForVector.get('polygon', property)];
-                }
+                return [olStyleForVector.getFeatureStyle(feature)];
               }
             });
+            var key, timer;
+            var geojsonFormat = new ol.format.GeoJSON();
+            var setLayerSource = function() {
+              $http.get(layer.geojsonUrl, {
+                cache: false
+              }).success(function(data) {
+                olSource.clear();
+                olSource.addFeatures(
+                  geojsonFormat.readFeatures(data)
+                );
+                if (data.timestamp) {
+                  $rootScope.$broadcast('gaNewLayerTimestamp', data.timestamp);
+                }
+                if (layer.updateDelay) {
+                  // Before setting a new timer, make sure the previous one
+                  // has been canceled
+                  if (!timer) {
+                    $timeout.cancel(timer);
+                  }
+                  if (!key) {
+                    ol.Observable.unByKey(key);
+                    key = null;
+                  }
+                  timer = $timeout(function() {
+                    setLayerSource();
+                  }, layer.updateDelay);
+                  if (!key) {
+                    key = map.getLayers().on('change:length', function(evt) {
+                      if (!gaMapUtils.getMapLayerForBodId(map, bodId)) {
+                        $timeout.cancel(timer);
+                        ol.Observable.unByKey(key);
+                        key = null;
+                      }
+                    });
+                  }
+                }
+              });
+            };
+            setLayerSource();
           }
           if (angular.isDefined(olLayer)) {
             gaDefinePropertiesForLayer(olLayer);
             olLayer.bodId = bodId;
             olLayer.label = layer.label;
             olLayer.type = layer.type;
-            olLayer.timestamp = layer.timestamp;
             olLayer.timeEnabled = layer.timeEnabled;
             olLayer.timestamps = layer.timestamps;
           }
@@ -2263,7 +2277,7 @@
               // except for timeEnabled layers
               var isOverlay = gaMapUtils.getMapOverlayForBodId(map, layerSpec);
               if (bodLayer.timeEnabled || !isOverlay) {
-                layer = gaLayers.getOlLayerById(layerSpec);
+                layer = gaLayers.getOlLayerById(layerSpec, map);
 
                 // If the layer is already on the map when need to increment
                 // the id.
@@ -2535,7 +2549,7 @@
                 Array.prototype.push.apply(featureIdsByBodId[bodId],
                     featureIds);
                 if (!gaMapUtils.getMapOverlayForBodId(map, bodId)) {
-                  map.addLayer(gaLayers.getOlLayerById(bodId));
+                  map.addLayer(gaLayers.getOlLayerById(bodId, map));
                 }
               }
             }
@@ -2605,7 +2619,7 @@
           var olPreviewLayer = olPreviewLayers[bodId];
 
           if (!olPreviewLayer) {
-            olPreviewLayer = gaLayers.getOlLayerById(bodId);
+            olPreviewLayer = gaLayers.getOlLayerById(bodId, map);
           }
 
           // Something failed, layer doesn't exist

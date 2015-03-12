@@ -116,12 +116,31 @@
           }
         }
 
-        this.get = function(geomType, value) {
+        this.getFeatureStyle = function(feature) {
+          var getGeomTypeFromGeometry = function(olGeometry) {
+            if (olGeometry instanceof ol.geom.Point ||
+                olGeometry instanceof ol.geom.MultiPoint) {
+              return 'point';
+            } else if (olGeometry instanceof ol.geom.LineString ||
+                olGeometry instanceof ol.geom.MultiLineString) {
+              return 'line';
+            } else if (olGeometry instanceof ol.geom.Polygon ||
+                olGeometry instanceof ol.geom.MultiPolygon) {
+              return 'polygon';
+            }
+          };
+
           if (this.type === 'single') {
             return this.singleStyle;
           } else if (this.type === 'unique') {
+            var properties = feature.getProperties();
+            var value = properties[this.key];
+            var geomType = getGeomTypeFromGeometry(
+              feature.getGeometry()
+            );
             return this.styles[geomType][value];
           } else if (this.type === 'range') {
+            // Not implemented
             return;
           }
         };

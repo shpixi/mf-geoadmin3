@@ -102,7 +102,7 @@
                 selectedLayers = gaLayers.getSelectedLayers();
                 //Add in reverse order
                 for (i = selectedLayers.length - 1; i >= 0; i--) {
-                  olLayer = gaLayers.getOlLayerById(selectedLayers[i]);
+                  olLayer = gaLayers.getOlLayerById(selectedLayers[i], map);
                   if (angular.isDefined(olLayer)) {
                     //If it's already in the map, remove it and
                     //add it to assure it's on top.

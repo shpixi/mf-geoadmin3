@@ -339,7 +339,7 @@
               var bodId = bodLayer.parentLayerId || bodLayer.bodId;
               var olLayer = gaMapUtils.getMapLayerForBodId(map, bodId);
               if (!olLayer) {
-                olLayer = gaLayers.getOlLayerById(bodId);
+                olLayer = gaLayers.getOlLayerById(bodId, map);
                 if (olLayer) {
                   olLayer.background = (bg[i] === 'true');
                   map.addLayer(olLayer);

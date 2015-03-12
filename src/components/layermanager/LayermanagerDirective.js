@@ -214,7 +214,7 @@
 
         var dupId = 0;
         scope.duplicateLayer = function(evt, layer) {
-          var dupLayer = gaLayers.getOlLayerById(layer.bodId);
+          var dupLayer = gaLayers.getOlLayerById(layer.bodId, map);
           dupLayer.time = layer.time;
           dupLayer.id = layer.id + '_' + dupId++;
           var index = scope.layers.indexOf(layer);

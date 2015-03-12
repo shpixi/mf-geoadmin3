@@ -3,7 +3,7 @@
 
   var module = angular.module('ga_timestamp_control_directive', []);
 
-  module.directive('gaTimestampControl', function() {
+  module.directive('gaTimestampControl', function($rootScope) {
     return {
       restrict: 'A',
       scope: {
@@ -12,19 +12,19 @@
       templateUrl: 'components/timestampcontrol/partials/timestampcontrol.html',
       link: function(scope, element) {
         scope.layers = scope.map.getLayers().getArray();
-        scope.$watchCollection('layers',
-            function(layers) {
-          var timestamps = [];
+        scope.$watchCollection('layers', function(layers) {
+          var hasGeojsonLayers = false;
           angular.forEach(layers, function(layer) {
-            // Alterantively get the timestamp from the source
-            // vectorSource.on('change', function(event) { ...
-            // vectorSource.getState()
-            var timestamp = layer.get('timestamp');
-            if (layer instanceof ol.layer.Vector && timestamp) {
-              timestamps.push(timestamp);
+            if (layer.get('type') == 'geojson') {
+              hasGeojsonLayers = true;
             }
-            element.find('.ga-timestamp-control').html(timestamps.join(', '));
           });
+          if (!hasGeojsonLayers) {
+            element.find('.ga-timestamp-control').html('');
+          }
+        });
+        $rootScope.$on('gaNewLayerTimestamp', function(e, timestamp) {
+          element.find('.ga-timestamp-control').html(timestamp);
         });
       }
     };

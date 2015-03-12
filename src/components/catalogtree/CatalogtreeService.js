@@ -26,7 +26,7 @@
          */
         addLayer: function(map, item) {
           if (angular.isDefined(gaLayers.getLayer(item.layerBodId))) {
-            var layer = gaLayers.getOlLayerById(item.layerBodId);
+            var layer = gaLayers.getOlLayerById(item.layerBodId, map);
             if (angular.isDefined(layer)) {
               map.addLayer(layer);
             }
