@@ -732,826 +732,103 @@
           } else {
             basePath = origin;
           }
-          layers['ch.bafu.hydroweb-messstationen_temperatur'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-messstationen_temperatur.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-messstationen_temperatur',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'temp-class',
-              values: [
-                {
-                  type: 'point',
-                  value: 0,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 1,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#0069A6'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 2,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#009FCF'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 3,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#4EBFDD'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 4,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#98D4E1'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 5,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#ECAD87'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 6,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#E27F74'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 7,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#C64E53'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 8,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#9D3543'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-messstationen_vorhersage'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-messstationen_vorhersage.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-messstationen_vorhersage',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'vorhersage-class',
-              values: [
-                {
-                  type: 'point',
-                  value: 0,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 1,
-                  vectorOptions: {
-                    type: 'triangle',
-                    radius: 12,
-                    rotation: Math.PI / 3,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-messstationen_grundwasser'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-messstationen_grundwasser.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-messstationen_grundwasser',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'grundwasser-class',
-              values: [
-                {
-                  type: 'point',
-                  value: 1,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 0,
-                  vectorOptions: {
-                    type: 'triangle',
-                    radius: 12,
-                    rotation: Math.PI / 3,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 2,
-                  vectorOptions: {
-                    type: 'square',
-                    radius: 10,
-                    rotation: Math.PI / 4,
-                    fill: {
-                      color: '#808080'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-messstationen_zustand'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-messstationen_zustand.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-messstationen_zustand',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'quant-class',
-              values: [
-                {
-                  type: 'point',
-                  value: 0,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#EEEEEE'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 1,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#996633'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 2,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#D48A45'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 3,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#EFD7C1'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 4,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#668FBC'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 5,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#1A478B'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-messstationen_gefahren'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-messstationen_gefahren.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-messstationen_gefahren',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'ws-class',
-              values: [
-                {
-                  type: 'point',
-                  value: 0,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#CCFF66'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 1,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#00ff00'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 2,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#FFFF00'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 3,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#FF9900'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 4,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#FF0000'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'point',
-                  value: 5,
-                  vectorOptions: {
-                    type: 'circle',
-                    radius: 8,
-                    fill: {
-                      color: '#800000'
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-warnkarte_national'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-warnkarte_national.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-warnkarte_national',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'warning-class',
-              values: [
-                {
-                  type: 'polygon',
-                  value: 0,
-                  vectorOptions: {
-                    fill: {
-                      color: '#CCFF66',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 1,
-                  vectorOptions: {
-                    fill: {
-                      color: '#00ff00',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 2,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FFFF00',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 3,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FF9900',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 4,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FF0000',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 5,
-                  vectorOptions: {
-                    fill: {
-                      color: '#800000',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 0,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#CCFF66',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 1,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#00ff00',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 2,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FFFF00',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 3,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FF9900',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 4,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FF0000',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 5,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#800000',
-                      width: 3
-                    }
-                  }
-                }
-              ]
-            }
-          };
-          layers['ch.bafu.hydroweb-warnkarte_regional'] = {
-            geojsonUrl: basePath + '/src/components/map/temp/' +
-                'ch.bafu.hydroweb-warnkarte_regional.json',
-            opacity: 1,
-            attribution: 'OFEV',
-            background: false,
-            seachable: false,
-            selectbyrectangle: false,
-            attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
-            topics: 'dev',
-            label: 'ch.bafu.hydroweb-warnkarte_regional',
-            highlightable: false,
-            chargeable: false,
-            hasLegend: false,
-            type: 'geojson',
-            timeEnabled: false,
-            queryable: false,
-            timestamps: [],
-            updateDelay: 6000,
-            style: {
-              type: 'unique',
-              property: 'warning-class',
-              values: [
-                {
-                  type: 'polygon',
-                  value: 0,
-                  vectorOptions: {
-                    fill: {
-                      color: '#CCFF66',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 1,
-                  vectorOptions: {
-                    fill: {
-                      color: '#00ff00',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 2,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FFFF00',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 3,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FF9900',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 4,
-                  vectorOptions: {
-                    fill: {
-                      color: '#FF0000',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'polygon',
-                  value: 5,
-                  vectorOptions: {
-                    fill: {
-                      color: '#800000',
-                      opacity: 0.8
-                    },
-                    stroke: {
-                      color: '#FFFFFF',
-                      width: 1
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 0,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#CCFF66',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 1,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#00ff00',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 2,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FFFF00',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 3,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FF9900',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 4,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#FF0000',
-                      width: 3
-                    }
-                  }
-                }, {
-                  type: 'line',
-                  value: 5,
-                  vectorOptions: {
-                    stroke: {
-                      color: '#800000',
-                      width: 3
-                    }
-                  }
-                }
-              ]
-            }
-          };
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-messstationen_temperatur')) {
+            angular.extend(layers['ch.bafu' +
+                '.hydroweb-messstationen_temperatur'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-messstationen_temperatur.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-messstationen_vorhersage')) {
+            angular.extend(layers['ch.bafu' +
+                '.hydroweb-messstationen_vorhersage'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-messstationen_vorhersage.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargebale: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-messstationen_grundwasser')) {
+            angular.extend(layers['ch.bafu' +
+                '.hydroweb-messstationen_grundwasser'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-messstationen_grundwasser.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-messstationen_zustand')) {
+            angular.extend(layers['ch.bafu' +
+                '.hydroweb-messstationen_zustand'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-messstationen_zustand.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              timestamps: [],
+              pdateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-messstationen_gefahren')) {
+            angular.extend(layers['ch.bafu' +
+                '.hydroweb-messstationen_gefahren'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-messstationen_gefahren.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              queryable: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-warnkarte_national')) {
+            angular.extend(layers['ch.bafu.hydroweb-warnkarte_national'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-warnkarte_national.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
+          if (layers.hasOwnProperty('ch.bafu' +
+              '.hydroweb-warnkarte_regional')) {
+            angular.extend(layers['ch.bafu.hydroweb-warnkarte_regional'], {
+              geojsonUrl: basePath + '/src/components/map/temp/' +
+                  'ch.bafu.hydroweb-warnkarte_regional.json',
+              attribution: 'OFEV',
+              attributionUrl: 'http://www.bafu.admin.ch/index.html?lang=fr',
+              topics: 'dev',
+              chargeable: false,
+              timestamps: [],
+              updateDelay: 300000
+            });
+          }
           return layers;
         };
 
@@ -1722,12 +999,8 @@
             });
           } else if (layer.type == 'geojson') {
             var olSource = new ol.source.GeoJSON();
-            var olStyleForVector = gaStylesFromLiterals(layer.style);
             olLayer = new ol.layer.Vector({
-              source: olSource,
-              style: function(feature) {
-                return [olStyleForVector.getFeatureStyle(feature)];
-              }
+              source: olSource
             });
             var key, timer;
             var geojsonFormat = new ol.format.GeoJSON();
@@ -1767,7 +1040,16 @@
                 }
               });
             };
+            var setLayerStyle = function() {
+              $http.get(layer.styleUrl).success(function(data) {
+                var olStyleForVector = gaStylesFromLiterals(data);
+                olLayer.setStyle(function(feature) {
+                  return [olStyleForVector.getFeatureStyle(feature)];
+                });
+              });
+            };
             setLayerSource();
+            setLayerStyle();
           }
           if (angular.isDefined(olLayer)) {
             gaDefinePropertiesForLayer(olLayer);
