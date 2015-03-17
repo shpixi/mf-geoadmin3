@@ -57,7 +57,7 @@
       function getOlStyleFromLiterals(value) {
         var olStyles = {};
         var style = value.vectorOptions;
-        var geomType = value.type;
+        var geomType = value.geomType;
         if (geomType === 'point') {
             style = {
               image: style
@@ -105,7 +105,7 @@
           for (var i = 0; i < values.length; i++) {
             var value = values[i];
             olStyle = getOlStyleFromLiterals(value);
-            this.styles[value.type][value.value] = olStyle;
+            this.styles[value.geomType][value.value] = olStyle;
           }
         } else if (this.type === 'range') {
           var ranges = properties.ranges;
