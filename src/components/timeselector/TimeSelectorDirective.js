@@ -152,12 +152,59 @@
         },
         controller: 'GaTimeSelectorDirectiveController',
         link: function(scope, elt, attrs, controller) {
+          var promise;
+
+          // Copy from slider
+          var nextValue = function(value, list) {
+            if (list && list.length > 0) {
+              for (var i = list.length - 1; i >= 0; i--) {
+                var elt = list[i];
+                if (elt.value === value) {
+                  value = magnetize(value, list.slice(0, i));
+
+                  // if we have reached the end of the list restart from the
+                  // beginning
+                  if (value == elt.value && list.length > 1) {
+                    value = list[list.length - 1].value;
+                  }
+                  break;
+                }
+              }
+            }
+            return value;
+          };
+
+          var applyNextYear = function() {
+           var nextYear = nextValue(scope.currentYear, scope.availableYears);
+           if (nextYear != scope.currentYear) {
+             scope.currentYear = nextYear;
+             promise = $timeout(applyNextYear, 2000);
+           } else {
+             scope.stop();
+           }
+          };
+
+          scope.play = function() {
+            scope.isPlaying = true;
+            applyNextYear();
+          };
+
+          scope.stop = function() {
+            scope.isPlaying = false;
+            if (promise) {
+              $timeout.cancel(promise);
+              promise = undefined;
+            }
+          };
 
           // Activate/deactivate manually the time selector
           scope.$on('gaTimeSelectorToggle', function(evt, active, year) {
             scope.isActive = active;
             if (year) {
               scope.currentYear = year;
+            }
+            if (!scope.isActive) {
+              scope.stop();
             }
           });
 
