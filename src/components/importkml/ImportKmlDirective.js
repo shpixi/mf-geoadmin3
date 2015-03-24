@@ -211,11 +211,6 @@
               }
             });
 
-            // Submit the current form displayed for validation
-            elt.find('.ga-import-kml-validate').click(function() {
-              var form = $(elt).find('.tab-pane.active form');
-              form.submit();
-            });
 
             // Use a local KML file only available on browser
             // more recent than ie9

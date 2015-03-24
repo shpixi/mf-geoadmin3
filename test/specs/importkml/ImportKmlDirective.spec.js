@@ -30,12 +30,8 @@ describe('ga_importkml__directive', function() {
     loadKmlBt = element.find('button[type=button][ng-click="loadKML()"]');
     localFileTab = $(tabContents[0]);
     urlTab = $(tabContents[1]);
-    formLocalFile = localFileTab.find('form[method=POST][target=_BLANK][action="' +
-        $rootScope.options.validationServiceUrl +
-        '"][enctype="multipart/form-data"]');
-    formUrl = urlTab.find('form[method=POST][target=_BLANK][action="' +
-        $rootScope.options.validationServiceUrl +
-        '"]');
+    formLocalFile = localFileTab.find('form');
+    formUrl = urlTab.find('form');
     inputFile = formLocalFile.find('input[type=file][name=file]');
     inputFileUrl = formUrl.find('input[type=url][name=url][ng-model=fileUrl]');
   }));
@@ -47,12 +43,10 @@ describe('ga_importkml__directive', function() {
     expect(tabContents.length).to.be(2);
     expect(formLocalFile.length).to.be(1);
     expect(inputFile.length).to.be(1); 
-    expect(formLocalFile.find('input[type=hidden][name=type][value=direct-input]').length).to.be(1); 
     expect(formLocalFile.find('input[type=text][readonly]').length).to.be(1); 
     expect(formLocalFile.find('button').length).to.be(1);
     expect(formUrl.length).to.be(1);
     expect(inputFileUrl.length).to.be(1); 
-    expect(formUrl.find('input[type=hidden][name=type][value=uri]').length).to.be(1); 
   });
 
   describe('load KML from an URL', function() {
