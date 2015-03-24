@@ -31,6 +31,11 @@
             source: source,
             visible: true
           });
+          var overlay = new ol.Overlay({
+            offset: [0, -15],
+            positioning: 'bottom-center'
+          });
+          var props = $('.ga-draw-modify');
           gaDefinePropertiesForLayer(layer);
           layer.displayInLayerManager = false;
           scope.layers = scope.map.getLayers().getArray();
@@ -43,13 +48,33 @@
           // Add select interaction
           var select = new ol.interaction.Select({
             layers: [layer],
-            style: scope.options.selectStyleFunction
+            style: scope.options.selectStyleFunction,
+            multi: false
           });
+          var propsToggle = function(feature) {
+            if (select.getFeatures().getLength() == 1) {
+              if (!overlay.getElement()) {
+                overlay.setElement(props[0]);
+              }
+              props.show();
+              var coord, geom = feature.getGeometry();
+              if (geom instanceof ol.geom.Polygon) {
+                coord = geom.getInteriorPoint().getCoordinates();
+              } else {
+                coord = geom.getLastCoordinate();
+              }
+              overlay.setPosition(coord);
+            } else {
+              props.hide();
+              overlay.setPosition(undefined);
+            }
+          };
           select.getFeatures().on('add', function(evt) {
             // Apply the select style
             var styles = scope.options.selectStyleFunction(evt.element);
             evt.element.setStyle(styles);
             updateUseStyles(evt);
+            propsToggle(evt.element);
           });
           select.getFeatures().on('remove', function(evt) {
             // Remove the select style
@@ -57,6 +82,7 @@
             styles.pop();
             evt.element.setStyle(styles);
             updateUseStyles(evt);
+            propsToggle();
           });
           select.setActive(false);
           map.addInteraction(select);
@@ -119,6 +145,7 @@
             lastActiveTool = tool;
             setFocus();
           };
+          map.addOverlay(overlay);
 
           // Set the draw interaction with the good geometry
           var activateDrawInteraction = function(type) {
@@ -131,13 +158,21 @@
               source: source,
               style: scope.options.drawStyleFunction
             });
+            overlay.setPosition(undefined);
 
+            var deregister2 = draw.on('drawstart', function() {
+              deactivateSelectInteraction();
+              deactivateModifyInteraction();
+            });
             deregister = draw.on('drawend', function(evt) {
               // Set the definitve style of the feature
               var styles = scope.options.styleFunction(evt.feature);
               evt.feature.setStyle(styles);
               scope.$apply();
-            });
+              select.setActive(true);
+              modify.setActive(true);
+              select.getFeatures().push(evt.feature);
+           });
 
             map.addInteraction(draw);
           };
