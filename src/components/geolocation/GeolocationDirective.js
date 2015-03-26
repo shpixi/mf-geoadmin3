@@ -197,6 +197,49 @@
 
         deviceOrientation.on('change:heading', function(event) {
           var heading = deviceOrientation.getHeading();
+          var test1 = heading;
+          var compassdir;
+          /*window.addEventListener('deviceorientation', function(eventData) {
+          compassdir = event.alpha;
+          var test2 = compassdir;
+          });*/
+
+
+          //var FULLTILT;
+
+          // Obtain a new *world-oriented* Full Tilt JS DeviceOrientation Promise
+          var promise = FULLTILT.getDeviceOrientation({ 'type': 'world' });
+
+          // Wait for Promise result
+          promise.then(function(deviceOrientation) { // Device Orientation Events are supported
+
+            // Register a callback to run every time a new 
+            // deviceorientation event is fired by the browser.
+            deviceOrientation.listen(function() {
+
+              // Get the current *screen-adjusted* device orientation angles
+              var currentOrientation = deviceOrientation.getScreenAdjustedEuler();
+
+              // Calculate the current compass heading that the user is 'looking at' (in degrees)
+              var compassHeading = 360 - currentOrientation.alpha;
+
+              // Do something with `compassHeading` here...
+              compassdir = compassHeading;
+              $('#headingTest').text(test1 + ' | ' + 'compassdir floored: ' + compassdir.toFixed(2));
+
+            });
+
+          }).catch(function(errorMessage) { // Device Orientation Events are not supported
+
+            console.log(errorMessage);
+
+            // Implement some fallback controls here...
+
+          });
+
+          
+          var test2 = compassdir;
+          //$('#headingTest').text(test1 + ' | ' + test2);
 
           // The icon rotate
           if (btnStatus == 1 ||

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html ng-app="ga" ng-controller="GaMainController"
+itemscope itemtype="http://schema.org/WebApplication"
+>
+  <head>
+    <!--![if !HTML5]>
+    <meta http-equiv="X-UA-Compatible" content="IE=9,IE=10,IE=edge,chrome=1"/>
+    <![endif]-->
+    <title>geo.admin.ch</title>
+    <meta charset="utf-8"/>
+    <!-- verification for google webmaster tools -->
+    <meta name="google-site-verification" content="ZAmW5d4_2X8xb5Yy_nYQbnTSe1EIeSqyhox9aXXwrws"/>
+    <!-- verification for bing webmaster tools -->
+    <meta name="msvalidate.01" content="58E0E0B7DD4AB3D30EE315C695950E68"/>
+    <!-- verification for yandex webmaster tools -->
+    <meta name='yandex-verification' content='4795f82c05657028'/>
+    <!-- this tag enables the search bot forwarding to _escaped_fragment_= urls for SEO. It can be used instead of the ugly hasbang -->
+    <meta name="fragment" content="!"/>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="msapplication-TileImage" content="img/touch-icon-bund-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#ffffff"/>
+    <link rel="dns-prefetch" href="//mf-chsdi3.dev.bgdi.ch"/>
+
+    <link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-bund-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-bund-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-bund-152x152.png"/>
+
+    <!-- Description is translated 'by hand' in the MainController -->
+    <meta name="description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
+    <meta name="keywords" content="maps Switzerland, map viewer, Confederation, geodata, public platform, geographical information, geoportal, orthophotos, geolocation, geoinformation, Geodaten, Geoinformation, Bund, Plattform, Karte, Kartendienst, Kartenviewer"/>
+    <meta name="news_keywords" content="Maps of Switzerland"/>
+
+    <!-- Open Graph metas SMO -->
+    <meta property="og:site_name" content="geo.admin.ch"/>
+    <meta property="og:title" content="Swiss Geoportal"/>
+    <meta property="og:description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
+    <meta property="og:type" content="WebApplication"/>
+    <meta property="og:url" content="http://map.geo.admin.ch"/>
+    <meta property="og:image" content="img/logo_geoportal.png"/>
+
+    <!-- Twitter Card Infos -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@swiss_geoportal"/>
+    <meta name="twitter:creator" content="@swiss_geoportal"/>
+    <meta name="twitter:title" content="geo.admin.ch"/>
+    <meta name="twitter:description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
+    <meta name="twitter:image" content="img/logo_geoportal.png"/>
+    <meta name="twitter:url" content="http://map.geo.admin.ch"/>
+
+    <!-- Facebook Specific fb:admins and fb.appid -->
+
+    <!-- Google+ Specific Tags -->
+    <meta itemprop="name" content="geo.admin.ch"/>
+    <meta itemprop="description" content="geo.admin.ch ist die Geoinformationsplattform der Schweizerischen Eidgenossenschaft. // geo.admin.ch est la plateforme de géoinformation de la Confédération suisse."/>
+    <meta itemprop="image" content="img/logo_geoportal.png"/>
+
+    <script>
+      (function(){
+        var w = window, l = w.location, n = w.navigator, pathname, p = 'embed',
+          m = l.search.match(/(?:mobile=(true|false))/);
+
+        if (!l.origin) { l.origin = l.protocol + "//" + l.hostname } // IE fix
+
+        // avoid loops
+        m = (m) ? m[1] : m;
+        if ((p=='desktop' && m=='false') || (p=='mobile' && m=='true')) {
+          return;
+        }
+
+        var redirectToMobile = function() {
+          pathname = !/(index|embed)\.html$/.test(l.pathname) ?
+            l.pathname + 'mobile.html' : l.pathname.replace(/(index|embed)\.html$/, 'mobile.html');
+          l.href = l.origin + pathname + l.search;
+        }
+        var redirectToDesktop = function() {
+          l.href = l.origin + l.pathname.replace(/(mobile|embed)\.html$/, 'index.html') + l.search;
+        }
+
+        var onMobile = ((('ontouchstart' in w) ||
+            (('maxTouchPoints' in n) && n.maxTouchPoints > 1) ||
+            (('msMaxTouchPoints' in n) && n.msMaxTouchPoints > 1)) &&
+            (screen.width<=768 || screen.height<=768));
+        if (m=='false' || (!onMobile && p=='mobile') ) {
+          redirectToDesktop();
+        } else if (m=='true' || (onMobile && p=='desktop') ) {
+          redirectToMobile();
+        }
+      })();
+    </script>
+    
+    <link href="style/app.css" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+  </head>
+
+  <body class="{{topicId}}" 
+        ng-class="{
+          'search-focused': globals.searchFocused,
+          'touch': globals.touch, 
+          'webkit': globals.webkit, 
+          'no-webkit': !globals.webkit, 
+          'offline': globals.offline,
+          'online': !globals.offline,
+          'embed': globals.embed
+        }">
+    <!-- The below conditional is ignored by >= IE10 and all other browsers -->
+    <!--![if IE]>
+      <script>
+       (function(){
+       var msgDocumentMode = "";
+       var msgCompatibilityView = "";
+       if (document.documentMode < 9) {
+          msgDocumentMode = "DE: Dokumentmodus von Internet Explorer muss 9 oder gr\366sser sein.\nFR: Le mode de document d'Internet Explorer doit \352tre plus grand ou \351gal \340 9.\nIT: Modalit\340 documento dev'essere maggiore o uguale a 9.\nEN: The document mode of your navigator should be 9 or higher.\n\n";
+       }
+       if (navigator.userAgent.indexOf("MSIE 7.0") > 0 || navigator.userAgent.indexOf("MSIE 8.0") > 0) {
+          msgCompatibilityView = "DE: Sie verwenden einen veralteten Browser. Um die Website in vollem Umfang nutzen zu k\366nnnen, empfehlen wir Ihnen in diesem Falle, einen neueren Browser zu installieren: www.browsehappy.com/?locale=de\nFR: Vous utilisez un navigateur trop ancien. Pour utiliser toute les possibilit\351s de ce site web, nous vous conseillons d'installer un navigateur plus r\351cent: www.browsehappy.com/?locale=fr\nIT:Si sta utilizzando un browser non completamente supportato. Per sfruttare appieno le funzionalit\340 di questo sito web, consigliamo di installare un browser pi\371 recente: www.browsehappy.com/?locale=it\nEN: You are using an outdated browser. Please upgrade in this case your browser to improve your experience: browsehappy.com/?locale=en\n\n";
+       }
+       if (msgDocumentMode.length > 0 || msgCompatibilityView.length > 0) {
+         alert(msgDocumentMode + msgCompatibilityView + "DE: \334ber die 'F12' Taste k\366nnen Sie die Einstellungen auf 'Browsermodus:IE9' und 'Dokumentmodus:IE-9-Standards' setzen.\nFR: En appuyant sur F12, vous pouvez modifier l'affichage de compatibilit\351 en choisissant le mode navigateur IE9 et le mode de document normes IE9.\nIT: Premere F12 per modificare la Modalit\340 browser scegliendo poi 'Modalit\340 browser IE9' e 'Modalit\340 documento: IE9'.\nEN: Click on F12 and change the compatibility view mode and the document mode to 'Browser Mode:IE9' and 'Document Mode: IE9 standards'.");
+       }
+       })();
+      </script>
+      <script src="lib/IE9Fixes.js"></script>
+      <script>
+        IE9Fix.call(this);
+      </script>
+    <![endif]-->
+    <div ng-controller="GaSeoController">
+      <div ga-seo ga-seo-options="options" ga-seo-map="map"></div>
+    </div>
+    <div style="display: none;">
+      <div class="topic-container" ng-controller="GaTopicController">
+        <div ga-topic ga-topic-ui="select" ga-topic-options="options" ga-topic-map="map"></div>
+      </div>
+      <div ng-controller="GaTranslationController">
+        <div ga-translation-selector ga-translation-selector-options="options"></div>
+      </div>
+      <div ga-background-layer-selector ga-background-layer-selector-map="map"></div>
+    </div>
+    <div id="loader"></div>
+    <div tabindex="1" ga-map ga-map-map="map">
+      <div ng-cloak translate-cloak id="copyrightsdata">
+        <div>
+          <span >&copy;&nbsp;</span>
+          <span translate>data</span>
+        </div>
+        <div ga-attribution ga-attribution-map="map"></div>
+      </div>
+      <a ng-cloak translate-cloak id="bigMapLink" target="_blank" ng-href="{{deviceSwitcherHref}}">
+        <div>
+          <img src="img/logo.ch.small.png" alt="small_logo" draggable="false"/>
+          <span translate-values="{{host}}" translate>view_on_mapgeoadminch</span>
+        </div>
+        <div ng-show="time">{{time}}</div>
+      </a>
+      <div ga-scale-line ga-scale-line-map="map"></div>
+
+      <div id='buttonGroup'>
+        <div id="zoomButtons"></div>
+        <div ga-rotate ga-rotate-map="map"></div>
+      </div>
+      <div ga-swipe 
+           ga-swipe-map="map" 
+           ga-swipe-active="globals.isSwipeActive"
+           style="display:none;">
+      </div>
+    </div> <!-- #map -->
+
+    <div ng-controller="GaTimeSelectorController">
+      <div ga-time-selector ga-time-selector-map="map"
+           ga-time-selector-options="options">
+      </div>
+    </div>
+    <div ng-controller="GaTooltipController">
+      <div ga-tooltip 
+           ga-tooltip-map="map" 
+           ga-tooltip-options="options"
+           ga-tooltip-active="!globals.isMeasureActive && !globals.isDrawActive"></div>
+    </div>
+
+    <!-- in source, we need to load it here because IE9 ignores it in
+         the comments for reasons unknown to me. In prod, it's only
+         loaded in IE9 -->
+    <script src="lib/IE9Fixes.js"></script>
+    <script>
+      //This call only affects browser <= IE9
+      IE9Fix.call(this);
+    </script>
+    <script src="lib/jquery-2.0.3.js"></script>
+    <script src="lib/jQuery.XDomainRequest.js"></script>
+    <script src="lib/angular-1.3.5.js"></script>
+    <script src="lib/angular-translate-2.4.2.js"></script>
+    <script src="lib/angular-translate-loader-static-files-2.4.2.js"></script>
+    <script src="lib/d3-3.3.1.js"></script>
+    <script src="lib/bootstrap-3.3.1.js"></script>
+    <script src="lib/typeahead-0.9.3.js"></script>
+    <script src="lib/proj4js-compressed.js"></script>
+    <script src="lib/EPSG21781.js"></script>
+    <script src="lib/EPSG2056.js"></script>
+    <script src="lib/EPSG32631.js"></script>
+    <script src="lib/EPSG32632.js"></script>
+    <script src="lib/fastclick.js"></script>
+    <script src="lib/localforage.js"></script>
+    <script src="lib/filesaver.js"></script>
+    <script src="lib/moment-with-customlocales.js"></script>
+
+
+
+    <!-- Use Closure to load the application scripts -->
+    <script>
+      window.CLOSURE_NO_DEPS = true;
+    </script>
+
+    <!-- ol-debug.js includes Closure's base.js code, so we don't
+         need to load base.js ourselves. We keep Closure's base.js file
+         around in case we need to test with ol.js or ol-simple.js. -->
+    <script src="lib/ol-debug.js"></script>
+    <!--<script src="lib/closure/base.js"></script>-->
+    <script src="deps.js"></script>
+    <script>
+      goog.require('ga');
+    </script>
+
+    <script>
+      window.addEventListener('load', function() {
+        if (window.name !== "embed" && window.location == window.parent.location) {
+          document.body.innerHTML = "The map.geo.admin.ch embed page must be used in an iframe."
+        }
+      }, false);
+    </script>
+
+    <script>
+      (function() {
+        var module = angular.module('ga');
+        var cacheAdd = '' != '' ? '/' + '' : '';
+        var pathname = location.pathname.replace(/(index|mobile|embed)\.html$/g, '');
+
+        module.constant('gaGlobalOptions', {
+          mapUrl : location.origin + '/ltkan',
+          apiUrl : location.protocol + '//mf-chsdi3.dev.bgdi.ch',
+          cachedApiUrl: location.protocol + '//mf-chsdi3.dev.bgdi.ch' + cacheAdd,
+          resourceUrl: location.origin + pathname + '',
+          ogcproxyUrl : location.protocol + '//mf-chsdi3.dev.bgdi.ch' + '/ogcproxy?url=',
+          whitelist: [
+            'http://www.kmlvalidator.org/validate.htm'
+          ]
+        });
+
+        module.config(function($translateProvider, gaGlobalOptions) {
+          $translateProvider.useStaticFilesLoader({
+            prefix: 'locales/',
+            suffix: '.json'
+          });
+          $translateProvider.cloakClassName('ng-cloak');
+        });
+
+        module.config(function(gaLayersProvider, gaGlobalOptions) {
+          gaLayersProvider.wmtsGetTileUrlTemplate =
+              '//wmts{5-9}.geo.admin.ch/1.0.0/{Layer}/default/{Time}/21781/{TileMatrix}/{TileRow}/{TileCol}.{Format}';
+
+          gaLayersProvider.layersConfigUrlTemplate =
+              gaGlobalOptions.cachedApiUrl + '/rest/services/all/MapServer/layersConfig?lang={Lang}';
+
+          gaLayersProvider.legendUrlTemplate =
+              gaGlobalOptions.cachedApiUrl + '/rest/services/{Topic}/MapServer/{Layer}/legend?lang={Lang}';
+        });
+
+        module.config(function(gaExportKmlProvider, gaGlobalOptions) {
+          gaExportKmlProvider.downloadKmlUrl =
+              gaGlobalOptions.apiUrl + '/downloadkml';
+        });
+
+        module.config(function(gaPreviewFeaturesProvider, gaGlobalOptions) {
+          gaPreviewFeaturesProvider.url =
+              gaGlobalOptions.cachedApiUrl + '/rest/services/all/MapServer/';
+        });
+
+        module.config(function(gaProfileServiceProvider, gaGlobalOptions) {
+          gaProfileServiceProvider.d3libUrl =
+              gaGlobalOptions.resourceUrl + 'lib/d3-3.3.1.min.js';
+        });
+        
+        module.config(function(gaQueryProvider, gaGlobalOptions) {
+          gaQueryProvider.dpUrl = gaGlobalOptions.resourceUrl +
+              'lib/bootstrap-datetimepicker.min.js';
+        });
+
+        module.config(function($sceDelegateProvider, gaGlobalOptions) {
+          var whitelist = $sceDelegateProvider.resourceUrlWhitelist();
+          whitelist = whitelist.concat(gaGlobalOptions.whitelist);
+          $sceDelegateProvider.resourceUrlWhitelist(whitelist);
+        });
+
+        $('.ga-custom-tooltip').tooltip();
+
+      })();
+
+    </script>
+  </body>
+</html>
+
