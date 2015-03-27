@@ -1,18 +1,20 @@
 (function() {
   goog.provide('ga_geolocation_directive');
 
+  goog.require('ga_browsersniffer_service');
   goog.require('ga_permalink');
   goog.require('ga_styles_service');
   goog.require('ga_throttle_service');
 
   var module = angular.module('ga_geolocation_directive', [
+    'ga_browsersniffer_service',
     'ga_permalink',
     'ga_styles_service',
     'ga_throttle_service'
   ]);
 
   module.directive('gaGeolocation', function($parse, $window,
-      gaPermalink, gaStyleFactory, gaThrottle, gaMapUtils) {
+      gaBrowserSniffer, gaPermalink, gaStyleFactory, gaThrottle, gaMapUtils) {
     return {
       restrict: 'A',
       replace: true,
@@ -134,7 +136,11 @@
 
         // Update heading
         var headingUpdate = function() {
+          if (gaBrowserSniffer.mobile && gaBrowserSniffer.ios) {
           var heading = deviceOrientation.getHeading();
+          } else if (gaBrowserSniffer.mobile && !gaBrowserSniffer.ios){
+          var heading = -deviceOrientation.getHeading();
+          }
           if (angular.isDefined(heading)) {
 
             // The icon rotate
@@ -196,7 +202,11 @@
         var headngUpdateWhenIconRotate = gaThrottle.throttle(headingUpdate, 50);
 
         deviceOrientation.on('change:heading', function(event) {
-          var heading = deviceOrientation.getHeading();
+          if (gaBrowserSniffer.mobile && gaBrowserSniffer.ios ) {
+            var heading = deviceOrientation.getHeading();
+          } else if (gaBrowserSniffer.mobile && !gaBrowserSniffer.ios) {
+            var heading = -deviceOrientation.getHeading();
+          }
 
           // The icon rotate
           if (btnStatus == 1 ||
