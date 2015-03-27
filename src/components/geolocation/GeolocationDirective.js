@@ -134,13 +134,19 @@
           geolocationZooming = false;
         };
 
+        // Get heading depending on devices
+        var headingFromDevices = function() {
+          if (gaBrowserSniffer.mobile && gaBrowserSniffer.ios) {
+            var hdg = deviceOrientation.getHeading();
+          } else if (gaBrowserSniffer.mobile && !gaBrowserSniffer.ios) {
+            var hdg = -deviceOrientation.getHeading();
+          }
+          return hdg;
+        };
+
         // Update heading
         var headingUpdate = function() {
-          if (gaBrowserSniffer.mobile && gaBrowserSniffer.ios) {
-          var heading = deviceOrientation.getHeading();
-          } else if (gaBrowserSniffer.mobile && !gaBrowserSniffer.ios){
-          var heading = -deviceOrientation.getHeading();
-          }
+          var heading = headingFromDevices();
           if (angular.isDefined(heading)) {
 
             // The icon rotate
@@ -189,7 +195,7 @@
         };
 
         var updateHeadingFeature = function(forceRotation) {
-          var rotation = forceRotation || deviceOrientation.getHeading();
+          var rotation = forceRotation || headingFromDevices();
           if (angular.isDefined(rotation)) {
             positionFeature.set('rotation', rotation);
           }
@@ -202,11 +208,7 @@
         var headngUpdateWhenIconRotate = gaThrottle.throttle(headingUpdate, 50);
 
         deviceOrientation.on('change:heading', function(event) {
-          if (gaBrowserSniffer.mobile && gaBrowserSniffer.ios ) {
-            var heading = deviceOrientation.getHeading();
-          } else if (gaBrowserSniffer.mobile && !gaBrowserSniffer.ios) {
-            var heading = -deviceOrientation.getHeading();
-          }
+          var heading = headingFromDevices();
 
           // The icon rotate
           if (btnStatus == 1 ||
