@@ -1149,8 +1149,15 @@
          * Reset map rotation to North
          */
         resetMapToNorth: function(map) {
+          var currentRotation = map.getView().getRotation();
+          while (currentRotation < -Math.PI) {
+            currentRotation += 2 * Math.PI;
+          }
+          while (currentRotation > Math.PI) {
+            currentRotation -= 2 * Math.PI;
+          }
           map.beforeRender(ol.animation.rotate({
-            rotation: map.getView().getRotation(),
+            rotation: currentRotation,
             duration: 1000,
             easing: ol.easing.easeOut
           }));
