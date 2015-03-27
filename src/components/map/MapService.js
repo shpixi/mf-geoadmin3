@@ -1143,7 +1143,7 @@
             map.removeLayer(olLayer);
             map.addLayer(olLayer);
           }
-        }
+        },
 
         /**
          * Reset map rotation to North
