@@ -267,18 +267,11 @@
           }
 
           // Go to the next button state (3 states)
-          if (gaBrowserSniffer.mobile) {
-            if (btnStatus < maxNumStatus) {
-              btnStatus++;
-            } else {
-              btnStatus = 0;
-            }
+          var delta = (gaBrowserSniffer.mobile) ? 0 : 1;
+          if (btnStatus < maxNumStatus - delta) {
+            btnStatus++;
           } else {
-            if (btnStatus < maxNumStatus - 1) {
-              btnStatus++;
-            } else {
-              btnStatus = 0;
-            }
+            btnStatus = 0;
           }
 
           // Apply the new state
