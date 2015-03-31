@@ -71,22 +71,6 @@
       })
     });
 
-    var headingStyle = new ol.style.Style({
-      image: new ol.style.Icon({
-        rotateWithView: true,
-        src: 'components/geolocation/style/geolocation_heading_marker.png'
-      })
-    });
-
-    var geolocationStyleFunction = function(feature, res) {
-      var rotation = feature.get('rotation');
-      if (angular.isDefined(rotation)) {
-        headingStyle.getImage().setRotation(rotation);
-        return [headingStyle];
-      }
-      return [geolocationStyle];
-    };
-
     var offlineStyle = new ol.style.Style({
       stroke: new ol.style.Stroke({
         color: [255, 0, 0, 0.9],
@@ -137,11 +121,30 @@
       'transparentCircle': transparentCircle
     };
 
-    var stylesFunction = {
-      'geolocation': geolocationStyleFunction
-    };
+    this.$get = function(gaGlobalOptions) {
 
-    this.$get = function() {
+
+      var imgPath = gaGlobalOptions.resourceUrl + 'img/';
+      var headingStyle = new ol.style.Style({
+        image: new ol.style.Icon({
+          rotateWithView: true,
+          src: imgPath + 'geolocation_heading_marker.png'
+        })
+      });
+
+      var geolocationStyleFunction = function(feature, res) {
+        var rotation = feature.get('rotation');
+        if (angular.isDefined(rotation)) {
+          headingStyle.getImage().setRotation(rotation);
+          return [headingStyle];
+        }
+        return [geolocationStyle];
+      };
+
+      var stylesFunction = {
+        'geolocation': geolocationStyleFunction
+      };
+
       return {
         // Rules for the z-index (useful for a correct selection):
         // Sketch features (when modifying): 60

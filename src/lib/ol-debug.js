@@ -1,6 +1,6 @@
 // OpenLayers 3. See http://openlayers.org/
 // License: https://raw.githubusercontent.com/openlayers/ol3/master/LICENSE.md
-// Version: v3.3.0-29-gb26bea8
+// Version: v3.3.0
 
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
@@ -46992,6 +46992,8 @@ ol.tilegrid.extentFromProjection = function(projection) {
 };
 goog.exportProperty(ol.tilegrid.TileGrid.prototype, 'getTileRangeForExtentAndZ',
     ol.tilegrid.TileGrid.prototype.getTileRangeForExtentAndZ);
+goog.exportProperty(ol.tilegrid.TileGrid.prototype, 'getResolutions',
+    ol.tilegrid.TileGrid.prototype.getResolutions);
 
 
 goog.provide('ol.source.Tile');
@@ -63832,7 +63834,7 @@ function enlargedArea(a, b) {
            (Math.max(b[3], a[3]) - Math.min(b[1], a[1]));
 }
 
-function intersectionArea(a, b) {
+function intersectionArea (a, b) {
     var minX = Math.max(a[0], b[0]),
         minY = Math.max(a[1], b[1]),
         maxX = Math.min(a[2], b[2]),
@@ -63849,7 +63851,7 @@ function contains(a, b) {
            b[3] <= a[3];
 }
 
-function intersects(a, b) {
+function intersects (a, b) {
     return b[0] <= a[2] &&
            b[1] <= a[3] &&
            b[2] >= a[0] &&
@@ -63926,7 +63928,7 @@ function swap(arr, i, j) {
 
 
 // export as AMD/CommonJS module or global variable
-if (typeof define === 'function' && define.amd) define('rbush', function() { return rbush; });
+if (typeof define === 'function' && define.amd) define(function() { return rbush; });
 else if (typeof module !== 'undefined') module.exports = rbush;
 else if (typeof self !== 'undefined') self.rbush = rbush;
 else window.rbush = rbush;
@@ -75660,7 +75662,13 @@ ol.Map.prototype.handleTargetChanged_ = function() {
   // If it's not now an Element we remove the viewport from the DOM.
   // If it's an Element we append the viewport element to it.
 
-  var targetElement = this.getTargetElement();
+  var target = this.getTarget();
+
+  /**
+   * @type {Element}
+   */
+  var targetElement = goog.isDef(target) ?
+      goog.dom.getElement(target) : null;
 
   this.keyHandler_.detach();
 
@@ -76061,7 +76069,12 @@ ol.Map.prototype.skipFeature = function(feature) {
  * @api stable
  */
 ol.Map.prototype.updateSize = function() {
-  var targetElement = this.getTargetElement();
+  var target = this.getTarget();
+
+  /**
+   * @type {Element}
+   */
+  var targetElement = goog.isDef(target) ? goog.dom.getElement(target) : null;
 
   if (goog.isNull(targetElement)) {
     this.setSize(undefined);
@@ -76337,9 +76350,7 @@ ol.Overlay = function(options) {
    * @private
    * @type {Element}
    */
-  this.element_ = goog.dom.createDom(goog.dom.TagName.DIV, {
-    'class': 'ol-overlay-container'
-  });
+  this.element_ = goog.dom.createElement(goog.dom.TagName.DIV);
   this.element_.style.position = 'absolute';
 
   /**
@@ -77334,7 +77345,6 @@ goog.require('ol.TransformFunction');
 goog.require('ol.control.Control');
 goog.require('ol.css');
 goog.require('ol.proj');
-goog.require('ol.proj.METERS_PER_UNIT');
 goog.require('ol.proj.Units');
 goog.require('ol.sphere.NORMAL');
 
@@ -77549,18 +77559,20 @@ ol.control.ScaleLine.prototype.updateElement_ = function() {
     pointResolution *= Math.PI * cosLatitude * ol.sphere.NORMAL.radius / 180;
     projectionUnits = ol.proj.Units.METERS;
 
-  } else if (projectionUnits != ol.proj.Units.DEGREES &&
+  } else if ((projectionUnits == ol.proj.Units.FEET ||
+      projectionUnits == ol.proj.Units.METERS) &&
       units == ol.control.ScaleLineUnits.DEGREES) {
 
-    // Convert pointResolution from other units to degrees
+    // Convert pointResolution from meters or feet to degrees
     if (goog.isNull(this.toEPSG4326_)) {
       this.toEPSG4326_ = ol.proj.getTransformFromProjections(
           projection, ol.proj.get('EPSG:4326'));
     }
     cosLatitude = Math.cos(goog.math.toRadians(this.toEPSG4326_(center)[1]));
     var radius = ol.sphere.NORMAL.radius;
-    goog.asserts.assert(goog.isDef(ol.proj.METERS_PER_UNIT[projectionUnits]));
-    radius /= ol.proj.METERS_PER_UNIT[projectionUnits];
+    if (projectionUnits == ol.proj.Units.FEET) {
+      radius /= 0.3048;
+    }
     pointResolution *= 180 / (Math.PI * cosLatitude * radius);
     projectionUnits = ol.proj.Units.DEGREES;
 
@@ -85049,13 +85061,13 @@ ol.format.GMLBase = function(opt_options) {
 
   /**
    * @protected
-   * @type {Array.<string>|string|undefined}
+   * @type {string}
    */
   this.featureType = options.featureType;
 
   /**
    * @protected
-   * @type {Object.<string, string>|string|undefined}
+   * @type {string}
    */
   this.featureNS = options.featureNS;
 
@@ -85111,52 +85123,18 @@ ol.format.GMLBase.prototype.readFeaturesInternal = function(node, objectStack) {
     var context = objectStack[0];
     goog.asserts.assert(goog.isObject(context));
     var featureType = context['featureType'];
-    var featureNS = context['featureNS'];
-    var i, ii, prefix = 'p', defaultPrefix = 'p0';
-    if (!goog.isDef(featureType) && goog.isDefAndNotNull(node.childNodes)) {
-      featureType = [], featureNS = {};
-      for (i = 0, ii = node.childNodes.length; i < ii; ++i) {
-        var child = node.childNodes[i];
-        if (child.nodeType === 1) {
-          var ft = child.nodeName.split(':').pop();
-          if (goog.array.indexOf(featureType, ft) === -1) {
-            var key;
-            if (!goog.object.contains(featureNS, child.namespaceURI)) {
-              key = prefix + goog.object.getCount(featureNS);
-              featureNS[key] = child.namespaceURI;
-            } else {
-              key = goog.object.findKey(featureNS, function(value) {
-                return value === child.namespaceURI;
-              });
-            }
-            featureType.push(key + ':' + ft);
-          }
-        }
-      }
+    if (!goog.isDef(featureType) && !goog.isNull(node.firstElementChild)) {
+      var member = node.firstElementChild;
+      featureType = member.nodeName.split(':').pop();
       context['featureType'] = featureType;
-      context['featureNS'] = featureNS;
+      context['featureNS'] = member.namespaceURI;
     }
-    if (goog.isString(featureNS)) {
-      var ns = featureNS;
-      featureNS = {};
-      featureNS[defaultPrefix] = ns;
-    }
+    var parsers = {};
     var parsersNS = {};
-    var featureTypes = goog.isArray(featureType) ? featureType : [featureType];
-    for (var p in featureNS) {
-      var parsers = {};
-      for (i = 0, ii = featureTypes.length; i < ii; ++i) {
-        var featurePrefix = featureTypes[i].indexOf(':') === -1 ?
-            defaultPrefix : featureTypes[i].split(':')[0];
-        if (featurePrefix === p) {
-          parsers[featureTypes[i].split(':').pop()] =
-              (localName == 'featureMembers') ?
-              ol.xml.makeArrayPusher(this.readFeatureElement, this) :
-              ol.xml.makeReplacer(this.readFeatureElement, this);
-        }
-      }
-      parsersNS[featureNS[p]] = parsers;
-    }
+    parsers[featureType] = (localName == 'featureMembers') ?
+        ol.xml.makeArrayPusher(this.readFeatureElement, this) :
+        ol.xml.makeReplacer(this.readFeatureElement, this);
+    parsersNS[context['featureNS']] = parsers;
     features = ol.xml.pushParseAndPop([], parsersNS, node, objectStack);
   }
   if (!goog.isDef(features)) {
@@ -96048,13 +96026,13 @@ ol.format.WFS = function(opt_options) {
 
   /**
    * @private
-   * @type {Array.<string>|string|undefined}
+   * @type {string}
    */
   this.featureType_ = options.featureType;
 
   /**
    * @private
-   * @type {Object.<string, string>|string|undefined}
+   * @type {string}
    */
   this.featureNS_ = options.featureNS;
 
@@ -104196,6 +104174,7 @@ goog.require('ol.Collection');
 goog.require('ol.Coordinate');
 goog.require('ol.Feature');
 goog.require('ol.FeatureOverlay');
+goog.require('ol.Map');
 goog.require('ol.MapBrowserEvent');
 goog.require('ol.MapBrowserEvent.EventType');
 goog.require('ol.Object');
@@ -104433,6 +104412,10 @@ ol.interaction.Draw.prototype.setMap = function(map) {
  * @api
  */
 ol.interaction.Draw.handleEvent = function(mapBrowserEvent) {
+  var map = mapBrowserEvent.map;
+  if (!map.isDef()) {
+    return true;
+  }
   var pass = true;
   if (mapBrowserEvent.type === ol.MapBrowserEvent.EventType.POINTERMOVE) {
     pass = this.handlePointerMove_(mapBrowserEvent);
@@ -105640,7 +105623,6 @@ ol.SelectEventType = {
  * @param {string} type The event type.
  * @param {Array.<ol.Feature>} selected Selected features.
  * @param {Array.<ol.Feature>} deselected Deselected features.
- * @implements {oli.SelectEvent}
  * @extends {goog.events.Event}
  * @constructor
  */
@@ -105803,8 +105785,7 @@ ol.interaction.Select.handleEvent = function(mapBrowserEvent) {
          */
         function(feature, layer) {
           selected.push(feature);
-          return !this.multi_;
-        }, this, this.layerFilter_);
+        }, undefined, this.layerFilter_);
     if (selected.length > 0 && features.getLength() == 1 &&
         features.item(0) == selected[0]) {
       // No change
@@ -105814,7 +105795,11 @@ ol.interaction.Select.handleEvent = function(mapBrowserEvent) {
         deselected = Array.prototype.concat(features.getArray());
         features.clear();
       }
-      features.extend(selected);
+      if (this.multi_) {
+        features.extend(selected);
+      } else if (selected.length > 0) {
+        features.push(selected[0]);
+      }
     }
   } else {
     // Modify the currently selected feature(s).
@@ -111899,7 +111884,6 @@ ol.source.TileArcGISRest.prototype.getRequestUrl_ =
   params['BBOX'] = tileExtent.join(',');
   params['BBOXSR'] = srid;
   params['IMAGESR'] = srid;
-  params['DPI'] = 90 * pixelRatio;
 
   var url;
   if (urls.length == 1) {
@@ -111925,23 +111909,6 @@ ol.source.TileArcGISRest.prototype.getRequestUrl_ =
   }
 
   return goog.uri.utils.appendParamsFromMap(url, params);
-};
-
-
-/**
- * @param {number} z Z.
- * @param {number} pixelRatio Pixel ratio.
- * @param {ol.proj.Projection} projection Projection.
- * @return {number} Size.
- */
-ol.source.TileArcGISRest.prototype.getTilePixelSize =
-    function(z, pixelRatio, projection) {
-  var tileSize = goog.base(this, 'getTilePixelSize', z, pixelRatio, projection);
-  if (pixelRatio == 1) {
-    return tileSize;
-  } else {
-    return (tileSize * pixelRatio + 0.5) | 0;
-  }
 };
 
 
